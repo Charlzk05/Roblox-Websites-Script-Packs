@@ -1,0 +1,106 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <link rel="icon" type="image/png" href="https://projectillusion.dev/external-files/illusion.png">
+        <title>Illusion</title>
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+
+        <script>
+            function write_text(parent, content)
+            {
+                content.forEach(
+                    highlight => {
+                        let span = document.createElement("span");
+                        span.appendChild(document.createTextNode(highlight[1]));
+                        span.className = highlight[0];
+
+                        parent.appendChild(span);
+                    }
+                );
+            };
+        </script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="footer">
+            <div class="footer-container">
+                <div class="decor-left"></div>
+                <a href="https://discord.gg/AxQ6XTpTmG">Discord</a>
+                <div class="decor-right"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <span style="font-size: 5em;">Illusion</span>
+            <span style="font-size: 1em; margin-bottom: 7px;">The Definitive Roblox Script Hub</span>
+            <div style="position: relative">
+                <div class="script-line" style="z-index: -1"></div>
+                <div class="script-container">
+                
+                    <div class="seperator"></div>
+                    
+                    <div class="script-item">
+                        <span class="script-title">Script</span>
+                        <div class="script-content" id="Script">
+                            <script>
+                                write_text(
+    document.getElementById("Script"), 
+    [
+        ["keyword", "local "],
+        ["variable", "http_request"],
+        ["punctuation", " = "],
+        ["variable", "http_request"],
+        ["keyword", " or "],
+        ["variable", "request"],
+        ["keyword", " or "],
+        ["punctuation", "("],
+        ["variable", "syn"],
+        ["keyword", " and "],
+        ["variable", "syn"],
+        ["punctuation", "."],
+        ["variable", "request"],
+        ["punctuation", ")"],
+        ["keyword", " or "],
+        ["punctuation", "("],
+        ["variable", "http"],
+        ["keyword", " and "],
+        ["variable", "http"],
+        ["punctuation", "."],
+        ["variable", "request"],
+        ["punctuation", ")\n"],
+
+        ["library", "loadstring"],
+        ["punctuation", "("],
+        ["variable", "http_request"],
+        ["punctuation", "({"],
+        ["variable", "Url"],
+        ["punctuation", "="],
+        ["string", `"https://projectillusion.dev/beta/illusion/script.lua"`],
+        ["punctuation", ","],
+        ["variable", "Method"],
+        ["punctuation", "="],
+        ["string", `"GET"`],
+        ["punctuation", "})."],
+        ["variable", "Body"],
+        ["punctuation", ")()"],
+    ]
+);
+                            </script>
+                        </div>
+                    </div>
+
+                    <div class="seperator"></div>
+
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>

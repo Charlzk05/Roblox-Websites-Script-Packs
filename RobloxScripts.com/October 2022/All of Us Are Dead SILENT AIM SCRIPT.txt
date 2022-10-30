@@ -1,0 +1,47 @@
+local EnemiesFolder = workspace.Enemies
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local Mouse = Player:GetMouse()
+local RunService = game:GetService("RunService")
+
+local GetClosestToCursor = function()
+   local closestDistance = math.huge
+   local closestEnemy = nil
+
+   for _, enemy in pairs(EnemiesFolder:GetChildren()) do
+       if not enemy:FindFirstChild("Head") then continue end
+       if not enemy:FindFirstChildOfClass("Humanoid") then continue end
+       if enemy.Humanoid.Health <= 0 then continue end
+
+       local screenPos, visible = workspace.CurrentCamera:WorldToViewportPoint(enemy.Head.Position)
+
+       if not visible then continue end
+
+       local distance = (Vector2.new(Mouse.X, Mouse.Y) - Vector2.new(screenPos.X, screenPos.Y)).Magnitude
+       if distance < closestDistance then
+           closestEnemy = enemy
+           closestDistance = distance
+       end
+   end
+
+   return closestEnemy
+end
+
+local ClosestEnemy = GetClosestToCursor()
+RunService.Stepped:Connect(function(time, deltaTime)
+   ClosestEnemy = GetClosestToCursor()
+end)
+
+
+local old; old = hookmetamethod(game, '__namecall', function(this, ...)
+  local args = {...}
+  local method = getnamecallmethod()
+
+  if not checkcaller() and method == 'FireServer' and this.Name == "WeaponHit" then
+       if ClosestEnemy then
+           args[2].part = ClosestEnemy.Head
+       end
+   end
+
+  return old(this, unpack(args))
+end)

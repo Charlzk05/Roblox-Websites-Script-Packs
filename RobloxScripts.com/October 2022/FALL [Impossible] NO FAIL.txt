@@ -1,0 +1,4 @@
+local character = game.Players.LocalPlayer.Character
+character.Humanoid.Seated:Connect(function()
+    character.Humanoid.Sit = false
+end)

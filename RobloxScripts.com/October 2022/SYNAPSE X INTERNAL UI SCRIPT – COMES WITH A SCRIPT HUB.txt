@@ -1,0 +1,1 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/zzerexx/scripts/main/Internal_UI.lua", "Internal UI"))()

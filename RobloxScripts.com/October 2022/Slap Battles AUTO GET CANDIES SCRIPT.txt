@@ -1,0 +1,12 @@
+getgenv().loop = true
+while loop == true do wait(0.1)
+local head = game.Players.LocalPlayer.Character.Head
+
+for i, v in pairs(game:GetService("Workspace").CandyCorns:GetDescendants()) do
+if v.Name == 'TouchInterest' and v.Parent then
+firetouchinterest(head, v.Parent, 0)
+wait(0)
+firetouchinterest(head, v.Parent, 1)
+end
+end
+end

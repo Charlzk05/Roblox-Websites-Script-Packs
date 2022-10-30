@@ -1,0 +1,9 @@
+  
+--[[
+
+Situation Admin is in beta if you find any bugs please report them.
+Type "help" for a list of commands.
+
+]]--
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Teemsploit/SituationAdmin.lua/main/admin.lua'))()

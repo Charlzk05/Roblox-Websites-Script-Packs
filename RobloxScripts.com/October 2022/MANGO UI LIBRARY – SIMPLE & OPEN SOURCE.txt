@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1"
+        />
+        <style>
+            body.dragging * {
+                cursor: grabbing !important;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            *:focus,
+            *:hover {
+                outline: none;
+            }
+            .gitbook-splashscreen {
+                position: fixed;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                display: flex;
+                width: 100%;
+                height: 100%;
+            }
+            .slate-spacer {
+                height: 0;
+                color: transparent;
+                outline: none;
+                position: absolute;
+            }
+            @keyframes LoadingIndicator {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+            [data-loading-indicator='true'] {
+                animation: LoadingIndicator 0.6s ease infinite;
+            }
+        </style>
+        <title>UI Library Code - Mango Lib</title>
+<meta name="og:title" content="UI Library Code" id="__meta-og:title" />
+<link rel="preload" as="font" type="font/woff2" href="https://app.gitbook.com/public/fonts/Inter/Inter-Bold.woff2?v=3.19" crossorigin="anonymous">
+<link rel="preload" as="font" type="font/woff2" href="https://app.gitbook.com/public/fonts/Inter/Inter-BoldItalic.woff2?v=3.19" crossorigin="anonymous">
+<link rel="preload" as="font" type="font/woff2" href="https://app.gitbook.com/public/fonts/Inter/Inter-ExtraBold.woff2?v=3.19" crossorigin="anonymous">
+<link rel="preload" as="font" type="font/woff2" href="https://app.gitbook.com/public/fonts/Inter/Inter-ExtraBoldItalic.woff2?v=3.19" crossorigin="anonymous">
+<link rel="preload" as="font" type="font/woff2" href="https://app.gitbook.com/public/fonts/Inter/Inter-Medium.woff2?v=3.19" crossorigin="anonymous">
+<link rel="preload" as="font" type="font/woff2" href="https://app.gitbook.com/public/fonts/Inter/Inter-MediumItalic.woff2?v=3.19" crossorigin="anonymous">
+<link rel="preload" as="font" type="font/woff2" href="https://app.gitbook.com/public/fonts/Inter/Inter-Regular.woff2?v=3.19" crossorigin="anonymous">
+<link rel="preload" as="font" type="font/woff2" href="https://app.gitbook.com/public/fonts/Inter/Inter-Italic.woff2?v=3.19" crossorigin="anonymous">
+        <style id="__font-Inter-gitbook-content-font">
+            @font-face {
+            font-family: 'gitbook-content-font';
+            font-style:  normal;
+            font-weight: 700;
+            font-display: swap;
+            src: local("Inter Bold"), local("Inter-Bold"), url("https://app.gitbook.com/public/fonts/Inter/Inter-Bold.woff2?v=3.19") format("woff2"),
+                    url("https://app.gitbook.com/public/fonts/Inter/Inter-Bold.woff?v=3.19") format("woff");
+        }
+@font-face {
+            font-family: 'gitbook-content-font';
+            font-style:  italic;
+            font-weight: 700;
+            font-display: swap;
+            src: local("Inter BoldItalic"), local("Inter-BoldItalic"), url("https://app.gitbook.com/public/fonts/Inter/Inter-BoldItalic.woff2?v=3.19") format("woff2"),
+                    url("https://app.gitbook.com/public/fonts/Inter/Inter-BoldItalic.woff?v=3.19") format("woff");
+        }
+@font-face {
+            font-family: 'gitbook-content-font';
+            font-style:  normal;
+            font-weight: 800;
+            font-display: swap;
+            src: local("Inter ExtraBold"), local("Inter-ExtraBold"), url("https://app.gitbook.com/public/fonts/Inter/Inter-ExtraBold.woff2?v=3.19") format("woff2"),
+                    url("https://app.gitbook.com/public/fonts/Inter/Inter-ExtraBold.woff?v=3.19") format("woff");
+        }
+@font-face {
+            font-family: 'gitbook-content-font';
+            font-style:  italic;
+            font-weight: 800;
+            font-display: swap;
+            src: local("Inter ExtraBoldItalic"), local("Inter-ExtraBoldItalic"), url("https://app.gitbook.com/public/fonts/Inter/Inter-ExtraBoldItalic.woff2?v=3.19") format("woff2"),
+                    url("https://app.gitbook.com/public/fonts/Inter/Inter-ExtraBoldItalic.woff?v=3.19") format("woff");
+        }
+@font-face {
+            font-family: 'gitbook-content-font';
+            font-style:  normal;
+            font-weight: 500;
+            font-display: swap;
+            src: local("Inter Medium"), local("Inter-Medium"), url("https://app.gitbook.com/public/fonts/Inter/Inter-Medium.woff2?v=3.19") format("woff2"),
+                    url("https://app.gitbook.com/public/fonts/Inter/Inter-Medium.woff?v=3.19") format("woff");
+        }
+@font-face {
+            font-family: 'gitbook-content-font';
+            font-style:  italic;
+            font-weight: 500;
+            font-display: swap;
+            src: local("Inter MediumItalic"), local("Inter-MediumItalic"), url("https://app.gitbook.com/public/fonts/Inter/Inter-MediumItalic.woff2?v=3.19") format("woff2"),
+                    url("https://app.gitbook.com/public/fonts/Inter/Inter-MediumItalic.woff?v=3.19") format("woff");
+        }
+@font-face {
+            font-family: 'gitbook-content-font';
+            font-style:  normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local("Inter Regular"), local("Inter-Regular"), url("https://app.gitbook.com/public/fonts/Inter/Inter-Regular.woff2?v=3.19") format("woff2"),
+                    url("https://app.gitbook.com/public/fonts/Inter/Inter-Regular.woff?v=3.19") format("woff");
+        }
+@font-face {
+            font-family: 'gitbook-content-font';
+            font-style:  italic;
+            font-weight: 400;
+            font-display: swap;
+            src: local("Inter Italic"), local("Inter-Italic"), url("https://app.gitbook.com/public/fonts/Inter/Inter-Italic.woff2?v=3.19") format("woff2"),
+                    url("https://app.gitbook.com/public/fonts/Inter/Inter-Italic.woff?v=3.19") format("woff");
+        }
+        </style>
+<meta name="description" content="" id="__meta-description" />
+<meta name="og:description" content="" id="__meta-og:description" />
+<meta name="og:image" content="https://app.gitbook.com/share/space/thumbnail/KxGlyknxHAbgDtE2ntsU/page/D4QnmJYVPeto2YG9rj3B.png?color=&logo=&theme=" id="__meta-og:image" />
+<meta name="twitter:card" content="summary_large_image" id="__meta-twitter:card" />
+<meta name="twitter:site" content="Mango Lib" id="__meta-twitter:site" />
+<meta name="robots" content="index" id="__meta-robots" />
+<link rel="icon" href="https://app.gitbook.com/public/images/icon-512.png"  id="__link-icon" />
+
+                
+                <script type="module" defer src="https://app.gitbook.com/public/app/public-X7MPLG4L.min.js?v=10.9.189-9c4702b3032f5a5dd175e3f7d52cc91e1d446566-3344996362"></script>
+                <style id="react-native-stylesheet">[stylesheet-group="0"]{}
+html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+body{margin:0;}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
+input::-webkit-search-cancel-button,input::-webkit-search-decoration,input::-webkit-search-results-button,input::-webkit-search-results-decoration{display:none;}
+[stylesheet-group="0.1"]{}
+:focus:not([data-focusvisible-polyfill]){outline: none;}
+[stylesheet-group="0.5"]{}
+.css-18t94o4{cursor:pointer;}
+.css-4rbku5{background-color:rgba(0,0,0,0.00);color:inherit;font:inherit;list-style:none;margin-bottom:0px;margin-left:0px;margin-right:0px;margin-top:0px;text-align:inherit;text-decoration:none;}
+[stylesheet-group="1"]{}
+.css-1dbjc4n{-ms-flex-align:stretch;-ms-flex-direction:column;-ms-flex-negative:0;-ms-flex-preferred-size:auto;-webkit-align-items:stretch;-webkit-box-align:stretch;-webkit-box-direction:normal;-webkit-box-orient:vertical;-webkit-flex-basis:auto;-webkit-flex-direction:column;-webkit-flex-shrink:0;align-items:stretch;border:0 solid black;box-sizing:border-box;display:-webkit-box;display:-moz-box;display:-ms-flexbox;display:-webkit-flex;display:flex;flex-basis:auto;flex-direction:column;flex-shrink:0;margin-bottom:0px;margin-left:0px;margin-right:0px;margin-top:0px;min-height:0px;min-width:0px;padding-bottom:0px;padding-left:0px;padding-right:0px;padding-top:0px;position:relative;z-index:0;}
+.css-901oao{border:0 solid black;box-sizing:border-box;color:rgba(0,0,0,1.00);display:inline;font:14px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;margin-bottom:0px;margin-left:0px;margin-right:0px;margin-top:0px;padding-bottom:0px;padding-left:0px;padding-right:0px;padding-top:0px;white-space:pre-wrap;word-wrap:break-word;}
+.css-16my406{color:inherit;font:inherit;white-space:inherit;}
+.css-vcwn7f{max-width:100%;overflow-x:hidden;overflow-y:hidden;text-overflow:ellipsis;white-space:pre;}
+[stylesheet-group="2"]{}
+.r-13awgt0{-ms-flex:1 1 0%;-webkit-flex:1;flex:1;}
+.r-6koalj{display:-webkit-box;display:-moz-box;display:-ms-flexbox;display:-webkit-flex;display:flex;}
+.r-42olwf{border-bottom-color:rgba(0,0,0,0.00);border-left-color:rgba(0,0,0,0.00);border-right-color:rgba(0,0,0,0.00);border-top-color:rgba(0,0,0,0.00);}
+.r-rs99b7{border-bottom-width:1px;border-left-width:1px;border-right-width:1px;border-top-width:1px;}
+.r-z2wwpe{border-bottom-left-radius:4px;border-bottom-right-radius:4px;border-top-left-radius:4px;border-top-right-radius:4px;}
+.r-18c69zk{border-bottom-left-radius:100px;border-bottom-right-radius:100px;border-top-left-radius:100px;border-top-right-radius:100px;}
+.r-kdyh1x{border-bottom-left-radius:6px;border-bottom-right-radius:6px;border-top-left-radius:6px;border-top-right-radius:6px;}
+.r-1xfd6ze{border-bottom-left-radius:8px;border-bottom-right-radius:8px;border-top-left-radius:8px;border-top-right-radius:8px;}
+.r-crgep1{margin-bottom:0px;margin-left:0px;margin-right:0px;margin-top:0px;}
+.r-1xc7w19{border-bottom-color:rgba(0,0,0,1.00);border-left-color:rgba(0,0,0,1.00);border-right-color:rgba(0,0,0,1.00);border-top-color:rgba(0,0,0,1.00);}
+.r-1phboty{border-bottom-style:solid;border-left-style:solid;border-right-style:solid;border-top-style:solid;}
+.r-1yadl64{border-bottom-width:0px;border-left-width:0px;border-right-width:0px;border-top-width:0px;}
+.r-t60dpp{padding-bottom:0px;padding-left:0px;padding-right:0px;padding-top:0px;}
+.r-1udh08x{overflow-x:hidden;overflow-y:hidden;}
+.r-190qawg{border-bottom-color:rgba(227,232,237,1.00);border-left-color:rgba(227,232,237,1.00);border-right-color:rgba(227,232,237,1.00);border-top-color:rgba(227,232,237,1.00);}
+.r-nsbfu8{padding-bottom:16px;padding-left:16px;padding-right:16px;padding-top:16px;}
+[stylesheet-group="2.1"]{}
+.r-1jgb5lz{margin-left:auto;margin-right:auto;}
+.r-1pn2ns4{padding-left:8px;padding-right:8px;}
+.r-ymttw5{padding-left:16px;padding-right:16px;}
+.r-mk0yit{padding-left:0px;padding-right:0px;}
+.r-s1qlax{padding-left:4px;padding-right:4px;}
+.r-1e081e0{padding-left:12px;padding-right:12px;}
+.r-1yzf0co{padding-bottom:16px;padding-top:16px;}
+.r-5njf8e{padding-bottom:8px;padding-top:8px;}
+.r-pw2am6{margin-bottom:24px;margin-top:24px;}
+.r-1h4fu65{padding-bottom:24px;padding-top:24px;}
+.r-1guathk{padding-left:24px;padding-right:24px;}
+.r-oyd9sg{padding-bottom:4px;padding-top:4px;}
+[stylesheet-group="2.2"]{}
+.r-12vffkv>*{pointer-events:auto;}
+.r-12vffkv{pointer-events:none!important;}
+.r-14lw9ot{background-color:rgba(255,255,255,1.00);}
+.r-nzcix3{border-bottom-color:rgba(227,232,237,1.00);}
+.r-qklmqi{border-bottom-width:1px;}
+.r-gtdqiz{position:-webkit-sticky;position:sticky;}
+.r-ipm5af{top:0px;}
+.r-184en5c{z-index:1;}
+.r-18u37iz{-ms-flex-direction:row;-webkit-box-direction:normal;-webkit-box-orient:horizontal;-webkit-flex-direction:row;flex-direction:row;}
+.r-1awozwy{-ms-flex-align:center;-webkit-align-items:center;-webkit-box-align:center;align-items:center;}
+.r-ty80ws{max-width:1510px;}
+.r-13qz1uu{width:100%;}
+.r-eafdt9{-webkit-transition-duration:0.15s;transition-duration:0.15s;}
+.r-1i6wzkk{-moz-transition-property:opacity;-webkit-transition-property:opacity;transition-property:opacity;}
+.r-lrvibr{-moz-user-select:none;-ms-user-select:none;-webkit-user-select:none;user-select:none;}
+.r-1loqt21{cursor:pointer;}
+.r-1otgn73{-ms-touch-action:manipulation;touch-action:manipulation;}
+.r-18kxxzh{-ms-flex-positive:0;-webkit-box-flex:0;-webkit-flex-grow:0;flex-grow:0;}
+.r-1777fci{-ms-flex-pack:center;-webkit-box-pack:center;-webkit-justify-content:center;justify-content:center;}
+.r-1ny4l3l{outline-style:none;}
+.r-eu3ka{height:40px;}
+.r-1bnj018{color:rgba(92,105,117,1.00);}
+.r-1kb76zh{margin-right:8px;}
+.r-1aockid{width:40px;}
+.r-h7gdob{color:currentColor;}
+.r-17s6mgv{-ms-flex-pack:end;-webkit-box-pack:end;-webkit-justify-content:flex-end;justify-content:flex-end;}
+.r-1ro0kt6{-ms-flex-preferred-size:0%;-webkit-flex-basis:0%;flex-basis:0%;}
+.r-16y2uox{-ms-flex-positive:1;-webkit-box-flex:1;-webkit-flex-grow:1;flex-grow:1;}
+.r-1wbh5a2{-ms-flex-negative:1;-webkit-flex-shrink:1;flex-shrink:1;}
+.r-1qhn6m8{padding-left:16px;}
+.r-1jj8364{margin-left:auto;}
+.r-puj83k{padding-left:24px;}
+.r-1pyaxff{padding-right:8px;}
+.r-16vg0q1{max-width:225px;}
+.r-1wtj0ep{-ms-flex-pack:justify;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;}
+.r-gg6oyi{font-family:gitbook-content-font,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;}
+.r-1b43r93{font-size:14px;}
+.r-16dba41{font-weight:400;}
+.r-hbpseb{line-height:22px;}
+.r-1472mwg{height:24px;}
+.r-7xmw5f{width:-webkit-fit-content;width:-moz-fit-content;width:fit-content;}
+.r-1enofrn{font-size:12px;}
+.r-1kfrs79{font-weight:600;}
+.r-19r33im{letter-spacing:1.2px;}
+.r-14yzgew{line-height:18px;}
+.r-tsynxw{text-transform:uppercase;}
+.r-1ghhsy9{color:rgba(52,109,219,1.00);}
+.r-mabqd8{height:32px;}
+.r-1yvhtrz{width:32px;}
+.r-k200y{-ms-flex-item-align:start;-webkit-align-self:flex-start;align-self:flex-start;}
+.r-18ayb63{border-right-color:rgba(227,232,237,1.00);}
+.r-13l2t4g{border-right-width:1px;}
+.r-12dqhl9{height:calc(100vh - 80px);}
+.r-1rnoaur{overflow-y:auto;}
+.r-1fo40xd{top:80px;}
+.r-1ipicw7{width:300px;}
+.r-eqz5dr{-ms-flex-direction:column;-webkit-box-direction:normal;-webkit-box-orient:vertical;-webkit-flex-direction:column;flex-direction:column;}
+.r-sga3zk{height:64px;}
+.r-1kihuf0{-ms-flex-item-align:center;-ms-grid-row-align:center;-webkit-align-self:center;align-self:center;}
+.r-150rngu{-webkit-overflow-scrolling:touch;}
+.r-11yh6sk{overflow-x:hidden;}
+.r-1sncvnh{-webkit-transform:translateZ(0px);transform:translateZ(0px);}
+.r-1sc18lr{padding-bottom:88px;}
+.r-1p0dtai{bottom:0px;}
+.r-u8s1d{position:absolute;}
+.r-10ptun7{height:16px;}
+.r-1l7z4oj{padding-bottom:16px;}
+.r-1b00too{background-color:rgba(236,239,241,1.00);}
+.r-1rasi3h{color:rgba(136,153,168,1.00);}
+.r-b88u0q{font-weight:700;}
+.r-1l5ssaz{max-width:910px;}
+.r-1ygmrgt{padding-top:24px;}
+.r-1peese0{margin-bottom:24px;}
+.r-1xnzce8{-moz-user-select:-webkit-text;-moz-user-select:text;-ms-user-select:-webkit-text;-ms-user-select:text;-webkit-user-select:-webkit-text;-webkit-user-select:text;user-select:-webkit-text;user-select:text;}
+.r-1nf4jbm{color:rgba(59,69,78,1.00);}
+.r-bnwqim{position:relative;}
+.r-1oszu61{-ms-flex-align:stretch;-webkit-align-items:stretch;-webkit-box-align:stretch;align-items:stretch;}
+.r-deolkf{box-sizing:border-box;}
+.r-1mlwlqe{-ms-flex-preferred-size:auto;-webkit-flex-basis:auto;flex-basis:auto;}
+.r-1q142lx{-ms-flex-negative:0;-webkit-flex-shrink:0;flex-shrink:0;}
+.r-ifefl9{min-height:0px;}
+.r-bcqeeo{min-width:0px;}
+.r-417010{z-index:0;}
+.r-95jzfe{padding-top:16px;}
+.r-11c0sde{margin-top:24px;}
+.r-1yv4afn{border-top-color:rgba(227,232,237,1.00);}
+.r-5kkj8d{border-top-width:1px;}
+.r-icyqz7{max-height:calc(100vh - 88px);}
+.r-eqo98v{top:24px;}
+.r-1mkpi1y{max-width:max(50%, 300px);}
+.r-hu79xy{min-width:196px;}
+.r-wk8lta{padding-top:0px;}
+.r-1mdbw0j{padding-bottom:0px;}
+.r-dnmrzs{max-width:100%;}
+.r-6wscbn{max-width:252px;}
+.r-1h0z5md{-ms-flex-pack:start;-webkit-box-pack:start;-webkit-justify-content:flex-start;justify-content:flex-start;}
+.r-1l94q7l{box-shadow:inset 0px 0px 1px rgb(0 0 0 / 30%);}
+.r-88pszg{margin-right:16px;}
+.r-1ceczpf{min-height:24px;}
+.r-15zivkp{margin-bottom:4px;}
+.r-1clhhh9{-moz-transition-property:all;-webkit-transition-property:all;transition-property:all;}
+.r-obd0qt{-ms-flex-align:end;-webkit-align-items:flex-end;-webkit-box-align:end;align-items:flex-end;}
+.r-ubezar{font-size:16px;}
+.r-135wba7{line-height:24px;}
+.r-majxgm{font-weight:500;}
+[stylesheet-group="10"]{}
+[data-rnw-media-class="4600__4601"]{ height:80px;}
+@media (max-width: 700px) and (max-width: 9999999.52544848959552544849px) { [data-rnw-media-class="4600__4601"] { height:64px;} }
+[data-rnw-media-class="visible__hidden"]{display: none;}
+@media (max-width: 700px) and (max-width: 9999999.118105115105981081019595104105100100101110px) { [data-rnw-media-class="visible__hidden"] {display: flex;} }
+@media (max-width: 700px) and (max-width: 9999999.1041051001001011109595px) { [data-rnw-media-class="hidden__"] {display: none;} }
+[data-rnw-media-class="hidden__visible"]{display: flex;}
+@media (max-width: 700px) and (max-width: 9999999.104105100100101110959511810511510598108101px) { [data-rnw-media-class="hidden__visible"] {display: none;} }
+[data-rnw-media-class="188__187"]{ -ms-flex-direction:row;-webkit-box-direction:normal;-webkit-box-orient:horizontal;-webkit-flex-direction:row;flex-direction:row;}
+@media (max-width: 700px) and (max-width: 9999999.4956569595495655px) { [data-rnw-media-class="188__187"] { -ms-flex-direction:column;-webkit-box-direction:normal;-webkit-box-orient:vertical;-webkit-flex-direction:column;flex-direction:column;} }
+[data-rnw-media-class="hidden__visible_b1430-visible"]{display: flex;}
+@media (max-width: 1430px) and (max-width: 9999999.1041051001001011109595118105115105981081019598495251484511810511510598108101px) { [data-rnw-media-class="hidden__visible_b1430-visible"] {display: flex;} }
+@media (max-width: 700px) and (max-width: 9999999.1041051001001011109595118105115105981081019598495251484511810511510598108101px) { [data-rnw-media-class="hidden__visible_b1430-visible"] {display: none;} }
+[data-rnw-media-class="4350__4349_b1430-196"]{ padding-right:80px;}
+@media (max-width: 1430px) and (max-width: 9999999.5251534895955251525795984952514845495754px) { [data-rnw-media-class="4350__4349_b1430-196"] { -ms-flex-pack:center;-webkit-box-pack:center;-webkit-justify-content:center;justify-content:center;} }
+@media (max-width: 700px) and (max-width: 9999999.5251534895955251525795984952514845495754px) { [data-rnw-media-class="4350__4349_b1430-196"] { padding-right:16px;} }
+[data-rnw-media-class="4313__4314"]{ height:48px;width:80px;}
+@media (max-width: 700px) and (max-width: 9999999.52514951959552514952px) { [data-rnw-media-class="4313__4314"] { height:40px;min-width:16px;width:auto;} }
+[data-rnw-media-class="236__235"]{ font-family:gitbook-content-font,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:40px;font-weight:700;line-height:48px;}
+@media (max-width: 700px) and (max-width: 9999999.5051549595505153px) { [data-rnw-media-class="236__235"] { font-family:gitbook-content-font,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:32px;font-weight:700;line-height:40px;} }
+[data-rnw-media-class="visible__hidden_b1430-visible"]{display: none;}
+@media (max-width: 1430px) and (max-width: 9999999.1181051151059810810195951041051001001011109598495251484511810511510598108101px) { [data-rnw-media-class="visible__hidden_b1430-visible"] {display: flex;} }
+@media (max-width: 700px) and (max-width: 9999999.1181051151059810810195951041051001001011109598495251484511810511510598108101px) { [data-rnw-media-class="visible__hidden_b1430-visible"] {display: flex;} }
+[data-rnw-media-class="4316__4315"]{ margin-left:80px;}
+@media (max-width: 700px) and (max-width: 9999999.52514954959552514953px) { [data-rnw-media-class="4316__4315"] { margin-left:16px;} }
+[data-rnw-media-class="__127"]{ padding-bottom:40px;}
+[data-rnw-media-class="4227-196__4225-_b1430-196"]{ padding-right:80px;}
+@media (max-width: 1430px) and (max-width: 9999999.52505055454957549595525050534595984952514845495754px) { [data-rnw-media-class="4227-196__4225-_b1430-196"] { -ms-flex-pack:center;-webkit-box-pack:center;-webkit-justify-content:center;justify-content:center;} }
+@media (max-width: 700px) and (max-width: 9999999.52505055454957549595525050534595984952514845495754px) { [data-rnw-media-class="4227-196__4225-_b1430-196"] { -ms-flex-pack:center;-webkit-box-pack:center;-webkit-justify-content:center;justify-content:center;padding-right:16px;} }
+[data-rnw-media-class="4226-__4224"]{ margin-left:80px;}
+@media (max-width: 700px) and (max-width: 9999999.5250505445959552505052px) { [data-rnw-media-class="4226-__4224"] { margin-left:16px;} }
+[data-rnw-media-class="4353__4352"]{ margin-left:80px;}
+@media (max-width: 700px) and (max-width: 9999999.52515351959552515350px) { [data-rnw-media-class="4353__4352"] { margin-left:16px;} }
+[data-rnw-media-class="_188_187"]{ -ms-flex-direction:row;-webkit-box-direction:normal;-webkit-box-orient:horizontal;-webkit-flex-direction:row;flex-direction:row;}
+@media (max-width: 1024px) and (max-width: 9999999.9549565695495655px) { [data-rnw-media-class="_188_187"] { -ms-flex-direction:column;-webkit-box-direction:normal;-webkit-box-orient:vertical;-webkit-flex-direction:column;flex-direction:column;} }
+@media (max-width: 1024px) and (max-width: 9999999.9549545095px) { [data-rnw-media-class="_162_"] { margin-bottom:16px;} }
+[data-rnw-media-class="hidden__1kbfcbz_b1430-hidden"]{ width:max(220px, calc(100vw - max(300px, calc((100vw - 910px) / 2 - 0px)) - 750px - 80px - 80px - 0px));}
+@media (max-width: 1430px) and (max-width: 9999999.10410510010010111095954910798102999812295984952514845104105100100101110px) { [data-rnw-media-class="hidden__1kbfcbz_b1430-hidden"] {display: none;} }
+@media (max-width: 700px) and (max-width: 9999999.10410510010010111095954910798102999812295984952514845104105100100101110px) { [data-rnw-media-class="hidden__1kbfcbz_b1430-hidden"] {display: none;} }
+[data-rnw-media-class="4595-90-111-204-197-__4595-112-118-197"]{ -ms-flex-pack:start;-webkit-box-pack:start;-webkit-justify-content:flex-start;justify-content:flex-start;padding-left:16px;padding-right:24px;width:auto;}
+@media (max-width: 700px) and (max-width: 9999999.5253575345574845494949455048524549575545959552535753454949504549495645495755px) { [data-rnw-media-class="4595-90-111-204-197-__4595-112-118-197"] { -ms-flex-negative:1;-ms-flex-pack:start;-webkit-box-pack:start;-webkit-flex-shrink:1;-webkit-justify-content:flex-start;flex-shrink:1;justify-content:flex-start;padding-left:0px;padding-right:16px;width:auto;} }
+[data-rnw-media-class="239__238"]{ font-family:gitbook-content-font,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:20px;font-weight:700;line-height:24px;}
+@media (max-width: 700px) and (max-width: 9999999.5051579595505156px) { [data-rnw-media-class="239__238"] { font-family:gitbook-content-font,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:16px;font-weight:600;line-height:24px;} }
+[data-rnw-media-class="4384__4385"]{ border-right-width:0px;}
+@media (max-width: 700px) and (max-width: 9999999.52515652959552515653px) { [data-rnw-media-class="4384__4385"] { border-right-width:1px;} }
+[data-rnw-media-class="__187_b910-188"]{ -ms-flex-direction:row;-webkit-box-direction:normal;-webkit-box-orient:horizontal;-webkit-flex-direction:row;flex-direction:row;}
+@media (max-width: 910px) and (max-width: 9999999.9595495655959857494845495656px) { [data-rnw-media-class="__187_b910-188"] { -ms-flex-direction:column;-webkit-box-direction:normal;-webkit-box-orient:vertical;-webkit-flex-direction:column;flex-direction:column;} }
+[stylesheet-group="20"]{}
+body:not(.dragging) [data-rnw-int-class="button___1819_"]:hover , body:not(.dragging) [data-rnw-int-class="button___1819_"]:focus { background-color:rgba(245,247,249,1.00);}
+body:not(.dragging) [data-rnw-int-class="button___1819_"]:focus:not(:focus-visible) { outline: none; }
+body:not(.dragging) [data-rnw-int-class="button___1819_"]:focus-visible { outline-color:#2662d7;outline-offset:0px;outline-style:auto;outline-width:2px;}
+body:not(.dragging) [data-rnw-int-class="button___1819_"]:hover [data-rnw-int-class="nearest___1827_"], body:not(.dragging) [data-rnw-int-class="button___1819_"]:focus [data-rnw-int-class="nearest___1827_"]{ color:rgba(92,105,117,1.00);}
+body:not(.dragging) [data-rnw-int-class="button___1430_"]:focus:not(:focus-visible) { outline: none; }
+body:not(.dragging) [data-rnw-int-class="button___1430_"]:focus-visible { outline-color:#2662d7;outline-offset:0px;outline-style:auto;outline-width:2px;}
+body:not(.dragging) [data-rnw-int-class="button___1430_"]:hover [data-rnw-int-class="nearest___1431-973197_"], body:not(.dragging) [data-rnw-int-class="button___1430_"]:focus [data-rnw-int-class="nearest___1431-973197_"]{ color:rgba(52,109,219,1.00);}
+body:not(.dragging) [data-rnw-int-class="nearest___346-973221_"]:hover , body:not(.dragging) [data-rnw-int-class="nearest___346-973221_"]:focus { color:rgba(52,109,219,1.00);}
+body:not(.dragging) [data-rnw-int-class="nearest___346-973221_"]:focus:not(:focus-visible) { outline: none; }
+body:not(.dragging) [data-rnw-int-class="nearest___346-973221_"]:focus-visible { outline-color:#2662d7;outline-offset:0px;outline-style:auto;outline-width:2px;}
+body:not(.dragging) [data-rnw-int-class="nearest___346-973221_"]:hover [data-rnw-int-class="nearest___346-973221_"], body:not(.dragging) [data-rnw-int-class="nearest___346-973221_"]:focus [data-rnw-int-class="nearest___346-973221_"]{ color:rgba(52,109,219,1.00);}
+body:not(.dragging) [data-rnw-int-class="nearest____"]:focus:not(:focus-visible) { outline: none; }
+body:not(.dragging) [data-rnw-int-class="nearest____"]:focus-visible { outline-color:#2662d7;outline-offset:0px;outline-style:auto;outline-width:2px;}
+body:not(.dragging) [data-rnw-int-class="nearest____"]:hover [data-rnw-int-class="nearest___346-973173_"], body:not(.dragging) [data-rnw-int-class="nearest____"]:focus [data-rnw-int-class="nearest___346-973173_"]{ color:rgba(52,109,219,1.00);}
+[data-rnw-int-class="nearest_258__346-973173_"]{ color:rgba(59,69,78,1.00);}
+body:not(.dragging) [data-rnw-int-class="nearest____"]:hover [data-rnw-int-class="nearest_258__346-973173_"], body:not(.dragging) [data-rnw-int-class="nearest____"]:focus [data-rnw-int-class="nearest_258__346-973173_"]{ color:rgba(52,109,219,1.00);}
+body:not(.dragging) [data-rnw-int-class="nearest__4386__"]:hover { background-color:rgba(236,239,241,1.00);}
+body:not(.dragging) [data-rnw-int-class="nearest__4386__"]:focus:not(:focus-visible) { outline: none; }
+body:not(.dragging) [data-rnw-int-class="nearest__4386__"]:focus-visible { outline-color:#2662d7;outline-offset:0px;outline-style:auto;outline-width:2px;}
+body:not(.dragging) [data-rnw-int-class="BaseCard__2173-__2165-973277-"]:hover { -webkit-transform:translateY(-2px);box-shadow:0px 12px 13px rgba(0,0,0,0.02);transform:translateY(-2px);}
+body:not(.dragging) [data-rnw-int-class="BaseCard__2173-__2165-973277-"]:focus { border-bottom-color:rgba(52,109,219,1.00);border-left-color:rgba(52,109,219,1.00);border-right-color:rgba(52,109,219,1.00);border-top-color:rgba(52,109,219,1.00);}
+body:not(.dragging) [data-rnw-int-class="BaseCard__2173-__2165-973277-"]:focus:not(:focus-visible) { outline: none; }
+body:not(.dragging) [data-rnw-int-class="BaseCard__2173-__2165-973277-"]:focus-visible { outline-color:#2662d7;outline-offset:0px;outline-style:auto;outline-width:2px;}
+body:not(.dragging) [data-rnw-int-class="BaseCard__2173-__2165-973277-"]:hover [data-rnw-int-class="nearest__346-973173__"]{ color:rgba(52,109,219,1.00);}
+body:not(.dragging) [data-rnw-int-class="BaseCard__2173-__2165-973277-"]:hover [data-rnw-int-class="nearest___346-973173_"], body:not(.dragging) [data-rnw-int-class="BaseCard__2173-__2165-973277-"]:focus [data-rnw-int-class="nearest___346-973173_"]{ color:rgba(52,109,219,1.00);}</style>
+                <style>
+                    html,
+                    body {
+                        -webkit-font-smoothing: antialiased;
+                        text-rendering: optimizelegibility;
+                        width: 100%;
+                        min-height: 100vh;
+                        user-select: none;
+                        outline: none;
+                        position: relative;
+                    }
+                    /* Avoid Chrome to see Safari hack */
+                    @supports (-webkit-touch-callout: none) {
+                        html,
+                        body,
+                        .gitbook-root {
+                            /* The hack for Safari */
+                            min-height: -webkit-fill-available;
+                        }
+                    }
+                    .gitbook-root {
+                        display: flex;
+                        min-height: 100vh;
+                    }
+                </style>
+            
+        <script type="text/javascript" defer src="https://cdn.iframe.ly/embed.js" async></script>
+        <script
+            type="text/javascript"
+            defer
+            src="https://cdn.polyfill.io/v2/polyfill.js?features=Intl.~locale.en"
+            crossorigin="anonymous"
+        ></script>
+    </head>
+    <body>
+        <div class="gitbook-root"><div class="css-1dbjc4n r-13awgt0 r-12vffkv" data-reactroot=""><div class="css-1dbjc4n r-13awgt0 r-12vffkv"><div data-rnw-media-class="4600__4601" class="css-1dbjc4n r-1awozwy r-14lw9ot r-nzcix3 r-qklmqi r-18u37iz r-gtdqiz r-ipm5af r-184en5c"><div class="css-1dbjc4n r-1awozwy r-6koalj r-18u37iz r-1jgb5lz r-ty80ws r-1pn2ns4 r-13qz1uu"><div aria-label="Show Table of Content" role="button" data-rnw-media-class="visible__hidden" data-rnw-int-class="button___1819_" tabindex="0" class="css-18t94o4 css-1dbjc4n r-1awozwy r-42olwf r-18c69zk r-rs99b7 r-1bnj018 r-1loqt21 r-18u37iz r-18kxxzh r-eu3ka r-1777fci r-1kb76zh r-1ny4l3l r-mk0yit r-1otgn73 r-eafdt9 r-1i6wzkk r-lrvibr r-1aockid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" preserveAspectRatio="xMidYMid meet" data-rnw-int-class="nearest___1827_" class="r-h7gdob" style="height:18px;vertical-align:middle;width:18px"><path d="M3 12h18M3 6h18M3 18h18"></path></svg></div><a href="/mango-lib/" aria-label="Mango Lib" data-rnw-int-class="nearest____" data-rnw-media-class="4595-90-111-204-197-__4595-112-118-197" class="css-4rbku5 css-1dbjc4n r-1awozwy r-1loqt21 r-18u37iz r-1otgn73 r-eafdt9 r-1i6wzkk r-lrvibr" data-testid="public.headerHomeLink"><div class="css-1dbjc4n r-1awozwy r-1ro0kt6 r-18u37iz r-16y2uox r-1wbh5a2 r-1h0z5md r-6wscbn"><div class="css-1dbjc4n"><div data-rnw-media-class="hidden__visible" class="css-1dbjc4n"><div class="css-1dbjc4n r-1awozwy r-14lw9ot r-z2wwpe r-1l94q7l r-18u37iz r-eu3ka r-1777fci r-88pszg r-1aockid" style="overflow-x:hidden;overflow-y:hidden"><div class="css-1dbjc4n r-1awozwy r-eu3ka r-1777fci r-1aockid"><div dir="auto" class="css-901oao r-1nf4jbm" style="font-size:28px">M</div></div></div></div><div data-rnw-media-class="visible__hidden" class="css-1dbjc4n"><div class="css-1dbjc4n r-1awozwy r-14lw9ot r-z2wwpe r-1l94q7l r-18u37iz r-1472mwg r-1777fci r-88pszg" style="overflow-x:hidden;overflow-y:hidden;width:24px"><div class="css-1dbjc4n r-1awozwy r-1472mwg r-1777fci" style="width:24px"><div dir="auto" class="css-901oao r-1nf4jbm" style="font-size:16.799999999999997px">M</div></div></div></div></div><div dir="auto" data-rnw-media-class="239__238" class="css-901oao r-1udh08x"><span data-rnw-int-class="nearest_258__346-973173_" class="css-901oao css-16my406 css-vcwn7f">Mango Lib</span></div></div></a><div data-rnw-media-class="hidden__" class="css-1dbjc4n r-1awozwy r-1ro0kt6 r-18u37iz r-16y2uox r-1wbh5a2 r-17s6mgv r-1qhn6m8"></div><div data-rnw-media-class="hidden__visible" class="css-1dbjc4n r-1ro0kt6 r-16y2uox r-1wbh5a2 r-1jj8364 r-16vg0q1 r-puj83k r-1pyaxff"><div aria-label="Search…" tabindex="0" class="css-1dbjc4n r-1awozwy r-kdyh1x r-1loqt21 r-18u37iz r-eu3ka r-1wtj0ep r-1qhn6m8 r-1pyaxff r-1otgn73 r-eafdt9 r-1i6wzkk r-lrvibr r-13qz1uu" style="background-color:rgba(0,0,0,0.05)"><div class="css-1dbjc4n r-1awozwy r-18u37iz"><svg viewBox="0 0 24 24" fill="none" preserveAspectRatio="xMidYMid meet" class="r-1bnj018 r-1kb76zh" style="height:14px;vertical-align:middle;width:14px"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 4a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM2 10.5a8.5 8.5 0 1117 0 8.5 8.5 0 01-17 0z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M15.093 15.093a1 1 0 011.414 0l5.2 5.2a1 1 0 01-1.414 1.414l-5.2-5.2a1 1 0 010-1.414z" fill="currentColor"></path></svg><div dir="auto" class="css-901oao r-1bnj018 r-gg6oyi r-1b43r93 r-16dba41 r-hbpseb">Search…</div></div><div class="css-1dbjc4n"><div class="css-1dbjc4n r-1awozwy r-14lw9ot r-z2wwpe r-18u37iz r-1472mwg r-s1qlax r-7xmw5f"><div dir="auto" class="css-901oao r-1ghhsy9 r-gg6oyi r-1enofrn r-1kfrs79 r-19r33im r-14yzgew r-tsynxw">⌃K</div></div></div></div></div><div data-rnw-media-class="visible__hidden" class="css-1dbjc4n r-1jj8364 r-puj83k r-1pyaxff"><div aria-label="Search…" role="button" data-rnw-int-class="button___1430_" tabindex="0" class="css-18t94o4 css-1dbjc4n r-1awozwy r-42olwf r-z2wwpe r-rs99b7 r-1bnj018 r-1loqt21 r-18u37iz r-18kxxzh r-mabqd8 r-1777fci r-1ny4l3l r-mk0yit r-1otgn73 r-eafdt9 r-1i6wzkk r-lrvibr r-1yvhtrz"><svg viewBox="0 0 24 24" fill="none" preserveAspectRatio="xMidYMid meet" data-rnw-int-class="nearest___1431-973197_" class="r-h7gdob" style="height:14px;vertical-align:middle;width:14px"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 4a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM2 10.5a8.5 8.5 0 1117 0 8.5 8.5 0 01-17 0z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M15.093 15.093a1 1 0 011.414 0l5.2 5.2a1 1 0 01-1.414 1.414l-5.2-5.2a1 1 0 010-1.414z" fill="currentColor"></path></svg></div></div></div></div><div data-rnw-media-class="visible__hidden" class="css-1dbjc4n"></div><div data-rnw-media-class="188__187" class="css-1dbjc4n r-1ro0kt6 r-16y2uox r-1wbh5a2"><div data-rnw-media-class="hidden__visible_b1430-visible" class="css-1dbjc4n r-k200y r-14lw9ot r-18ayb63 r-13l2t4g r-18u37iz r-12dqhl9 r-17s6mgv r-1rnoaur r-gtdqiz r-1fo40xd" style="width:max(300px, calc((100vw - 910px) / 2 - 0px))" data-testid="page.desktopTableOfContents"><div class="css-1dbjc4n r-eqz5dr r-1ipicw7"><div class="css-1dbjc4n r-1ro0kt6 r-16y2uox r-1wbh5a2 r-puj83k"><div data-rnw-media-class="visible__hidden" class="css-1dbjc4n r-1awozwy r-14lw9ot r-nzcix3 r-qklmqi r-18u37iz r-sga3zk r-1wtj0ep r-1pn2ns4"><div aria-label="Close" role="button" data-rnw-int-class="button___1430_" tabindex="0" class="css-18t94o4 css-1dbjc4n r-1awozwy r-1kihuf0 r-42olwf r-z2wwpe r-rs99b7 r-1bnj018 r-1loqt21 r-18u37iz r-18kxxzh r-eu3ka r-1777fci r-1ny4l3l r-mk0yit r-1otgn73 r-eafdt9 r-1i6wzkk r-lrvibr r-1aockid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" preserveAspectRatio="xMidYMid meet" data-rnw-int-class="nearest___1431-973197_" class="r-h7gdob" style="height:18px;vertical-align:middle;width:18px"><path d="M18 6L6 18M6 6l12 12"></path></svg></div></div><div class="css-1dbjc4n r-150rngu r-1ro0kt6 r-eqz5dr r-16y2uox r-1wbh5a2 r-11yh6sk r-1rnoaur r-1sncvnh"><div class="css-1dbjc4n r-1sc18lr r-1yzf0co"><div class="css-1dbjc4n"><a href="/mango-lib/" data-rnw-media-class="4384__4385" data-rnw-int-class="nearest__4386__" class="css-4rbku5 css-1dbjc4n r-1awozwy r-42olwf r-z2wwpe r-rs99b7 r-1loqt21 r-18u37iz r-15zivkp r-1kb76zh r-1ceczpf r-1pn2ns4 r-1otgn73 r-eafdt9 r-1i6wzkk r-lrvibr"><div dir="auto" class="css-901oao r-1bnj018 r-1ro0kt6 r-16y2uox r-1wbh5a2 r-gg6oyi r-1b43r93 r-16dba41 r-hbpseb r-oyd9sg">Mango UI Library</div><div tabindex="0" class="css-1dbjc4n r-1awozwy r-1loqt21 r-18u37iz r-1otgn73 r-eafdt9 r-1i6wzkk r-lrvibr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" preserveAspectRatio="xMidYMid meet" class="r-1bnj018 r-10ptun7" style="vertical-align:middle;width:16px"><path d="M9 18l6-6-6-6"></path></svg></div></a></div><div class="css-1dbjc4n"><a href="/mango-lib/library-items" data-rnw-media-class="4384__4385" data-rnw-int-class="nearest__4386__" class="css-4rbku5 css-1dbjc4n r-1awozwy r-42olwf r-z2wwpe r-rs99b7 r-1loqt21 r-18u37iz r-15zivkp r-1kb76zh r-1ceczpf r-1pn2ns4 r-1otgn73 r-eafdt9 r-1i6wzkk r-lrvibr"><div dir="auto" class="css-901oao r-1bnj018 r-1ro0kt6 r-16y2uox r-1wbh5a2 r-gg6oyi r-1b43r93 r-16dba41 r-hbpseb r-oyd9sg">Library Items</div><div tabindex="0" class="css-1dbjc4n r-1awozwy r-1loqt21 r-18u37iz r-1otgn73 r-eafdt9 r-1i6wzkk r-lrvibr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" preserveAspectRatio="xMidYMid meet" class="r-1bnj018 r-10ptun7" style="vertical-align:middle;width:16px"><path d="M9 18l6-6-6-6"></path></svg></div></a></div><div class="css-1dbjc4n"><a href="/mango-lib/ui-library-code" data-rnw-media-class="4384__4385" data-rnw-int-class="nearest____" class="css-4rbku5 css-1dbjc4n r-1awozwy r-42olwf r-z2wwpe r-rs99b7 r-1loqt21 r-18u37iz r-1kb76zh r-1ceczpf r-1pn2ns4 r-1otgn73 r-eafdt9 r-1i6wzkk r-lrvibr" style="background-color:rgba(133,163,224,0.10)"><div dir="auto" class="css-901oao r-1ghhsy9 r-1ro0kt6 r-16y2uox r-1wbh5a2 r-gg6oyi r-1b43r93 r-b88u0q r-hbpseb r-oyd9sg">UI Library Code</div></a></div></div></div></div><div class="css-1dbjc4n r-1p0dtai r-u8s1d r-13qz1uu r-184en5c"><div class="css-1dbjc4n r-10ptun7" style="background-image:linear-gradient(3.141592653589793rad,#ffffff00,#ffffff)"></div><div class="css-1dbjc4n r-14lw9ot r-1l7z4oj r-ymttw5"><a href="https://www.gitbook.com/?utm_source=content&amp;utm_medium=trademark&amp;utm_campaign=KxGlyknxHAbgDtE2ntsU" data-rnw-int-class="nearest___346-973221_" class="css-4rbku5 css-1dbjc4n r-1awozwy r-1b00too r-1xfd6ze r-1loqt21 r-18u37iz r-ymttw5 r-5njf8e r-1otgn73 r-eafdt9 r-1i6wzkk r-lrvibr"><svg viewBox="0 0 1000 1000" fill="none" preserveAspectRatio="xMidYMid meet" data-rnw-int-class="nearest___346-973221_" class="r-1rasi3h r-eu3ka r-1aockid" style="vertical-align:middle"><path fill-rule="evenodd" clip-rule="evenodd" d="M562.168 159.724l325.95 162.727c15.062 7.519 15.298 28.898.404 36.746L465.19 582.283a82.875 82.875 0 01-75.639.83L123.74 450.409c-32.376-12.972-68.568 10.748-68.568 46.474 0 28.728 16.256 54.991 41.99 67.839l266.48 133.036c16.267-16.537 38.918-26.795 63.967-26.795 24.334 0 46.404 9.68 62.558 25.394L822.075 521.45a89.893 89.893 0 01-1.385-15.755c0-49.44 40.14-89.519 89.655-89.519S1000 456.255 1000 505.695c0 49.439-40.14 89.518-89.655 89.518-24.21 0-46.178-9.581-62.31-25.153L515.94 745.065a90.036 90.036 0 011.324 15.417c0 49.439-40.14 89.518-89.655 89.518s-89.655-40.079-89.655-89.518c0-4.572.343-9.063 1.006-13.451L68.622 612.068C26.566 591.072 0 548.153 0 501.205v-26.15c0-35.755 19.82-68.574 51.49-85.261l435.039-229.24a82.87 82.87 0 0175.639-.83zM427.609 794.912c19.044 0 34.483-15.415 34.483-34.43 0-19.016-15.439-34.431-34.483-34.431-19.044 0-34.482 15.415-34.482 34.431 0 19.015 15.438 34.43 34.482 34.43zm517.219-289.217c0 19.015-15.438 34.43-34.483 34.43-19.044 0-34.482-15.415-34.482-34.43s15.438-34.43 34.482-34.43c19.045 0 34.483 15.415 34.483 34.43z" fill="currentColor"></path></svg><div class="css-1dbjc4n r-1ro0kt6 r-16y2uox r-1wbh5a2 r-1qhn6m8"><div dir="auto" data-rnw-int-class="nearest___346-973221_" class="css-901oao r-1rasi3h r-gg6oyi r-1b43r93 r-16dba41 r-hbpseb">Powered By <span class="css-901oao css-16my406 r-b88u0q">GitBook</span></div></div></a></div></div></div></div><div class="css-1dbjc4n r-14lw9ot r-13awgt0"><div class="css-1dbjc4n r-1ro0kt6 r-18u37iz r-16y2uox r-1wbh5a2"><div data-rnw-media-class="__" class="css-1dbjc4n r-1ro0kt6 r-18u37iz r-16y2uox r-1wbh5a2 r-1777fci"><div class="css-1dbjc4n r-1ro0kt6 r-eqz5dr r-16y2uox r-1wbh5a2"><div data-rnw-media-class="4350__4349_b1430-196" class="css-1dbjc4n r-18u37iz r-1777fci"><div class="css-1dbjc4n r-1ro0kt6 r-16y2uox r-1wbh5a2 r-1l5ssaz"><div class="css-1dbjc4n r-eqz5dr r-1peese0 r-1ygmrgt"><div class="css-1dbjc4n r-18u37iz"><div data-rnw-media-class="4313__4314" class="css-1dbjc4n r-1awozwy r-18u37iz r-17s6mgv"></div><div class="css-1dbjc4n r-1ro0kt6 r-16y2uox r-1wbh5a2"><h1 data-rnw-media-class="236__235" class="r-1nf4jbm r-crgep1 r-1xnzce8" data-testid="page.title">UI Library Code</h1></div><div data-rnw-media-class="visible__hidden_b1430-visible" class="css-1dbjc4n r-1awozwy r-18u37iz"><div aria-label="Page actions" role="button" data-rnw-int-class="button___1819_" tabindex="0" class="css-18t94o4 css-1dbjc4n r-1awozwy r-42olwf r-18c69zk r-rs99b7 r-1bnj018 r-1loqt21 r-18u37iz r-18kxxzh r-eu3ka r-1777fci r-1ny4l3l r-mk0yit r-1otgn73 r-eafdt9 r-1i6wzkk r-lrvibr r-1aockid" data-testid="pageCompactToolbar.paletteButton"><svg viewBox="0 0 16 16" fill="none" preserveAspectRatio="xMidYMid meet" data-rnw-int-class="nearest___1827_" class="r-h7gdob" style="height:18px;vertical-align:middle;width:18px"><path d="M8 4a1 1 0 100-2 1 1 0 000 2zM8 8.75a1 1 0 100-2 1 1 0 000 2zM8 13.5a1 1 0 100-2 1 1 0 000 2z" fill="currentColor"></path></svg></div></div></div><div data-rnw-media-class="4316__4315" class="css-1dbjc4n"></div></div></div></div><div data-rnw-media-class="__127" class="css-1dbjc4n"><div class="css-1dbjc4n r-bnwqim"><div data-testid="page.contentEditor" data-slate-editor="1fdb7adcf6704574b8b67aa24123aadd" data-key="1fdb7adcf6704574b8b67aa24123aadd" autoCorrect="on" spellcheck="true" data-gramm="false" style="outline:none;white-space:pre-wrap;word-wrap:break-word"><div style="content-visibility:auto;contain-intrinsic-size:0 232px"><div data-slate-void="true" data-key="22a51a70e34f41fdb9449b7d01cb3c2e"><div><div class="css-1dbjc4n r-bnwqim"><div data-rnw-media-class="4227-196__4225-_b1430-196" class="css-1dbjc4n r-1ro0kt6 r-18u37iz r-16y2uox r-1wbh5a2 r-1777fci"><div class="css-1dbjc4n r-1ro0kt6 r-16y2uox r-1wbh5a2 r-1l5ssaz"><div data-rnw-media-class="4226-__4224" class="css-1dbjc4n"><div class="css-1dbjc4n"><div data-key="22a51a70e34f41fdb9449b7d01cb3c2e" class="r-1oszu61 r-1xc7w19 r-1phboty r-1yadl64 r-deolkf r-6koalj r-1mlwlqe r-eqz5dr r-1q142lx r-crgep1 r-ifefl9 r-bcqeeo r-t60dpp r-1l7z4oj r-95jzfe r-1yzf0co r-bnwqim r-417010"><div data-block-content="22a51a70e34f41fdb9449b7d01cb3c2e" class="r-1oszu61 r-1xc7w19 r-1phboty r-1yadl64 r-deolkf r-6koalj r-1ro0kt6 r-eqz5dr r-16y2uox r-1wbh5a2 r-crgep1 r-ifefl9 r-bcqeeo r-t60dpp r-bnwqim r-417010"><div><div><div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe src="https://cdn.iframe.ly/on7cOkZ?app=1" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen></iframe></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div><div data-rnw-media-class="4350__4349_b1430-196" class="css-1dbjc4n r-18u37iz r-1777fci r-11c0sde"><div class="css-1dbjc4n r-1ro0kt6 r-16y2uox r-1wbh5a2 r-1l5ssaz"><div data-rnw-media-class="4353__4352" class="css-1dbjc4n"><div data-rnw-media-class="__187_b910-188" class="css-1dbjc4n r-1peese0"><a href="/mango-lib/library-items/item-functions" data-rnw-media-class="__" data-rnw-int-class="BaseCard__2173-__2165-973277-" class="css-4rbku5 css-1dbjc4n r-1awozwy r-14lw9ot r-190qawg r-z2wwpe r-rs99b7 r-1loqt21 r-1ro0kt6 r-18u37iz r-16y2uox r-1wbh5a2 r-1udh08x r-nsbfu8 r-1otgn73 r-eafdt9 r-1clhhh9 r-lrvibr"><div class="css-1dbjc4n r-88pszg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" preserveAspectRatio="xMidYMid meet" data-rnw-int-class="nearest__346-973173__" class="r-1rasi3h r-1472mwg" style="vertical-align:middle;width:24px"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg></div><div class="css-1dbjc4n r-obd0qt r-1ro0kt6 r-16y2uox r-1wbh5a2"><div class="css-1dbjc4n"><div dir="auto" class="css-901oao r-1rasi3h r-gg6oyi r-1enofrn r-16dba41 r-14yzgew">Previous</div></div><div dir="auto" data-rnw-int-class="nearest___346-973173_" class="css-901oao css-vcwn7f r-1nf4jbm r-gg6oyi r-ubezar r-majxgm r-135wba7">Item functions</div></div></a></div><div class="css-1dbjc4n r-1yv4afn r-5kkj8d r-1ygmrgt"><div data-rnw-media-class="_188_187" class="css-1dbjc4n r-1awozwy r-1wtj0ep"><div data-rnw-media-class="_162_" class="css-1dbjc4n r-1ro0kt6 r-16y2uox r-1wbh5a2"><div dir="auto" class="css-901oao r-1rasi3h r-gg6oyi r-1b43r93 r-16dba41 r-hbpseb">Last modified <span aria-label="2022-10-04 12:33 UTC" class="css-901oao css-16my406">25d ago</span></div></div></div></div></div></div></div></div></div></div><div data-rnw-media-class="hidden__1kbfcbz_b1430-hidden" class="css-1dbjc4n r-k200y r-pw2am6 r-icyqz7 r-1mkpi1y r-1rnoaur r-1h4fu65 r-gtdqiz r-eqo98v" data-testid="page.outline"><div class="css-1dbjc4n r-1peese0 r-hu79xy"><div class="css-1dbjc4n r-1mdbw0j r-wk8lta r-5njf8e"><div data-rnw-int-class="nearest____" tabindex="0" class="css-1dbjc4n r-1awozwy r-1loqt21 r-18u37iz r-dnmrzs r-1guathk r-oyd9sg r-1otgn73 r-eafdt9 r-1i6wzkk r-lrvibr r-7xmw5f"><div class="css-1dbjc4n r-1kb76zh"><svg viewBox="0 0 16 16" fill="none" preserveAspectRatio="xMidYMid meet" data-rnw-int-class="nearest___346-973173_" class="r-1rasi3h r-10ptun7" style="vertical-align:middle;width:16px"><path d="M14.11 6.6l-.16-.09c-.042.343-.13.68-.26 1A3 3 0 0115 10a3 3 0 01-3 3H8a3 3 0 010-6h.82A3 3 0 009 6H8a4 4 0 000 8h4a4 4 0 002.11-7.4z" fill="currentColor"></path><path d="M1.89 9.4l.16.09c.042-.343.13-.68.26-1A3 3 0 011 6a3 3 0 013-3h4a3 3 0 110 6h-.82A3 3 0 007 10h1a4 4 0 000-8H4a4 4 0 00-2.11 7.4z" fill="currentColor"></path></svg></div><div dir="auto" data-rnw-int-class="nearest___346-973173_" class="css-901oao css-vcwn7f r-1bnj018 r-1ro0kt6 r-16y2uox r-1wbh5a2 r-gg6oyi r-1b43r93 r-16dba41 r-hbpseb">Copy link</div></div></div></div></div></div></div></div></div></div></div>
+        <script>
+            // Rendered with GitBook 10.9.189-9c4702b3032f5a5dd175e3f7d52cc91e1d446566-3344996362
+            // Space KxGlyknxHAbgDtE2ntsU
+            
+            window.__GITBOOK_WAS_SSR = true;
+            window.__GITBOOK_INITIAL_PROPS__ = "{\"hostname\":\"mana64.gitbook.io\",\"basePath\":\"mango-lib\",\"assetHostname\":\"https://app.gitbook.com\",\"space\":{\"key\":\"KxGlyknxHAbgDtE2ntsU\",\"editMode\":\"locked\",\"changeRequests\":5,\"title\":\"Mango Lib\",\"createdBy\":\"0IADdO77a5VKMFYHYeRU4aH7Z5H3\",\"indexedRevision\":\"laKer3Jx5G6J2Kxuhjhe\",\"searchKeyVersion\":1,\"orderIndex\":\"0|hzzz6n:\",\"defaultPermission\":\"inherit\",\"comments\":{},\"inheritCustomization\":false,\"revision\":\"laKer3Jx5G6J2Kxuhjhe\",\"organization\":\"2xB4CT4zoIJXmZyTuiA4\",\"draftChangeRequests\":2,\"edits\":{\"0IADdO77a5VKMFYHYeRU4aH7Z5H3\":{\"count\":67,\"updatedAt\":{\"seconds\":1664870167,\"nanoseconds\":282000000}}},\"searchKey\":\"YWUxMDhmNDQxMDVmYzdkNzg3ODQ5ZDg1ZTJlNGZjNDQ4YTEwNjkwZmQ3N2QzN2E5YTI5NDYyMzE5MGMwZDZlYWZpbHRlcnM9KHZpZXdhYmxlQnlQdWJsaWNTcGFjZXMlM0FLeEdseWtueEhBYmdEdEUybnRzVS0xKSUyMEFORCUyMHByb2plY3RJZCUzQWdpdGJvb2steC1wcm9k\",\"lastUpdatedBy\":\"0IADdO77a5VKMFYHYeRU4aH7Z5H3\",\"path\":\"mango-lib\",\"createdAt\":{\"seconds\":1664867747,\"nanoseconds\":870000000},\"visibility\":\"public\"}}";
+            window.__GITBOOK_INITIAL_STATE__ = "{\"firestore\":{\"spaces/KxGlyknxHAbgDtE2ntsU/revisions/laKer3Jx5G6J2Kxuhjhe\":{\"activeAt\":{\"__type\":\"timestamp\",\"seconds\":1664886848,\"nanoseconds\":87000000},\"mergedFrom\":\"Wr3iDmBDHN0VgZ7Z3Wk7\",\"pages\":{\"36Ir1nnb1EtORx8df2Dc\":{\"title\":\"Item functions\",\"kind\":\"sheet\",\"sheet\":\"Q9DvAWt1MfGIabt3GAgL\",\"pages\":{\"__type\":\"array\"},\"edits\":{\"0IADdO77a5VKMFYHYeRU4aH7Z5H3\":{\"updatedAt\":{\"__type\":\"timestamp\",\"seconds\":1664885133,\"nanoseconds\":77000000},\"count\":8}},\"key\":\"36Ir1nnb1EtORx8df2Dc\",\"description\":\"\"},\"skBEGtrZWR93dkZVXNUQ\":{\"sheet\":\"yZZ2HxSPV4UiCpE8OxzV\",\"kind\":\"sheet\",\"title\":\"Library Items\",\"edits\":{\"0IADdO77a5VKMFYHYeRU4aH7Z5H3\":{\"updatedAt\":{\"__type\":\"timestamp\",\"seconds\":1664885788,\"nanoseconds\":265000000},\"count\":25}},\"key\":\"skBEGtrZWR93dkZVXNUQ\",\"description\":\"\",\"pages\":[\"36Ir1nnb1EtORx8df2Dc\"]},\"GAKsqj7HtLre4mUbA8HO\":{\"edits\":{\"0IADdO77a5VKMFYHYeRU4aH7Z5H3\":{\"count\":40,\"updatedAt\":{\"__type\":\"timestamp\",\"seconds\":1664870167,\"nanoseconds\":281000000}}},\"title\":\"Mango UI Library\",\"sheet\":\"rfD1W3t9kzxNd9Tr4RGt\",\"key\":\"GAKsqj7HtLre4mUbA8HO\",\"description\":\"\",\"kind\":\"sheet\",\"pages\":[\"YAwkxcUemDBtM62auw2B\"],\"coverY\":0,\"cover\":{\"kind\":\"file\",\"file\":\"GCYiKeYm26wepEPHDN2P\"}},\"D4QnmJYVPeto2YG9rj3B\":{\"kind\":\"sheet\",\"edits\":{\"0IADdO77a5VKMFYHYeRU4aH7Z5H3\":{\"updatedAt\":{\"__type\":\"timestamp\",\"seconds\":1664886836,\"nanoseconds\":697000000},\"count\":6}},\"title\":\"UI Library Code\",\"pages\":{\"__type\":\"array\"},\"key\":\"D4QnmJYVPeto2YG9rj3B\",\"sheet\":\"1VKm6zyvsPtgN13dnUtE\",\"description\":\"\"},\"YAwkxcUemDBtM62auw2B\":{\"key\":\"YAwkxcUemDBtM62auw2B\",\"edits\":{\"0IADdO77a5VKMFYHYeRU4aH7Z5H3\":{\"updatedAt\":{\"__type\":\"timestamp\",\"seconds\":1664885800,\"nanoseconds\":492000000},\"count\":13}},\"sheet\":\"mFQzs8puFEWbWkKueDJL\",\"kind\":\"sheet\",\"description\":\"\",\"title\":\"Example\",\"pages\":{\"__type\":\"array\"}}},\"type\":\"merge\",\"key\":\"laKer3Jx5G6J2Kxuhjhe\",\"space\":\"KxGlyknxHAbgDtE2ntsU\",\"changeRequest\":{\"__type\":\"null\"},\"files\":{\"2zNG9TK0wZn5DrC2jqJB\":{\"downloadURL\":\"https://firebasestorage.googleapis.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FKxGlyknxHAbgDtE2ntsU%2Fuploads%2FvnajY20Vdb4udDX9lZLU%2Fmango%20hub%20preview%202.png?alt=media&token=3896d110-e046-4036-b371-c0101ea51820\",\"name\":\"mango hub preview 2.png\",\"size\":12802,\"edits\":{\"0IADdO77a5VKMFYHYeRU4aH7Z5H3\":{\"updatedAt\":{\"__type\":\"timestamp\",\"seconds\":1664868180,\"nanoseconds\":482000000},\"count\":1}},\"contentType\":\"image/png\",\"dimensions\":{\"height\":111,\"width\":759},\"key\":\"2zNG9TK0wZn5DrC2jqJB\"},\"GCYiKeYm26wepEPHDN2P\":{\"size\":9860,\"edits\":{\"0IADdO77a5VKMFYHYeRU4aH7Z5H3\":{\"updatedAt\":{\"__type\":\"timestamp\",\"seconds\":1664868311,\"nanoseconds\":899000000},\"count\":1}},\"contentType\":\"image/png\",\"downloadURL\":\"https://firebasestorage.googleapis.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FKxGlyknxHAbgDtE2ntsU%2Fuploads%2FYfj4k3qRPFxXM3UXEOVI%2Fmangohub%20prev.png?alt=media&token=3c113201-6b70-42f2-aa2f-0fa6f664d9e7\",\"name\":\"mangohub prev.png\",\"key\":\"GCYiKeYm26wepEPHDN2P\",\"dimensions\":{\"width\":751,\"height\":69}}},\"edits\":{\"0IADdO77a5VKMFYHYeRU4aH7Z5H3\":{\"updatedAt\":{\"__type\":\"timestamp\",\"seconds\":1664886848,\"nanoseconds\":86000000},\"count\":1}},\"parents\":[\"UevnCdBQgEUpSQ1I3TEO\",\"WLrPLZLdVz1S3pg7Wvd1\"],\"createdAt\":{\"__type\":\"timestamp\",\"seconds\":1664886848,\"nanoseconds\":87000000},\"rootPages\":[\"GAKsqj7HtLre4mUbA8HO\",\"skBEGtrZWR93dkZVXNUQ\",\"D4QnmJYVPeto2YG9rj3B\"]},\"spaces/KxGlyknxHAbgDtE2ntsU/sheets/1VKm6zyvsPtgN13dnUtE\":{\"page\":\"D4QnmJYVPeto2YG9rj3B\",\"revision\":\"WLrPLZLdVz1S3pg7Wvd1\",\"edits\":{\"0IADdO77a5VKMFYHYeRU4aH7Z5H3\":{\"count\":1,\"updatedAt\":{\"__type\":\"timestamp\",\"seconds\":1664886836,\"nanoseconds\":697000000}}},\"key\":\"1VKm6zyvsPtgN13dnUtE\",\"body\":{\"__type\":\"blob\",\"buffer\":\"CiAxZmRiN2FkY2Y2NzA0NTc0YjhiNjdhYTI0MTIzYWFkZBKKAgogMjJhNTFhNzBlMzRmNDFmZGI5NDQ5YjdkMDFjYjNjMmUSBWVtYmVkGigSJgogZWFmNmFkZTQ4NDc1NDYyZTkwYzE0OTEwN2Q1NjU4MmISAgoAIoYBCiA1OWRkMTkwZDZmNzc0NGZiYjRkMWZjY2UyYzMxZWY4ZRIHY2FwdGlvbiJZCiA2MzhkNDk4NzAyOWY0ZGQxYTk2NDNkMDkwZTE0NmRlZRIJcGFyYWdyYXBoGigSJgogZDdmOWNmMGMwNDRmNGIwOGE5ODBmNGQ5ZDZkMDkyZmMSAgoAMAAqKgoDdXJsEiMiaHR0cHM6Ly9wYXN0ZWJpbi5jb20vcmF3L04zc0tLeDBhIjABGhIKDXNjaGVtYVZlcnNpb24SATU=\"},\"previous\":\"vumFYyF0SsPkuHaBb0Pp\"},\"\":{\"__type\":\"null\"},\"embeds/1dd8412b6fbbcacfe6adf34a8526da637fe0d6fdb5a2fb439efa98b7bc849766\":{\"data\":{\"type\":\"rich\",\"site\":\"Pastebin\",\"title\":\"hewo - Pastebin.com\",\"html\":\"<div><div style=\\\"left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;\\\"><iframe src=\\\"https://cdn.iframe.ly/on7cOkZ?app=1\\\" style=\\\"top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;\\\" allowfullscreen></iframe></div></div>\",\"icon\":\"https://pastebin.com/favicon.ico\"},\"url\":\"https://pastebin.com/raw/N3sKKx0a\"},\"spaces/KxGlyknxHAbgDtE2ntsU\":{\"key\":\"KxGlyknxHAbgDtE2ntsU\",\"editMode\":\"locked\",\"changeRequests\":5,\"title\":\"Mango Lib\",\"createdBy\":\"0IADdO77a5VKMFYHYeRU4aH7Z5H3\",\"indexedRevision\":\"laKer3Jx5G6J2Kxuhjhe\",\"searchKeyVersion\":1,\"orderIndex\":\"0|hzzz6n:\",\"defaultPermission\":\"inherit\",\"comments\":{\"__type\":\"object\"},\"inheritCustomization\":false,\"revision\":\"laKer3Jx5G6J2Kxuhjhe\",\"organization\":\"2xB4CT4zoIJXmZyTuiA4\",\"draftChangeRequests\":2,\"edits\":{\"0IADdO77a5VKMFYHYeRU4aH7Z5H3\":{\"count\":67,\"updatedAt\":{\"__type\":\"timestamp\",\"seconds\":1664870167,\"nanoseconds\":282000000}}},\"searchKey\":\"YWUxMDhmNDQxMDVmYzdkNzg3ODQ5ZDg1ZTJlNGZjNDQ4YTEwNjkwZmQ3N2QzN2E5YTI5NDYyMzE5MGMwZDZlYWZpbHRlcnM9KHZpZXdhYmxlQnlQdWJsaWNTcGFjZXMlM0FLeEdseWtueEhBYmdEdEUybnRzVS0xKSUyMEFORCUyMHByb2plY3RJZCUzQWdpdGJvb2steC1wcm9k\",\"lastUpdatedBy\":\"0IADdO77a5VKMFYHYeRU4aH7Z5H3\",\"path\":\"mango-lib\",\"createdAt\":{\"__type\":\"timestamp\",\"seconds\":1664867747,\"nanoseconds\":870000000},\"visibility\":\"public\"}},\"head\":{\"29577210\":{\"type\":\"meta\",\"name\":\"og:title\",\"content\":\"UI Library Code\"},\"3a98e13f\":{\"type\":\"font\",\"font\":\"Inter\",\"fontFamilyName\":\"gitbook-content-font\"},\"1f116606\":{\"type\":\"meta\",\"name\":\"description\",\"content\":\"\"},\"5156a4cd\":{\"type\":\"meta\",\"name\":\"og:description\",\"content\":\"\"},\"192a8405\":{\"type\":\"meta\",\"name\":\"og:image\",\"content\":\"https://app.gitbook.com/share/space/thumbnail/KxGlyknxHAbgDtE2ntsU/page/D4QnmJYVPeto2YG9rj3B.png?color=&logo=&theme=\"},\"78c65e0e\":{\"type\":\"meta\",\"name\":\"twitter:card\",\"content\":\"summary_large_image\"},\"ee4717c4\":{\"type\":\"meta\",\"name\":\"twitter:site\",\"content\":\"Mango Lib\"},\"1d511646\":{\"type\":\"meta\",\"name\":\"robots\",\"content\":\"index\"},\"4bd244a3\":{\"type\":\"link\",\"rel\":\"icon\",\"href\":\"https://app.gitbook.com/public/images/icon-512.png\"}},\"images\":{\"sizes\":{},\"uri\":[]},\"contentURLs\":{\"5a390e78\":{\"hostname\":\"mana64.gitbook.io\",\"pathname\":\"mango-lib\"}},\"contentRefs\":{},\"screenToContentRefs\":{},\"swaggers\":{}}";
+            window.__GITBOOK_INITIAL_RENDER__ = true;
+            window.__GITBOOK_INITIAL_STATE_COMPRESSED__ = false;
+            window.__GITBOOK_LAZY_MODULES__ = [];
+        </script>
+        
+                
+    </body>
+</html>

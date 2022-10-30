@@ -1,0 +1,8 @@
+-- Don't Execute Twice or you'll be banned
+-- Don't Execute Twice or you'll be banned
+-- Don't Execute Twice or you'll be banned
+-- Don't Execute Twice or you'll be banned
+-- Don't Execute Twice or you'll be banned
+for i = 1,280 do -- Change 280 to anything higher than the current amount of clicks needed
+game:GetService("ReplicatedStorage").RemoteCalls.GameSpecific.Capture.DecreaseClicksLeft:InvokeServer()
+end

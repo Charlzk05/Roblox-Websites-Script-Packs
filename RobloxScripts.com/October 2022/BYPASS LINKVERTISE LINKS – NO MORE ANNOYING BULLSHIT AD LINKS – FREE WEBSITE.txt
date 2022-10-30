@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="Fastest Linkvertise bypasser ever! Bypass all ad-links for free!" />
+<meta name="author" content="Marc Aurel Winter" />
+<meta name="keywords" content="linkvertise bypasser, linkvertise bypass, universal bypass, linkvertise hack, linkvertise, link vertise, bypasser, bypass linkvertise, how to bypass linkvertise, how to skip linkvertise, linkvertise skipper, skip linkvertise, skip linkvertise ads, linkvertise ads bypass, linkvertise ads bypasser" />
+<title>bypass.vip - Linkvertise Bypasser</title>
+
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
+<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+
+<link href="css/styles.css" rel="stylesheet" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1M6E8TE8WM"></script>
+<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'G-1M6E8TE8WM');
+		</script>
+<meta name="exoclick-site-verification" content="bfa34b842c72afa3dcd9c83a071c0fb1">
+</head>
+<body>
+
+<nav class="navbar navbar-light bg-light static-top">
+<div class="container">
+<a class="navbar-brand" href="#">bypass.vip</a>
+<a class="btn btn-primary" href="https://bypass.vip/discord" target="_blank"><i class="fab fa-discord"></i> Join our Discord server!</a>
+</div>
+</nav>
+
+<header class="masthead text-white text-center">
+<div class="overlay"></div>
+<div class="container">
+<div class="row">
+<div class="col-xl-9 mx-auto"><h1 class="mb-2">BYPASS.VIP</h1></div>
+<div class="col-xl-9 mx-auto"><h3 class="mt-2">#1 Linkvertise bypasser!</h3><small>Updated on 2022-09-12!</small></div>
+<div class="col-xl-9 mx-auto">
+<div class="alert alert-warning" role="alert" style="display: none" id="warning"></div>
+<div class="alert alert-success" role="alert" style="display: none" id="success"></div>
+<div class="alert alert-danger" role="alert" style="display: none" id="danger"></div>
+</div>
+<div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+<div class="form-row">
+<div class="col-12 col-md-9 mb-2 mb-md-0">
+<input class="form-control form-control-lg" type="text" id="encrypted_link" placeholder="Enter your link..." />
+</div>
+<div class="col-12 col-md-3">
+<button class="btn btn-block btn-lg btn-primary" id="submit" type="submit" onclick="bypass()">Bypass!</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+
+<section class="features-icons bg-light text-center">
+<div class="container">
+<div class="row">
+<div class="col-lg-4">
+<div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+ <div class="features-icons-icon d-flex"><i class="icon-link m-auto text-primary"></i></div>
+<h3>Supported links</h3>
+<p class="lead mb-0"><b>Ad links:</b></p>
+<p class="lead mb-0">linkvertise.com (all of their domains)</p>
+<p class="lead mb-0">adf.ly (all of their domains)</p>
+<p class="lead mb-0">exe.io/exey.io/exee.io/exe.app/eio.io</p>
+<p class="lead mb-0">ouo.io/ouo.press</p>
+<p class="lead mb-0">adfoc.us</p>
+<p class="lead mb-0">ay.live</p>
+<p class="lead mb-0">bc.vc/bcvc.live</p>
+<p class="lead mb-0">fc.lc/fc-lc.com</p>
+<p class="lead mb-0">za.gl/za.uy/zee.gl</p>
+<p class="lead mb-0">freehottip.com</p>
+<p class="lead mb-0">ph.apps2app.com</p>
+<p class="lead mb-0">gestyy.com</p>
+<p class="lead mb-0">shortconnect.com</p>
+<p class="lead mb-0">shorte.st/sh.st</p>
+<p class="lead mb-0">aylink.co</p>
+<p class="lead mb-0"><b>Socials:</b></p>
+<p class="lead mb-0">sub2get.com</p>
+<p class="lead mb-0">sub2unlock.net/sub2unlock.com</p>
+<p class="lead mb-0">rekonise.com</p>
+<p class="lead mb-0">letsboost.net</p>
+<p class="lead mb-0">mboost.me</p>
+<p class="lead mb-0">sub4unlock.com</p>
+<p class="lead mb-0">ytsubme.com</p>
+<p class="lead mb-0">steps2unlock.com</p>
+<p class="lead mb-0">social-unlock.com</p>
+<p class="lead mb-0">boost.ink</p>
+<p class="lead mb-0">boostme.link/boost.fusedgt.com</p>
+<p class="lead mb-0"><b>Shorteners:</b></p>
+<p class="lead mb-0">bit.ly/bitly.com</p>
+<p class="lead mb-0">cutt.ly</p>
+<p class="lead mb-0">shrto.ml</p>
+<p class="lead mb-0">goo.gl</p>
+<p class="lead mb-0">t.co</p>
+<p class="lead mb-0">tinyurl.com</p>
+<p class="lead mb-0">onlyme.ga</p>
+<p class="lead mb-0"><b>Redirects:</b></p>
+<p class="lead mb-0">youtube.com</p>
+<p class="lead mb-0">justpaste.it</p>
+</div>
+</div>
+<div class="col-lg-4">
+<div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+<div class="features-icons-icon d-flex"><i class="icon-speedometer m-auto text-primary"></i></div>
+<h3>Ultra fast!</h3>
+<p class="lead mb-0">Thanks to our custom coded API and extensive database most links get bypassed in <b>under 1 second</b>!</p>
+</div>
+</div>
+<div class="col-lg-4">
+<div class="features-icons-item mx-auto mb-0 mb-lg-3">
+<div class="features-icons-icon d-flex"><i class="icon-check m-auto text-primary"></i></div>
+<h3>Easy to Use</h3>
+<p class="lead mb-0">Just paste your link in the textbox and press bypass!</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<footer class="footer bg-light">
+<div class="container">
+<div class="row">
+ <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+<ul class="list-inline mb-2">
+<li class="list-inline-item"><a href="https://api.bypass.vip/">API</a></li>
+<li class="list-inline-item">⋅</li>
+<li class="list-inline-item"><a href="https://bypass.vip/bot" target="_blank"><i class="fab fa-discord"></i> Discord bot</a></li>
+<li class="list-inline-item">⋅</li>
+<li class="list-inline-item"><a href="https://bypass.vip/discord" target="_blank"><i class="fab fa-discord"></i> Discord server</a></li>
+</ul>
+<p class="text-muted small mb-4 mb-lg-0">© bypass.vip 2021. All Rights Reserved.</p>
+</div>
+</div>
+</div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="js/scripts.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=WeakRef,BigInt"></script>
+<script src="https://cdn.jsdelivr.net/npm/superagent"></script>
+<script>
+            const regexlv = new RegExp('^https?:\/\/(linkvertise[.]com|linkvertise[.]net|link-to[.]net|linkvertise[.]download|file-link[.]net|direct-link[.]net|up-to-down[.]net|filemedia[.]net|link-hub[.]net|link-center[.]net|link-target[.]net)+');
+            async function tryBypass() {
+                if(regexlv.test(document.getElementById("encrypted_link").value)) {
+                    document.getElementById("submit").disabled = true
+                    document.getElementById("submit").innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="visually-hidden">  Loading...</span>'
+                    document.getElementById("success").style.display = "none";
+                    document.getElementById("warning").style.display = "none";
+                    document.getElementById("danger").style.display = "none";
+                    var newlv = await bypasslv(document.getElementById("encrypted_link").value);
+                    console.log(newlv)
+                    if(newlv.success && !newlv.destination.includes("https://linkvertise.download")) {
+                        document.getElementById("success").style.display = "block";
+                        document.getElementById("success").innerHTML = `<a rel="noopener noreferrer nofollow" target="_blank" href="${newlv.destination}">${newlv.destination}</a>`
+                        document.getElementById("submit").disabled = false
+                        document.getElementById("submit").innerHTML = 'Bypass!'
+                        document.getElementById("encrypted_link").value = ''
+                    } else {
+                        bypass()
+                    }
+                } else {
+                    bypass()
+                }
+            }
+            
+            async function bypass() {
+                document.getElementById("submit").disabled = true
+                document.getElementById("submit").innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><span class="visually-hidden">  Loading...</span>'
+                document.getElementById("success").style.display = "none";
+                document.getElementById("warning").style.display = "none";
+                document.getElementById("danger").style.display = "none";
+            
+
+                try {
+                const response = await fetch('https://api.bypass.vip', {
+                method: 'POST',
+                body: new URLSearchParams({
+                    'url': document.getElementById("encrypted_link").value,
+                })
+            });
+            const result = await response.json();
+            if(result.success == true) {
+                document.getElementById("success").style.display = "block";
+                document.getElementById("success").innerHTML = `<a rel="noopener noreferrer nofollow" target="_blank" href="${result.destination}">${result.destination}</a>`
+                console.log(result);
+            }
+            else if (result.success == false){
+                document.getElementById("warning").style.display = "block";
+                document.getElementById("warning").innerHTML = result.response
+            }
+                }
+                catch {
+                    document.getElementById("danger").style.display = "block";
+                    document.getElementById("danger").innerHTML = "Error contacting API"
+                }
+                document.getElementById("submit").disabled = false
+                document.getElementById("submit").innerHTML = 'Bypass!'
+                document.getElementById("encrypted_link").value = ''
+            }
+
+            async function bypasslv(url) {
+
+                try {
+                    var link = new URL(url);
+                } catch {
+                    return {success: false, message: 'Invalid link'}
+                }
+
+                if(link.searchParams.get("r")) {
+                    return {success: true, destination: atob(link.searchParams.get("r"))}
+                }
+
+                var userId = link.pathname.replace('/download/', '/').split('/')[1]
+                var path = link.pathname.replace('/download/', '/').split('/')[2]
+
+                try {
+                    const res = await superagent.get(`https://corsproxy.io/?https://paper.ostrichesica.com/ct?id=14473`) //'https://corsproxy.io/?' + encodeURIComponent('https://paper.ostrichesica.com/ct?id=14473')
+                        .set({"Content-Type": "application/json", "Accept": "application/json"})
+                        .timeout({response: 10000, deadline: 15000})
+                    var cq_token = res.text.split('"jsonp":"').pop().split('","req"')[0];
+                } catch (err) {
+                    return {success: false, message: 'Error bypassing link, please try again later'}
+                }
+
+                try {
+                    const res = await superagent.get(`https://publisher.linkvertise.com/api/v1/redirect/link/static/${userId}/${path}`)
+                        .set({"Content-Type": "application/json", "Accept": "application/json"})
+                        .timeout({response: 10000, deadline: 15000})
+                    var linkType = res.body['data']['link']['target_type'].toLowerCase() === 'url' ? 'target' : 'paste'
+                    var linkId = res.body['data']['link']['id']
+                    //var userToken = res.body['user_token']
+                } catch (err) {
+                    return {success: false, message: 'Error bypassing link, please try again later'}
+                }
+
+                try {
+                    const res = await superagent.post(`https://publisher.linkvertise.com/api/v1/redirect/link/${userId}/${path}/traffic-validation`) //?X-Linkvertise-UT=${userToken}
+                        .send({
+                            "type": "cq",
+                            "token": cq_token
+                        })
+                        .set({"Content-Type": "application/json", "Accept": "application/json"})
+                        .timeout({response: 10000, deadline: 15000})
+                    var targetToken = res.body['data']['tokens']['TARGET']
+
+                } catch (err) {
+                    return {success: false, message: 'Error bypassing link, please try again later'}
+                }
+
+                try {
+
+                    var o = btoa(JSON.stringify({
+                        "timestamp": new Date().getTime(),
+                        "random": 6548307,
+                        "link_id": linkId
+                    }))
+
+                    const res = await superagent.post(`https://publisher.linkvertise.com/api/v1/redirect/link/${userId}/${path}/${linkType}`) //?X-Linkvertise-UT= ${userToken}
+                        .send({"serial": o, "token": targetToken})
+                        .set({"Content-Type": "application/json", "Accept": "application/json"})
+                        .timeout({response: 10000, deadline: 15000})
+                    return res.body['data'][linkType] ? {success: true, destination: res.body['data'][linkType]} : {success: false, message: 'Error bypassing link, please try again later'}
+                } catch (err) {
+                    return {success: false, message: err}
+                }
+            }
+            </script>
+<script type="application/javascript" data-idzone="4542684" data-ad_first_trigger_clicks="1" data-ad_next_trigger_clicks="5" data-type="desktop" data-browser_settings="1" data-ad_trigger_method="3" src="https://a.exdynsrv.com/fp-interstitial.js"></script>
+<script type="application/javascript" data-idzone="4542682" data-ad_first_trigger_clicks="1" data-ad_next_trigger_clicks="5" data-type="mobile" data-browser_settings="1" data-ad_trigger_method="3" src="https://a.exdynsrv.com/fp-interstitial.js"></script>
+<script async type="application/javascript" src="https://a.exdynsrv.com/ad-provider.js"></script>
+<script type="application/javascript">
+			(function() {
+
+				//version 1.0.0
+
+				var adConfig = {
+				"ads_host": "a.exdynsrv.com",
+				"syndication_host": "syndication.exdynsrv.com",
+				"idzone": 4604902,
+				"popup_fallback": true,
+				"popup_force": false,
+				"chrome_enabled": true,
+				"new_tab": false,
+				"frequency_period": 60,
+				"frequency_count": 1,
+				"trigger_method": 3,
+				"trigger_class": "",
+				"only_inline": false,
+				"t_venor": false
+			};
+
+			window.document.querySelectorAll||(document.querySelectorAll=document.body.querySelectorAll=Object.querySelectorAll=function(o,e,t,i,n){var r=document,c=r.createStyleSheet();for(n=r.all,e=[],t=(o=o.replace(/\[for\b/gi,"[htmlFor").split(",")).length;t--;){for(c.addRule(o[t],"k:v"),i=n.length;i--;)n[i].currentStyle.k&&e.push(n[i]);c.removeRule(0)}return e});var popMagic={version:1,cookie_name:"",url:"",config:{},open_count:0,top:null,browser:null,venor_loaded:!1,venor:!1,configTpl:{ads_host:"",syndication_host:"",idzone:"",frequency_period:720,frequency_count:1,trigger_method:1,trigger_class:"",popup_force:!1,popup_fallback:!1,chrome_enabled:!0,new_tab:!1,cat:"",tags:"",el:"",sub:"",sub2:"",sub3:"",only_inline:!1,t_venor:!1,cookieconsent:!0},init:function(o){if(void 0!==o.idzone&&o.idzone){for(var e in this.configTpl)this.configTpl.hasOwnProperty(e)&&(void 0!==o[e]?this.config[e]=o[e]:this.config[e]=this.configTpl[e]);void 0!==this.config.idzone&&""!==this.config.idzone&&(!0!==this.config.only_inline&&this.loadHosted(),this.addEventToElement(window,"load",this.preparePop))}},getCountFromCookie:function(){if(!this.config.cookieconsent)return 0;var o=popMagic.getCookie(popMagic.cookie_name),e=void 0===o?0:parseInt(o);return isNaN(e)&&(e=0),e},shouldShow:function(){if(popMagic.open_count>=popMagic.config.frequency_count)return!1;var o=popMagic.getCountFromCookie();return popMagic.open_count=o,!(o>=popMagic.config.frequency_count)},venorShouldShow:function(){return!popMagic.config.t_venor||popMagic.venor_loaded&&"0"===popMagic.venor},setAsOpened:function(){var o=1;o=0!==popMagic.open_count?popMagic.open_count+1:popMagic.getCountFromCookie()+1,popMagic.config.cookieconsent&&popMagic.setCookie(popMagic.cookie_name,o,popMagic.config.frequency_period)},loadHosted:function(){var o=document.createElement("script");for(var e in o.type="application/javascript",o.async=!0,o.src="//"+this.config.ads_host+"/popunder1000.js",o.id="popmagicldr",this.config)this.config.hasOwnProperty(e)&&"ads_host"!==e&&"syndication_host"!==e&&o.setAttribute("data-exo-"+e,this.config[e]);var t=document.getElementsByTagName("body").item(0);t.firstChild?t.insertBefore(o,t.firstChild):t.appendChild(o)},preparePop:function(){if("object"!=typeof exoJsPop101||!exoJsPop101.hasOwnProperty("add")){if(popMagic.top=self,popMagic.top!==self)try{top.document.location.toString()&&(popMagic.top=top)}catch(o){}if(popMagic.cookie_name="zone-cap-"+popMagic.config.idzone,popMagic.config.t_venor&&popMagic.shouldShow()){var o=new XMLHttpRequest;o.onreadystatechange=function(){o.readyState==XMLHttpRequest.DONE&&(popMagic.venor_loaded=!0,200==o.status&&(popMagic.venor=o.responseText))};var e="https:"!==document.location.protocol&&"http:"!==document.location.protocol?"https:":document.location.protocol;o.open("GET",e+"//"+popMagic.config.syndication_host+"/venor.php",!0);try{o.send()}catch(o){popMagic.venor_loaded=!0}}if(popMagic.buildUrl(),popMagic.browser=popMagic.browserDetector.detectBrowser(navigator.userAgent),popMagic.config.chrome_enabled||"chrome"!==popMagic.browser.name&&"crios"!==popMagic.browser.name){var t=popMagic.getPopMethod(popMagic.browser);popMagic.addEvent("click",t)}}},getPopMethod:function(o){return popMagic.config.popup_force?popMagic.methods.popup:popMagic.config.popup_fallback&&"chrome"===o.name&&o.version>=68&&!o.isMobile?popMagic.methods.popup:o.isMobile?popMagic.methods.default:"chrome"===o.name?popMagic.methods.chromeTab:popMagic.methods.default},buildUrl:function(){var o="https:"!==document.location.protocol&&"http:"!==document.location.protocol?"https:":document.location.protocol,e=top===self?document.URL:document.referrer,t={type:"inline",name:"popMagic",ver:this.version};this.url=o+"//"+this.config.syndication_host+"/splash.php?cat="+this.config.cat+"&idzone="+this.config.idzone+"&type=8&p="+encodeURIComponent(e)+"&sub="+this.config.sub+(""!==this.config.sub2?"&sub2="+this.config.sub2:"")+(""!==this.config.sub3?"&sub3="+this.config.sub3:"")+"&block=1&el="+this.config.el+"&tags="+this.config.tags+"&cookieconsent="+this.config.cookieconsent+"&scr_info="+function(o){var e=o.type+"|"+o.name+"|"+o.ver;return encodeURIComponent(btoa(e))}(t)},addEventToElement:function(o,e,t){o.addEventListener?o.addEventListener(e,t,!1):o.attachEvent?(o["e"+e+t]=t,o[e+t]=function(){o["e"+e+t](window.event)},o.attachEvent("on"+e,o[e+t])):o["on"+e]=o["e"+e+t]},addEvent:function(o,e){var t;if("3"!=popMagic.config.trigger_method)if("2"!=popMagic.config.trigger_method||""==popMagic.config.trigger_method)popMagic.addEventToElement(document,o,e);else{var i,n=[];i=-1===popMagic.config.trigger_class.indexOf(",")?popMagic.config.trigger_class.split(" "):popMagic.config.trigger_class.replace(/\s/g,"").split(",");for(var r=0;r<i.length;r++)""!==i[r]&&n.push("."+i[r]);for(t=document.querySelectorAll(n.join(", ")),r=0;r<t.length;r++)popMagic.addEventToElement(t[r],o,e)}else for(t=document.querySelectorAll("a"),r=0;r<t.length;r++)popMagic.addEventToElement(t[r],o,e)},setCookie:function(o,e,t){if(!this.config.cookieconsent)return!1;t=parseInt(t,10);var i=new Date;i.setMinutes(i.getMinutes()+parseInt(t));var n=encodeURIComponent(e)+"; expires="+i.toUTCString()+"; path=/";document.cookie=o+"="+n},getCookie:function(o){if(!this.config.cookieconsent)return!1;var e,t,i,n=document.cookie.split(";");for(e=0;e<n.length;e++)if(t=n[e].substr(0,n[e].indexOf("=")),i=n[e].substr(n[e].indexOf("=")+1),(t=t.replace(/^\s+|\s+$/g,""))===o)return decodeURIComponent(i)},randStr:function(o,e){for(var t="",i=e||"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",n=0;n<o;n++)t+=i.charAt(Math.floor(Math.random()*i.length));return t},isValidUserEvent:function(o){return!!("isTrusted"in o&&o.isTrusted&&"ie"!==popMagic.browser.name&&"safari"!==popMagic.browser.name)||0!=o.screenX&&0!=o.screenY},isValidHref:function(o){if(void 0===o||""==o)return!1;return!/\s?javascript\s?:/i.test(o)},findLinkToOpen:function(o){var e=o,t=!1;try{for(var i=0;i<20&&!e.getAttribute("href")&&e!==document&&"html"!==e.nodeName.toLowerCase();)e=e.parentNode,i++;var n=e.getAttribute("target");n&&-1!==n.indexOf("_blank")||(t=e.getAttribute("href"))}catch(o){}return popMagic.isValidHref(t)||(t=!1),t||window.location.href},getPuId:function(){return"ok_"+Math.floor(89999999*Math.random()+1e7)},browserDetector:{browserDefinitions:[["firefox",/Firefox\/([0-9.]+)(?:\s|$)/],["opera",/Opera\/([0-9.]+)(?:\s|$)/],["opera",/OPR\/([0-9.]+)(:?\s|$)$/],["edge",/Edg(?:e|)\/([0-9._]+)/],["ie",/Trident\/7\.0.*rv:([0-9.]+)\).*Gecko$/],["ie",/MSIE\s([0-9.]+);.*Trident\/[4-7].0/],["ie",/MSIE\s(7\.0)/],["safari",/Version\/([0-9._]+).*Safari/],["chrome",/(?!Chrom.*Edg(?:e|))Chrom(?:e|ium)\/([0-9.]+)(:?\s|$)/],["chrome",/(?!Chrom.*OPR)Chrom(?:e|ium)\/([0-9.]+)(:?\s|$)/],["bb10",/BB10;\sTouch.*Version\/([0-9.]+)/],["android",/Android\s([0-9.]+)/],["ios",/Version\/([0-9._]+).*Mobile.*Safari.*/],["yandexbrowser",/YaBrowser\/([0-9._]+)/],["crios",/CriOS\/([0-9.]+)(:?\s|$)/]],detectBrowser:function(o){var e=o.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WebOS|Windows Phone/i);for(var t in this.browserDefinitions){var i=this.browserDefinitions[t];if(i[1].test(o)){var n=i[1].exec(o),r=n&&n[1].split(/[._]/).slice(0,3),c=Array.prototype.slice.call(r,1).join("")||"0";return r&&r.length<3&&Array.prototype.push.apply(r,1===r.length?[0,0]:[0]),{name:i[0],version:r.join("."),versionNumber:parseFloat(r[0]+"."+c),isMobile:e}}}return{name:"other",version:"1.0",versionNumber:1,isMobile:e}}},methods:{default:function(o){if(!popMagic.shouldShow()||!popMagic.venorShouldShow()||!popMagic.isValidUserEvent(o))return!0;var e=o.target||o.srcElement,t=popMagic.findLinkToOpen(e);return window.open(t,"_blank"),popMagic.setAsOpened(),popMagic.top.document.location=popMagic.url,void 0!==o.preventDefault&&(o.preventDefault(),o.stopPropagation()),!0},chromeTab:function(o){if(!popMagic.shouldShow()||!popMagic.venorShouldShow()||!popMagic.isValidUserEvent(o))return!0;if(void 0===o.preventDefault)return!0;o.preventDefault(),o.stopPropagation();var e=top.window.document.createElement("a"),t=o.target||o.srcElement;e.href=popMagic.findLinkToOpen(t),document.getElementsByTagName("body")[0].appendChild(e);var i=new MouseEvent("click",{bubbles:!0,cancelable:!0,view:window,screenX:0,screenY:0,clientX:0,clientY:0,ctrlKey:!0,altKey:!1,shiftKey:!1,metaKey:!0,button:0});i.preventDefault=void 0,e.dispatchEvent(i),e.parentNode.removeChild(e),window.open(popMagic.url,"_self"),popMagic.setAsOpened()},popup:function(o){if(!popMagic.shouldShow()||!popMagic.venorShouldShow()||!popMagic.isValidUserEvent(o))return!0;var e="";if(popMagic.config.popup_fallback&&!popMagic.config.popup_force){var t=Math.max(Math.round(.8*window.innerHeight),300);e="menubar=1,resizable=1,width="+Math.max(Math.round(.7*window.innerWidth),300)+",height="+t+",top="+(window.screenY+100)+",left="+(window.screenX+100)}var i=document.location.href,n=window.open(i,popMagic.getPuId(),e);setTimeout(function(){n.location.href=popMagic.url},200),popMagic.setAsOpened(),void 0!==o.preventDefault&&(o.preventDefault(),o.stopPropagation())}}};    popMagic.init(adConfig);
+			})();
+			</script>
+<script type="application/javascript">
+
+
+			</script>
+<ins class="adsbyexoclick" data-zoneid="4541952"></ins>
+<script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+</body>
+</html>

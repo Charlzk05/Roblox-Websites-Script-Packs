@@ -1,0 +1,6 @@
+for i,v in pairs(workspace:GetDescendants()) do
+if v:IsA("ProximityPrompt") then
+for i=1, 100 do fireproximityprompt(v)
+end
+end
+end

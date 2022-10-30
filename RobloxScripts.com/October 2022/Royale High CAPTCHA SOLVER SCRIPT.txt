@@ -1,0 +1,38 @@
+local plr = game:GetService("Players").LocalPlayer
+if not firesignal then plr:Kick("Does not support this captcha solver ~Kaid#0001") end
+
+plr.PlayerGui.CaptchaGui:GetPropertyChangedSignal("Enabled"):Connect(function()
+   if plr.PlayerGui.CaptchaGui.Enabled then
+       for i,v in pairs(plr.PlayerGui.CaptchaGui.Captcha.FloatArea:GetChildren()) do
+           local absolute = v.AbsoluteSize.X
+           task.wait(.25)
+           if absolute ~= v.AbsoluteSize.X then
+               firesignal(v.MouseButton1Down)
+               task.wait()
+               firesignal(v.MouseButton1Click)
+               task.wait(.01)
+           end
+       end
+       task.wait(.25)
+       firesignal(plr.PlayerGui.CaptchaGui.Award.Close.MouseButton1Down)
+       task.wait()
+       firesignal(plr.PlayerGui.CaptchaGui.Award.Close.MouseButton1Click)
+   end
+end)
+
+if plr.PlayerGui.CaptchaGui.Enabled then
+   for i,v in pairs(plr.PlayerGui.CaptchaGui.Captcha.FloatArea:GetChildren()) do
+       local absolute = v.AbsoluteSize.X
+       task.wait(.25)
+       if absolute ~= v.AbsoluteSize.X then
+           firesignal(v.MouseButton1Down)
+           task.wait()
+           firesignal(v.MouseButton1Click)
+           task.wait(.01)
+       end
+   end
+   task.wait(.25)
+   firesignal(plr.PlayerGui.CaptchaGui.Award.Close.MouseButton1Down)
+   task.wait()
+   firesignal(plr.PlayerGui.CaptchaGui.Award.Close.MouseButton1Click)
+end

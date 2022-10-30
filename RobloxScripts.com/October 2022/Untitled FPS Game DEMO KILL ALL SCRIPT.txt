@@ -1,0 +1,11 @@
+getgenv().loop = true
+while loop do task.wait(10)
+local Players = game:GetService("Players")
+for _,player in pairs(Players:GetPlayers()) do
+    if player ~= Players.LocalPlayer then
+task.wait(5)  -- change it to whatever ya feel like or just delete the while loop and getgenv and just execute it (don't forget to remove the end so it could work) it gonna instantly kill every player but it will have 50% to kick you
+game:GetService("ReplicatedStorage").Packages.Knit.Services.PvpService.RF.Damage:InvokeServer(player.Character.Humanoid, 100, true)
+
+     end
+end
+end

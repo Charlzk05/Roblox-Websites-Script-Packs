@@ -1,0 +1,9 @@
+while true do wait(5)
+
+local args = {
+   [1] = game:GetService("Players").ALT'Sname,
+   [2] = 0.5
+}
+
+game:GetService("ReplicatedStorage").Events.TransferCash:FireServer(unpack(args))
+end

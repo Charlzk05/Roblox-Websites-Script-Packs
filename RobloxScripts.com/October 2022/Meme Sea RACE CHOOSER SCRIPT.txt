@@ -1,0 +1,1 @@
+game:GetService("ReplicatedStorage").RaceSelector.RaceEvents.Human:FireServer()

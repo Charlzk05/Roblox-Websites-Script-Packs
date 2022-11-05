@@ -1,0 +1,1 @@
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Eazvy/public-scripts/main/Roblox_Voice_Chat_Script.lua'))()

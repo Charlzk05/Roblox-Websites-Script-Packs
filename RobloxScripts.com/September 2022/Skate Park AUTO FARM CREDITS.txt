@@ -1,0 +1,4 @@
+game:GetService("ReplicatedStorage").lib.Network.RemoveRide:InvokeServer()
+while wait(0.1) do
+  game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").Collectables.Storage["Credit"].Root.Position)
+end

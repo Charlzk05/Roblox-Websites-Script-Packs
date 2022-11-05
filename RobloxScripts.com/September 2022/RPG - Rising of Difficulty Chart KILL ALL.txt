@@ -1,0 +1,9 @@
+for i,v in pairs(game:GetService("Workspace").Mobs:GetDescendants()) do
+ if v.Name == "Enemy" then-- Change to Enemy2 when u get into late game zone when u start over damage.
+   local thing = v
+   local thing2 = v
+   local thing3 = game:GetService("Workspace").NAMEHERE["SWORD NAMEEEEE"]-- Change Sword Name
+   local Event = game:GetService("ReplicatedStorage").GameRemotes.DamageEvent
+   Event:FireServer(thing,thing2,thing3)
+ end
+end

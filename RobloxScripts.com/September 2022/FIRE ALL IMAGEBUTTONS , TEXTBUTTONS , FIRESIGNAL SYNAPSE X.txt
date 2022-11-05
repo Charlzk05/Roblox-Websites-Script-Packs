@@ -1,0 +1,9 @@
+local Signals = {"Activated", "MouseButton1Down", "MouseButton2Down", "MouseButton1Click", "MouseButton2Click"}
+
+for _,v in pairs(game:GetDescendants()) do
+    if v:IsA("ImageButton") or v:IsA("TextButton") then
+        for i,Signal in pairs(Signals) do
+            firesignal(v[Signal])
+        end
+    end
+end

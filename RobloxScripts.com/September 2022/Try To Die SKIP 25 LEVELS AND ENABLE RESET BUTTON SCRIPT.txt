@@ -1,0 +1,5 @@
+--best script ever
+m = game:GetService("Workspace").Levels.Level1.RedButton.ClickDetector
+fireclickdetector(m)
+wait(1)
+game:GetService("StarterGui"):SetCore("ResetButtonCallback", true)

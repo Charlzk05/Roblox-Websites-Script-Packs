@@ -1,0 +1,41 @@
+getgenv().on = true
+getgenv().target = {"Killers", "Nomus", "Villains", "Thugs"} -- {"Police", "Killers", "Nomus", "Lightning", "Island", "Bosses", "UA", "Villains", "Thugs"}
+getgenv().delay = 0.1
+
+
+local player = game.Players.LocalPlayer
+local v1 = game:GetService("Players").LocalPlayer.PlrStats.Stats.Melee
+local v2
+local v3
+local randomFolder
+
+function equip()
+   if player.Backpack:FindFirstChild("Combat") then
+       player.Backpack:FindFirstChild("Combat").Parent = player.Character
+   end
+end
+
+function kill()
+   for index, mob in pairs(target) do
+       randomFolder = game:GetService("Workspace").Map.NPCs[mob]:FindFirstChild("Folder")
+       if randomFolder then
+           randomFolder:Destroy()
+       end
+       for i,v in pairs(game:GetService("Workspace").Map.NPCs[mob]:GetChildren()) do
+           if v.Humanoid.Health > 0 then
+               equip()
+               v2 = v.HumanoidRootPart
+               v3 = v2.Position
+               game:GetService("Workspace")[player.Name].Combat.Damage:FireServer(v1, v2, v3)
+           end
+       end
+   end
+end
+
+while task.wait(delay) do
+   if on then
+       pcall(function()
+           kill()
+       end)
+   end
+end

@@ -1,0 +1,5 @@
+local args = {
+    [1] = 70000000000000
+}
+
+game:GetService("ReplicatedStorage").RemoteObjects.IncrementBeachCash:FireServer(unpack(args))

@@ -1,0 +1,132 @@
+local AssetId = 5094135365 -- id of the model
+
+TimeStamp = tick()
+
+
+local Model = game:GetObjects("rbxassetid://" .. AssetId)[1]
+for _, i in pairs(Model:GetDescendants()) do
+   if i.ClassName == "Script" or i.ClassName == ("LocalScript") then
+       i:Destroy()
+   end
+   if i:IsA("BasePart") then
+       i.Anchored = true
+   end
+end
+
+local BasePartProperties = {
+   "BrickColor", "CanCollide", "Anchored", "Locked", "Velocity", "Transparency", "Reflectance", "Material",
+   "BackSurface", "BottomSurface", "FrontSurface", "LeftSurface", "RightSurface", "TopSurface",
+}
+
+local DecalProperties = {
+   "Texture", "Transparency", "Color3", "Face"
+}
+
+local TextureProperties = {
+   "Texture", "Transparency", "Color3", "Face", "OffsetStudsU", "OffsetStudsV", "StudsPerTileU", "StudsPerTileV"
+}
+
+local Player = game:GetService("Players").LocalPlayer
+
+local md5 = require(game.ReplicatedStorage.MD5)
+local rot = require(game.ReplicatedStorage.ROT13)
+
+local function getKey(sta)
+   return rot.cipher(md5.sumhexa(tostring(sta .. "jeGEkRM")));
+end
+
+local function newInstance(ClassName, Parent)
+   local st = os.time()
+   return game.ReplicatedStorage.RemoteFunctions.CreateObject:InvokeServer(ClassName, Parent, st, getKey(st))
+end
+
+local function setProperty(Object, PropertyName, Value)
+   game.ReplicatedStorage.RemoteEvents.ObjectPropertyChangeRequested:FireServer(Object, PropertyName, Value)
+end
+
+local ModelParent = newInstance("Model", workspace)
+setProperty(ModelParent, "Name", "MJ")
+
+local importedInstances = 0
+
+local Container = {}
+for _, c in pairs(Model:GetDescendants()) do
+   if c:IsA("BasePart") then table.insert(Container, c) end
+end
+table.sort(Container, function(a, b)
+   return (a.Size.X * a.Size.Y * a.Size.Z) > (b.Size.X * b.Size.Y * b.Size.Z)
+end)
+
+for _, v in pairs(Container) do
+   if v:IsA("BasePart") then
+       importedInstances = importedInstances + 1
+       local CreatedObject
+       CreatedObject = newInstance(v.ClassName, ModelParent)
+       if v:IsA("BasePart") then
+           if v.ClassName == "Part" then
+              setProperty(CreatedObject, "Shape", v["Shape"])
+           end
+           if v.ClassName == "Part" or v.ClassName == "WedgePart" or v.ClassName == "TrussPart" then
+              setProperty(CreatedObject, "FormFactor", "Custom")
+           end
+           for _, PropertyName in pairs(BasePartProperties) do
+               setProperty(CreatedObject, PropertyName, v[PropertyName])
+           end
+           setProperty(CreatedObject, "Size", v["Size"])
+           setProperty(CreatedObject, "CFrame", v.CFrame)
+           for _, Child in pairs(v:GetChildren()) do
+               if Child.ClassName == "Decal" then
+                   local Decal = newInstance("Decal", CreatedObject)
+                   for _, p in pairs(DecalProperties) do
+                       setProperty(Decal, p, Child[p])
+                   end
+                   if v:FindFirstChildOfClass("CylinderMesh") then
+                       if Child.Face == Enum.NormalId.Top then
+                           setProperty(Decal, "Face", Enum.NormalId.Right)
+                       elseif Child.Face == Enum.NormalId.Bottom then
+                           setProperty(Decal, "Face", Enum.NormalId.Left)
+                       elseif Child.Face == Enum.NormalId.Right then
+                           setProperty(Decal, "Face", Enum.NormalId.Top)
+                       elseif Child.Face == Enum.NormalId.Left then
+                           setProperty(Decal, "Face", Enum.NormalId.Bottom)
+                       end
+                   end
+       elseif Child.ClassName == "Texture" then
+       local Texture = newInstance("Texture", CreatedObject)
+                   for _, p in pairs(TextureProperties) do
+                       setProperty(Texture, p, Child[p])
+                   end
+               elseif Child.ClassName == "BlockMesh" or Child.ClassName == "SpecialMesh" or Child.ClassName == "CylinderMesh" then
+                   if not CreatedObject:FindFirstChild("Mesh") then
+                       local Mesh = newInstance("SpecialMesh", CreatedObject)
+                       if Child.ClassName == "SpecialMesh" then
+                           setProperty(Mesh, "MeshId", Child.MeshId)
+                           setProperty(Mesh, "TextureId", Child.TextureId)
+                           setProperty(Mesh, "MeshType", Child.MeshType)
+                       elseif Child.ClassName == "BlockMesh" then
+                           setProperty(Mesh, "MeshType", "Brick")
+                       elseif Child.ClassName == "CylinderMesh" then
+                           setProperty(Mesh, "MeshType", "Cylinder")
+                           local x, y, z = v.Size.X, v.Size.Y, v.Size.Z
+                           local newSize = Vector3.new(y, x, z)
+                           setProperty(CreatedObject, "Size", newSize)
+                           local c_ = v.CFrame * CFrame.Angles(0, math.rad(90), math.rad(90))
+                           local x1, y1, z1 = Child.Scale.X, Child.Scale.Y, Child.Scale.Z
+                           local newScale = Vector3.new(y1, x1, z1)
+                           Child.Scale = newScale
+                           setProperty(CreatedObject, "CFrame", c_)
+                           setProperty(CreatedObject, "TopSurface", 0)
+                           setProperty(CreatedObject, "BottomSurface", 0)
+                       end
+                       setProperty(Mesh, "Scale", Child.Scale)
+                       setProperty(Mesh, "Offset", Child.Offset)
+                       setProperty(Mesh, "VertexColor", Child.VertexColor)
+                   end
+               end
+           end
+       end
+   end
+end
+
+print("Successfully imported", importedInstances, "instances.\n Took", math.ceil(tick()-TimeStamp), "seconds.")
+Model:Destroy()

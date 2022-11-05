@@ -1,0 +1,21 @@
+-- decided to release open-source, just credit me if youre gonna use this anywhere please :)
+
+--[[FE UFO script made by quirky anime boy#5506, upgraded by none-of-your-business
+(requires giftcard to redeem)
+
+]]
+--[[ Controls:
+    T - toggle stand-by mode
+    G - gun mode, doesnt really do anything unless you have a game-module
+    B - toggle control mode
+    UFO controls:
+    WASD - move around
+    QE - rotate left/right
+    FC - go up/down
+    leftalt+P - tp to ufo
+    leftalt+L - sit (wip)
+]]--
+
+
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/exceptional0/scr/main/ufo-thing.lua"))()

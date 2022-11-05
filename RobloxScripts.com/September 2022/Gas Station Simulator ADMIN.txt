@@ -1,0 +1,191 @@
+local plrs = game:GetService("Players")
+local remote = game:GetService("ReplicatedStorage"):WaitForChild("Remote")
+local lp = plrs.LocalPlayer
+
+local ignore = {"/w", "/whisper", "/e", "/emote"}
+local cmds = {}
+
+local function resolveTarget(target)
+   if target == "me" then
+       return {lp}
+   elseif target == "others" then
+       local others = plrs:GetPlayers()
+       table.remove(others, table.find(others, lp))
+
+       return others
+   elseif target == "all" then
+       return plrs:GetPlayers()
+   end
+
+   local len = #target
+   local matched = {}
+
+   for i, plr in ipairs(plrs:GetPlayers()) do
+       if string.lower(string.sub(plr.DisplayName, 1, len)) == target or string.lower(plr.Name) == target then
+           table.insert(matched, plr)
+       end
+   end
+
+   return matched
+end
+
+local function processChat(msg)
+   local sep = string.split(string.lower(msg), " ")
+
+   local indice = ignore[table.find(ignore, sep[1])] and 2 or 1
+   local cmd = sep[indice]
+
+   if not cmd then return end
+   local size = #cmd
+
+   if size > 1 and string.sub(cmd, 1, 1) == ":" then
+       local handler = cmds[string.sub(cmd, 2, size)]
+
+       if handler then
+           handler(unpack(sep, indice + 1, #sep))
+       end
+   end
+end
+
+local banned = {}
+local slock = false
+
+local function removeInstance(what)
+   remote:FireServer(
+       "FinishFuel",
+       {
+           Lid = {
+               FinishFuel = what
+           }
+       }
+   )
+end
+
+local function movePart(part, cf)
+   remote:FireServer(
+       "FinishFuel",
+       {Lid = {}},
+       {
+           Nozzle = part,
+           Root = {
+               NozzlePosition = {
+                   WorldCFrame = cf
+               }
+           }
+       }
+   )
+end
+
+function cmds.kick(target)
+   target = resolveTarget(target)
+
+   for i, plr in ipairs(target) do
+       removeInstance(plr)
+   end
+end
+
+function cmds.bring(target)
+   local lhrp = lp.Character and lp.Character:FindFirstChild("HumanoidRootPart")
+   if not lhrp then return end
+
+   target = resolveTarget(target)
+
+   for i, plr in ipairs(target) do
+       local hrp = plr.Character and plr.Character:FindFirstChild("HumanoidRootPart")
+
+       if hrp then
+           movePart(hrp, lhrp.CFrame)
+       end
+   end
+end
+
+function cmds.removestation()
+   for i, v in ipairs(workspace:GetChildren()) do
+       if not plrs:GetPlayerFromCharacter(v) then
+           removeInstance(v)
+       end
+   end
+end
+
+function cmds.skydive(target)
+   target = resolveTarget(target)
+
+   for i, plr in ipairs(target) do
+       local hrp = plr.Character and plr.Character:FindFirstChild("HumanoidRootPart")
+
+       if hrp then
+           movePart(hrp, hrp.CFrame + Vector3.new(0, 500, 0))
+       end
+   end
+end
+
+function cmds.lego(target)
+   target = resolveTarget(target)
+
+   for i, plr in ipairs(target) do
+       local hum = plr.Character and plr.Character:FindFirstChildOfClass("Humanoid")
+
+       if hum then
+           removeInstance(hum)
+       end
+   end
+end
+
+function cmds.kill(target)
+   target = resolveTarget(target)
+
+   for i, plr in ipairs(target) do
+       local head = plr.Character and plr.Character:FindFirstChild("Head")
+
+       if head then
+           removeInstance(head)
+       end
+   end
+end
+
+function cmds.void(target)
+   target = resolveTarget(target)
+
+   for i, plr in ipairs(target) do
+       local hrp = plr.Character and plr.Character:FindFirstChild("HumanoidRootPart")
+
+       if hrp then
+           movePart(hrp, CFrame.new(0, -1000, 0))
+       end
+   end
+end
+
+function cmds.sban(target)
+   target = resolveTarget(target)
+   
+   for i, plr in ipairs(target) do
+       banned[plr.UserId] = true
+       removeInstance(plr)
+   end
+end
+cmds.ban = cmds.sban
+
+function cmds.unban(name)
+   local suc, id = pcall(plrs.GetUserIdFromNameAsync, plrs, name)
+
+   if suc and id then
+       banned[id] = nil
+   end
+end
+cmds.unsban = cmds.unban
+
+function cmds.slock(b)
+   if b == "true" or b == "on" then
+       slock = true
+   elseif b == "false" or b == "off" then
+       slock = false
+   end
+end
+
+plrs.PlayerAdded:Connect(function(plr)
+   if slock or banned[plr.UserId] then
+       removeInstance(plr)
+   end
+end)
+
+lp.Chatted:Connect(processChat)

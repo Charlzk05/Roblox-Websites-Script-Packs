@@ -1,0 +1,6 @@
+for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+  if v.ClassName == "Tool" then
+      local SWORD = v.Name
+      game.Players.LocalPlayer.Character[SWORD].Range.Value = "5000"
+  end
+end

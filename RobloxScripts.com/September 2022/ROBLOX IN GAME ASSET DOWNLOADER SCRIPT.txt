@@ -1,0 +1,132 @@
+pathtogzip = [[C:\Users\User\Downloads\gzip-1.3.12-1-bin\bin\gzip.exe]] -- put the gzip.exe file (you can use just "gzip" if you have it in system32 or your user folder.
+function subtable(str,a,b)
+lol = {}
+for c = a,b do
+lol[#lol+1] = string.sub(str,c,c)
+end
+return lol
+end
+function wait(a)
+os.execute("timeout "..tostring(a))
+end
+function calculateDuration(ogg)
+--ogg is the string returned from the website
+length = string.len(ogg)
+for i = 1,length do
+if string.sub(ogg,length-i,length-i+3) == "OggS" then
+local num = 0
+for i,v in pairs (subtable(ogg,length-i+6,length-i+13)) do
+pcall(function()
+num = num + (string.byte(v)*(256^(i-1))) -- big endian to little endian + convert each character into a hexadecimal
+end)
+end
+return num/44100
+end
+end
+end
+function readAll(file)
+local f = assert(io.open(file, "rb"))
+local content = f:read("*all")
+f:close()
+return content
+end
+local int=getInternet()
+function byteformat(amount)
+if amount > 1000000 then
+return tostring(math.floor(amount/100000)/10).."  MB"
+elseif amount > 1000 then
+return tostring(math.floor(amount/1000)).." KB"
+else
+return amount.." B"
+end
+end
+audio = {}
+models = {}
+images = {}
+unknowns = {}
+data = {}
+massexecutedone = false
+massexecutecmd = {nil}
+massexecutefun = {}
+function massexecute(cmd)
+if massexecutecmd[#massexecutecmd] ~= nil then
+if string.len(massexecutecmd[#massexecutecmd].." & "..cmd) > 4192 then
+massexecutecmd[#massexecutecmd+1] = cmd
+else
+massexecutecmd[#massexecutecmd] = massexecutecmd[#massexecutecmd].." & "..cmd
+end
+else
+massexecutecmd[#massexecutecmd] = cmd
+end
+end
+local function checkurl(url,threshold)
+local resp=data[url]
+if resp and string.len(resp) > threshold then
+if string.sub(resp,1,4) == "OggS" then
+audio[string.len(resp)] = url..": audio "..byteformat(string.len(resp)).." duration(in seconds): "..tostring(calculateDuration(resp))
+elseif string.sub(resp,1,4) == "<rob" then
+models[string.len(resp)] = url..": models "..byteformat(string.len(resp))
+else
+if string.byte(string.sub(resp,2,2)) == 139 then -- FILE that is compressed with gzip (WHY THE FUCK IS IT COMPRESSED)
+               local lol = io.open(os.getenv("TEMP").."\\"..string.sub(url,32,46)..".gz","wb")
+               lol:write(resp)
+               lol:close()
+               massexecute(pathtogzip.." -f -d %TEMP%".."\\"..string.sub(url,32,46)..".gz")
+               massexecutefun[#massexecutefun+1] = function()
+               data[url] = readAll(os.getenv("TEMP").."\\"..string.sub(url,32,46))
+               checkurl(url,threshold)
+               end
+else
+if string.sub(resp,2,4) ~= "PNG" and string.sub(resp,1,7) == "version" then
+unknowns[string.len(resp)] = url..": unknowns "..byteformat(string.len(resp)).." "..string.sub(resp,1,12)
+end
+if string.sub(resp,2,4) == "PNG" then
+images[string.len(resp)] = url..": images "..byteformat(string.len(resp))
+end
+end
+end
+end
+end
+function foreach(t,f)
+local highest = 0
+for i,v in pairs (t) do
+if i > highest then
+highest = i
+end
+end
+for ii = 0,highest-1 do
+local i = highest - ii
+if t[i] then
+f(t[i])
+end
+end
+end
+local res = assert(AOBScan('63 xx 2E 72 62 78 63 64 6E 2E 63 6F 6D 2F xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx 00'), 'no results found') --c?.rbxcdn.com/???????...
+-- please ignore that i put the value as index (it was for testing purposes)
+local stuff = {}
+for i = 0,stringlist_getCount(res)-1 do
+if not stuff[readString(res[i],46)] then
+stuff[readString(res[i],46)] = "a"
+end
+end
+res.destroy()
+print("gotten strings")
+for i,v in pairs (stuff) do
+data["https://"..i] = int.getURL("https://"..i)
+end
+print("gotten data")
+for i,v in pairs (stuff) do
+checkurl("https://"..i,5000)
+end
+for i,v in pairs (massexecutecmd) do
+os.execute(v) -- haha
+end
+for i,v in pairs (massexecutefun) do
+v()
+end
+int.destroy()
+foreach(audio,print)
+foreach(models,print)
+foreach(images,print)
+foreach(unknowns,print)
+print("done!")

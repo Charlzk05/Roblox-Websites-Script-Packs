@@ -1,0 +1,58 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Inazuma: Rebirth", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+local Tab = Window:MakeTab({
+    Name = "Main",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+local Tab2 = Window:MakeTab({
+    Name = "Hissatsu",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+Tab:AddButton({
+    Name = "Regen Hisa Power",
+    Callback = function()
+        game:GetService("Players").LocalPlayer.Character.TPGaining.Get:FireServer()
+    end
+})
+Tab:AddButton({
+    Name = "Increase Kick Power",
+    Callback = function()
+        for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.HissaPower:GetDescendants()) do
+            if v:IsA("RemoteEvent") then
+                v:FireServer()
+            end
+        end
+    end
+})
+Tab:AddButton({
+    Name = "Dribble (IFRAME)",
+    Callback = function()
+        game:GetService("Players").LocalPlayer.Character.SprintADribbles.Dribble:FireServer()
+    end
+})
+Tab2:AddButton({
+    Name = "Get GK Hisa",
+    Callback = function()
+        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, workspace.GK, 0)
+    end
+})
+Tab2:AddButton({
+    Name = "Get DEF Hisa",
+    Callback = function()
+        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, workspace.DEF, 0)
+    end 
+})
+Tab2:AddButton({
+    Name = "Get MID Hisa",
+    Callback = function()
+        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, workspace.MID, 0)
+    end 
+})
+Tab2:AddButton({
+    Name = "Get FW Hisa",
+    Callback = function()
+        firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, workspace.FW, 0)
+    end 
+})

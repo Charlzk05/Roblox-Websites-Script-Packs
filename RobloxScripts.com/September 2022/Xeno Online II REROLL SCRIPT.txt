@@ -1,0 +1,18 @@
+local traits = {"Evil", "Royal", "Legendary", "Primal", "Ancient", "Yardratian", "Bojack", "Hit", "Meta"}
+
+
+local function FireFakeSignal(Button) -- tobias' function script for button
+   game:GetService("VirtualInputManager"):SendMouseButtonEvent(Button.AbsolutePosition.X + Button.AbsoluteSize.X / 2, Button.AbsolutePosition.Y + Button.AbsoluteSize.Y / 2 + 30, 0, true, Useless, 1)
+   game:GetService("VirtualInputManager"):SendMouseButtonEvent(Button.AbsolutePosition.X + Button.AbsoluteSize.X / 2, Button.AbsolutePosition.Y + Button.AbsoluteSize.Y / 2 + 30, 0, false, Useless, 1)
+end
+while wait() do
+   pcall(function()
+if table.find(traits, tostring(game:GetService("Players").LocalPlayer.PlayerGui.BabaGUI.RerollFrame.Trait.Text):split(" ")[2]) == nil then
+   FireFakeSignal(game:GetService("Players").LocalPlayer.PlayerGui.BabaGUI.RerollFrame.UseSpin)
+   wait(10.25)
+   else
+       wait(0.5)
+   game.Players.LocalPlayer:Kick(game:GetService("Players").LocalPlayer.PlayerGui.BabaGUI.RerollFrame.Trait.Text)
+end
+end)
+end

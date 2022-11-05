@@ -1,0 +1,18 @@
+local Local = game:GetService("Players").LocalPlayer
+local Sword = Local.Character:FindFirstChildWhichIsA("Tool")
+local Mouse = Local:GetMouse()
+
+
+function GetNearestPlayer()
+     local Local = game:GetService("Players").LocalPlayer
+   for i,v in pairs(game:GetService("Players"):GetChildren()) do
+     local value =  v.Character.HumanoidRootPart.Position.Magnitude -Local.Character.HumanoidRootPart.Position.Magnitude
+     if math.abs(value) < 4 and math.abs(value) ~= 0 then
+         return v.Character.HumanoidRootPart
+        end
+   end
+end
+
+while task.wait() do
+Sword.Handle.Position = Mouse.Hit.Position
+end

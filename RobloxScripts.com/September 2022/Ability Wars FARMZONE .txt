@@ -1,0 +1,231 @@
+if not funcs then
+loadstring(game:HttpGet("https://raw.githubusercontent.com/exceptional0/scr/main/funcs.lua"))()
+en
+--abilitywars farmzone
+do
+local host=funcs.plrs:FindFirstChild("MAINACCOUNTNAME")
+
+local root = {
+   ID = 0;
+   Type = "Model";
+   Properties = {
+       Name = "zone";
+   };
+   Children = {
+       {
+           ID = 1;
+           Type = "Part";
+           Properties = {
+               BottomSurface = Enum.SurfaceType.Smooth;
+               Color = Color3.new(1/15,1/15,1/15);
+               Anchored = true;
+               brickColor = BrickColor.new(1/15,1/15,1/15);
+               Position = Vector3.new(8.489999771118164,40147.265625,-12.01099967956543);
+               BrickColor = BrickColor.new(1/15,1/15,1/15);
+               Size = Vector3.new(52,1,69);
+               CFrame = CFrame.new(8.489999771118164,40147.265625,-12.01099967956543,1,0,0,0,1,0,0,0,1);
+               TopSurface = Enum.SurfaceType.Smooth;
+           };
+           Children = {
+               {
+                   ID = 2;
+                   Type = "PointLight";
+                   Properties = {
+                       Color = Color3.new(54/85,0,1);
+                       Brightness = 3;
+                       Range = 42;
+                   };
+                   Children = {};
+               };
+               {
+                   ID = 3;
+                   Type = "Texture";
+                   Properties = {
+                       Texture = "http://www.roblox.com/asset/?id=77986517";
+                       Face = Enum.NormalId.Top;
+                       StudsPerTileV = 1;
+                       StudsPerTileU = 1;
+                   };
+                   Children = {};
+               };
+           };
+       };
+       {
+           ID = 4;
+           Type = "Part";
+           Properties = {
+               BottomSurface = Enum.SurfaceType.Smooth;
+               Color = Color3.new(39/85,0,0);
+               Anchored = true;
+               brickColor = BrickColor.new(39/85,0,0);
+               Position = Vector3.new(-17.01000213623047,40165.765625,-12.01099967956543);
+               BrickColor = BrickColor.new(39/85,0,0);
+               Size = Vector3.new(1,38,69);
+               CFrame = CFrame.new(-17.01000213623047,40165.765625,-12.01099967956543,1,0,0,0,1,0,0,0,1);
+               TopSurface = Enum.SurfaceType.Smooth;
+           };
+           Children = {};
+       };
+       {
+           ID = 5;
+           Type = "Part";
+           Properties = {
+               BottomSurface = Enum.SurfaceType.Smooth;
+               Color = Color3.new(39/85,0,0);
+               Anchored = true;
+               brickColor = BrickColor.new(39/85,0,0);
+               Position = Vector3.new(8.489997863769531,40165.765625,21.98900032043457);
+               BrickColor = BrickColor.new(39/85,0,0);
+               Size = Vector3.new(52,38,1);
+               CFrame = CFrame.new(8.489997863769531,40165.765625,21.98900032043457,1,0,0,0,1,0,0,0,1);
+               TopSurface = Enum.SurfaceType.Smooth;
+           };
+           Children = {};
+       };
+       {
+           ID = 6;
+           Type = "Part";
+           Properties = {
+               BottomSurface = Enum.SurfaceType.Smooth;
+               Color = Color3.new(39/85,0,0);
+               Anchored = true;
+               brickColor = BrickColor.new(39/85,0,0);
+               Position = Vector3.new(33.98999786376953,40165.765625,-12.01099967956543);
+               BrickColor = BrickColor.new(39/85,0,0);
+               Size = Vector3.new(1,38,69);
+               CFrame = CFrame.new(33.98999786376953,40165.765625,-12.01099967956543,1,0,0,0,1,0,0,0,1);
+               TopSurface = Enum.SurfaceType.Smooth;
+           };
+           Children = {};
+       };
+       {
+           ID = 7;
+           Type = "Part";
+           Properties = {
+               BottomSurface = Enum.SurfaceType.Smooth;
+               Color = Color3.new(39/85,0,0);
+               Anchored = true;
+               brickColor = BrickColor.new(39/85,0,0);
+               Position = Vector3.new(8.489997863769531,40165.765625,-46.01100158691406);
+               BrickColor = BrickColor.new(39/85,0,0);
+               Size = Vector3.new(52,38,1);
+               CFrame = CFrame.new(8.489997863769531,40165.765625,-46.01100158691406,1,0,0,0,1,0,0,0,1);
+               TopSurface = Enum.SurfaceType.Smooth;
+           };
+           Children = {};
+       };
+       {
+           ID = 8;
+           Type = "Part";
+           Properties = {
+               Transparency = 1;
+               BottomSurface = Enum.SurfaceType.Smooth;
+               Position = Vector3.new(-16.472288131713867,40169.4921875,-14.404767990112305);
+               Size = Vector3.new(0.07989978790283203,16,14);
+               CFrame = CFrame.new(-16.472288131713867,40169.4921875,-14.404767990112305,1,0,0,0,1,0,0,0,1);
+               Anchored = true;
+               TopSurface = Enum.SurfaceType.Smooth;
+           };
+           Children = {
+               {
+                   ID = 9;
+                   Type = "Decal";
+                   Properties = {
+                       Face = Enum.NormalId.Right;
+                       Name = "Baby Protogen";
+                       Texture = "http://www.roblox.com/asset/?id=9905519731";
+                   };
+                   Children = {};
+               };
+           };
+       };
+       {
+           ID = 10;
+           Type = "Part";
+           Properties = {
+               Name = "standstill";
+               Position = Vector3.new(9.26028823852539,40152.4375,12.384531021118164);
+               Size = Vector3.new(4,1,2);
+               CFrame = CFrame.new(9.26028823852539,40152.4375,12.384531021118164,1,0,0,0,1,0,0,0,1);
+               BottomSurface = Enum.SurfaceType.Smooth;
+               TopSurface = Enum.SurfaceType.Smooth;
+               Anchored=true;
+           };
+           Children = {
+               {
+                   ID = 11;
+                   Type = "ClickDetector";
+                   Properties = {};
+                   Children = {};
+                   executeme=function(x)
+                   local actv=false
+                   local spawnpos=Vector3.new(9.214921951293945, 252.2660369873047, -10.69012451171875)
+
+                   x.MouseClick:Connect(function()
+                   local cachedcf=getchar().Head.CFrame
+                   actv=not actv
+                   while actv do
+                   local hdache=getchar():WaitForChild("Head",10)
+                   if (hdache.Position-spawnpos).Magnitude > 50 then
+                   getchar():SetPrimaryPartCFrame(cachedcf)
+                   end
+                   task.wait()
+                   end
+                   end)
+                   
+                   end
+               };
+           };
+       };
+   };
+};
+
+local function importpart(tb,parent)
+local newinstance=tb.Type and Instance.new(tb.Type,parent)
+for i,v in pairs(tb.Properties) do
+newinstance[i]=v
+end
+for i,v in pairs(tb.Children) do
+importpart(v,newinstance)
+end
+if tb.executeme then
+tb.executeme(newinstance)
+end
+tb=nil
+return newinstance
+end
+
+importpart(root,workspace)
+local portal=workspace.Portal
+local spawnpos=Vector3.new(9.214921951293945, 252.2660369873047, -10.69012451171875)
+local tppos=CFrame.new(-12.5628691, 40152.2656, -14.0667686, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+local sz=Vector3.new(6,6,6)
+local function onadded(n)
+if n.Name=="Hitbox" then
+n.Size=sz
+n:GetPropertyChangedSignal("Size"):Connect(function()
+n.Size=sz
+end)
+end
+end
+local function ond(x)
+local pr = x.PrimaryPart
+x.ChildAdded:Connect(onadded)
+if not pr then x:GetPropertyChangedSignal("PrimaryPart"):Wait() pr=x.PrimaryPart end
+while (pr.Position - spawnpos).Magnitude > 50 do task.wait(.01) end
+for i=1,2 do
+firetouchinterest(pr,portal,0)
+firetouchinterest(pr,portal,1)
+task.wait(.4)
+end
+while (pr.Position - spawnpos).Magnitude < 50 do task.wait() end
+if host~=nil then
+x:SetPrimaryPartCFrame(tppos)
+end
+end
+if funcs.lplr~=host then
+ond(getchar())
+funcs.lplr.CharacterAdded:Connect(ond)
+end
+getchar():SetPrimaryPartCFrame(tppos)
+end

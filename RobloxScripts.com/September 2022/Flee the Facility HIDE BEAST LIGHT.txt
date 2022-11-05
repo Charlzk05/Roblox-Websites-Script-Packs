@@ -1,0 +1,1 @@
+game:GetService("Workspace").Username.Gemstone.Handle:Destroy()

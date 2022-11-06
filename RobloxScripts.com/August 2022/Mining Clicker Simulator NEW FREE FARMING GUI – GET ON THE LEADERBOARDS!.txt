@@ -1,0 +1,1 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/dady172172/Roblox-Cheat-Scripts/master/Mining%20Clicker%20Simulator%20GUI.lua"))()

@@ -1,0 +1,4 @@
+for i,v in pairs(game:GetService("Workspace")["Client Cubits"]:GetChildren()) do
+  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame;
+  fireproximityprompt(v:FindFirstChildWhichIsA("ProximityPrompt"), 0);
+end;

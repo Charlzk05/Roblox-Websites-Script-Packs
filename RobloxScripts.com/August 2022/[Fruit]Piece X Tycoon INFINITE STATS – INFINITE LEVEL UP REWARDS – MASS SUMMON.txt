@@ -1,0 +1,9 @@
+local args = {
+    [1] = "usePoint",
+    [2] = {
+        ["number"] = -math.huge,
+        ["category"] = "attack"
+    }
+}
+
+game:GetService("ReplicatedStorage").events.RemoteFunction_playerInfo:InvokeServer(unpack(args))

@@ -1,0 +1,112 @@
+local plr = game.Players.LocalPlayer
+local mouse = plr:GetMouse()
+local X = {
+   [1] = nil,
+   [2] = plr,
+   [3] = nil,
+   [4] = nil,
+   [5] = nil,
+   [6] = {
+       [1] = 0,
+       [2] = 0,
+       [3] = false,
+       [4] = false,
+       [7] = 100,
+       [8] = 100
+   },
+   [7] = {
+       [1] = false,
+       [2] = 5,
+       [3] = 3
+   },
+   [8] = nil,
+   [9] = {
+       [1] = false,
+       [2] = {
+           [1] = 1930359546
+       },
+       [3] = 1,
+       [4] = 1.5,
+       [5] = 1
+   }
+}
+
+function getWeapon()
+
+   for i , v in pairs (game:GetDescendants()) do
+     
+      if (v:IsA("Tool")) then
+         
+          local tool = v
+         
+         for i ,v in pairs (tool:GetChildren()) do
+             
+             if (v.Name == "GunScript_Local") then
+                 
+                 for i ,v in pairs (tool:GetChildren()) do
+                     
+                     if (v.Name == "Setting" and v:IsA("ModuleScript")) then
+                       
+                        return tool
+                         
+                     end
+                     
+                 end
+                 
+             end
+             
+         end
+         
+      end
+       
+   end
+   
+end
+
+mouse.Button1Down:Connect(function()
+   
+if mouse.Target and mouse.Target.Parent then
+   
+   for victimIndex, victim in pairs (game.Players:GetChildren()) do
+     
+      for partIndex, part in pairs (victim.Character:GetChildren()) do
+         
+         if (mouse.Target == part or mouse.Target == part.Parent) then
+             
+             for playerIndex, player in pairs (game.Players:GetChildren()) do
+
+                       if (player == victim) then
+                         
+                           local weapon = getWeapon()
+
+                           X[1] = weapon
+                           X[3] = player.Character.Humanoid
+                           X[4] = player.Character.HumanoidRootPart
+                           X[5] = math.huge
+                           X[8] = player.Character.Head
+                           
+                           local gSetting = require(weapon.Setting)
+                                       
+                           gSetting.Ammo = 99999
+                           gSetting.MaxAmmo = 99999999
+                           gSetting.ExplosiveEnabled = true
+                           gSetting.FreezingBullet = true
+                       
+                           game:GetService("ReplicatedStorage").InflictTarget:InvokeServer(unpack(X))
+                           
+                           print("Click killed " .. player.Name)
+                           
+                       end
+                   
+               end
+               
+               end
+         
+       end
+       
+   end
+   
+   end
+
+end)
+   

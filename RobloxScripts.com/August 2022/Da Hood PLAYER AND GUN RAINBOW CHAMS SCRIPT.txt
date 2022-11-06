@@ -1,0 +1,33 @@
+if not game:IsLoaded() then
+    game.IsLoaded:Wait()
+else
+    print('loaded')
+end
+
+local run = game:GetService('RunService')
+
+function getgun()
+    for i,v in pairs(game:GetService('Players').LocalPlayer.Character:GetChildren()) do
+        if v and v:FindFirstChild('Default') then
+            return v
+        end
+    end
+end
+
+function rainbow(a,b,c)
+    local time = a
+    local h = tick() % time / time
+    local co = Color3.fromHSV(h, 1, 1)
+        for i,v in pairs(b:GetChildren()) do
+            if v:IsA(c) or v:FindFirstChild(c) then
+                v.Color = co
+                v.Material = 'ForceField'    
+        end
+    end
+end
+
+run.Stepped:Connect(function()
+local gun = getgun()
+rainbow(5,game:GetService('Players').LocalPlayer.Character,'BasePart')
+rainbow(5,game:GetService('Players').LocalPlayer.Character[tostring(gun)],'BasePart')
+end)

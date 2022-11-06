@@ -1,0 +1,41 @@
+local Players = game:GetService('Players')
+local LP = Players.LocalPlayer
+
+local SynDiscord = loadstring(game:HttpGet('https://raw.githubusercontent.com/ou1z/SynDiscordV2/main/module/main.lua'))()
+local Client = SynDiscord.Client.new()
+
+local toggle = false
+
+Client:on('ready', function()
+    print('bot is ready')
+end)
+
+Client:on('messageCreate', function(message)
+    if message.author.id == Client.User.id then
+        if message.content == '.reset' then
+            local pos = LP.Character.HumanoidRootPart.Position
+            LP.Character:BreakJoints()
+            LP.CharacterAdded:Wait()
+            task.wait(.1)
+            LP.Character:SetPrimaryPartCFrame(CFrame.new(pos))
+        elseif message.content == '.react' then
+            message.react('?') -- v3rm wont render the emoji but you can use an emoji here.
+        elseif message.content == '.toggle' then
+            toggle = not toggle
+        end
+    end
+end)
+
+
+
+task.spawn(function()
+    while true do
+        if toggle then
+            print('TOGGLE IS TRUE')
+        end
+        task.wait(.1) 
+    end
+end)
+
+
+Client:login("TOKEN HERE")

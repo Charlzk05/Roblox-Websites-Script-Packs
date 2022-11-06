@@ -1,0 +1,11 @@
+repeat task.wait() until game.CoreGui:FindFirstChild('RobloxPromptGui')
+game.CoreGui.RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(child)
+    if child.Name == "ErrorPrompt" then
+        game:GetService("TeleportService"):Teleport(game.PlaceId, game.Players.LocalPlayer)
+    end
+end)
+game.Players.LocalPlayer.Idled:Connect(function()
+  game:GetService("VirtualUser"):Button2Down(Vector2.new(0,0), game.Workspace.CurrentCamera.CFrame)
+  task.wait(1)
+  game:GetService("VirtualUser"):Button2Up(Vector2.new(0,0), game.Workspace.CurrentCamera.CFrame)
+end)

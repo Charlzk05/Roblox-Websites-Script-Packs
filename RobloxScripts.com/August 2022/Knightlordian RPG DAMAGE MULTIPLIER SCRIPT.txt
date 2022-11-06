@@ -1,0 +1,6 @@
+local backpack = game.Players.LocalPlayer.Backpack
+local gun = backpack['WEAPON NAME'] --Weapon Name
+local ss = gun['WeaponScript'] --Script Name
+for i=1,100 do --u can change this to higher value if u want more damage
+ss:Clone().Parent = gun
+end

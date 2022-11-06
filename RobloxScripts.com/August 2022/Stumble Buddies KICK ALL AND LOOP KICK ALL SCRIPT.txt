@@ -1,0 +1,5 @@
+    for i,v in next, game.Players:GetPlayers() do
+        if v ~= game.Players.LocalPlayer then
+            game:GetService("Players").LocalPlayer.PlayerGui.Admin.Panel.Buttons.Kick.Select.Kick:FireServer(""..v.Name)
+        end
+    end

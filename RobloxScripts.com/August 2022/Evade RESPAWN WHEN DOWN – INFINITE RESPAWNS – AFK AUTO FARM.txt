@@ -1,0 +1,4 @@
+repeat
+wait(5)
+   game:GetService("ReplicatedStorage").Events.Respawn:FireServer()
+until false

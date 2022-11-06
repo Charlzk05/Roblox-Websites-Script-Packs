@@ -1,0 +1,26 @@
+local gamepass_id = 28798563
+local stat = "FastSwing"
+local gamepass_stat = 0.25
+
+game.Players.PlayerAdded:Connect(function(player)
+    local fold = Instance.new("Folder", player)
+    fold.Name = "Data123"
+    local val = Instance.new("NumberValue", fold)
+    val.name = "FastSwing"
+    val.Value = 0
+    
+    local awarded = Instance.new("BoolValue", player)
+    awarded.Name = "Awarded"
+    
+    if game:GetService("MarketplaceService"):UserOwnsGamePassAsync(player.UserId, gamepass_id) and player.Awarded.Value == false then
+        player.Awarded.Value = true
+        val.Value = val.Value + gamepass_stat
+    end
+end)
+
+while wait(3) do
+    for i,v in pairs (game.Players:GetChildren()) do
+        v.Awarded.Value = true
+        v.Stats:FindFirstChild(stat).Value = v.Stats:FindFirstChild(stat).Value + gamepass_stat
+    end
+end

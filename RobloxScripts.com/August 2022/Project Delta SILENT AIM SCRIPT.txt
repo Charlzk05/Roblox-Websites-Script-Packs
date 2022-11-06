@@ -1,0 +1,5 @@
+getgenv().config = {
+   aim_part = "Head"; -- Aim part
+   instant_hit = true; -- Bullets will Instant hit
+};
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Callahan1337/roblox/main/silent-aim.lua"))();

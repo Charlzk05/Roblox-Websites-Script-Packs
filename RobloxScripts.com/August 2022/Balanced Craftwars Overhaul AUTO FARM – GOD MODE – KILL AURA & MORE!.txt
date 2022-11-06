@@ -1,0 +1,4 @@
+local A_2 = {
+[1] = "1KLIKES"
+}
+game:GetService("Players").LocalPlayer.PlayerGui.Inventory.GuiControl:FireServer("code", A_2)

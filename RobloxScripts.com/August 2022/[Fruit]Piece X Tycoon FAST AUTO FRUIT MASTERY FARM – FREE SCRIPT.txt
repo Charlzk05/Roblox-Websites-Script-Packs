@@ -1,0 +1,55 @@
+while wait(1) do
+local args = {
+    [1] = "damagePlayer",
+    [2] = {
+        ["skillName"] = "xiangjiaojiguanqiang",
+        ["damageTable"] = {
+            [1] = workspace.areas.area2.buildings.Train_Dummy1, -- if it doesnt work then change the number of area from 1 to 6 until it works, all must be the same number
+            [2] = workspace.areas.area2.buildings.Train_Dummy2, -- if it doesnt work then change the number of area from 1 to 6 until it works, all must be the same number
+            [3] = workspace.areas.area2.buildings.Train_Dummy3, -- if it doesnt work then change the number of area from 1 to 6 until it works, all must be the same number
+            [4] = workspace.areas.area2.buildings.Train_Dummy4, -- if it doesnt work then change the number of area from 1 to 6 until it works, all must be the same number
+            [5] = workspace.areas.area2.buildings.Train_Dummy5, -- if it doesnt work then change the number of area from 1 to 6 until it works, all must be the same number
+            [6] = workspace.areas.area2.buildings.Train_Dummy6, -- if it doesnt work then change the number of area from 1 to 6 until it works, all must be the same number
+            [7] = workspace.areas.area2.buildings.Train_Dummy7, -- if it doesnt work then change the number of area from 1 to 6 until it works, all must be the same number
+            [8] = workspace.areas.area2.buildings.Train_Dummy8, -- if it doesnt work then change the number of area from 1 to 6 until it works, all must be the same number
+            [9] = workspace.areas.area2.buildings.Train_Dummy9  -- if it doesnt work then change the number of area from 1 to 6 until it works, all must be the same number
+        }
+    }
+}
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").events.RemoteEvent_skills:FireServer(unpack(args))
+end

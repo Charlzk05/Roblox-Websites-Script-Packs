@@ -1,0 +1,8 @@
+-- KillAura Made By Brickmane
+-- Cheerios#0447
+-- Pls dont remove credit if you are trying to make a video or upload it to different script forums :(
+-- or i will call saul goodman
+
+getgenv().KillAura = true
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Relkss/Releases/main/FurryKiller.lua"))()

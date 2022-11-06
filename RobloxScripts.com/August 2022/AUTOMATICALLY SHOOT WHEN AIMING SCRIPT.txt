@@ -1,0 +1,21 @@
+local uis = game:GetService("UserInputService")
+uis.InputBegan:connect(function(inst)
+if inst.UserInputType == Enum.UserInputType.MouseButton2 then
+getgenv().booga = true
+while booga == true do
+   wait()
+       local m = game.Players.LocalPlayer:GetMouse()
+           mouse1click()
+end
+end
+end)
+uis.InputEnded:connect(function(inst)
+if inst.UserInputType == Enum.UserInputType.MouseButton2 then
+getgenv().booga = false
+while booga == true do
+   wait()
+       local m = game.Players.LocalPlayer:GetMouse()
+           mouse1click()
+end
+end
+end)

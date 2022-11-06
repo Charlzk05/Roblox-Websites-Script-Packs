@@ -1,0 +1,35 @@
+if not game:IsLoaded() then
+   game.Loaded:Wait();
+end
+function everything()
+rconsoleprint("rconsole Chat Spy by uid=1814072")
+rconsolename("Chat spy")
+rconsoleprint("\nBlue = You, Green = Your friends, White = anyone else ")
+-- init
+
+-- variables
+local players, replicatedStorage = game:GetService("Players"), game:GetService("ReplicatedStorage");
+local defaultChatSystemChatEvents = replicatedStorage:FindFirstChild("DefaultChatSystemChatEvents");
+
+local onMessageDoneFiltering = defaultChatSystemChatEvents:FindFirstChild("OnMessageDoneFiltering");
+
+-- main
+onMessageDoneFiltering.OnClientEvent:Connect(function(messageData)
+   local speaker, message = players[messageData.FromSpeaker], messageData.Message
+   local plr = speaker
+   if plr.Name == game.Players.LocalPlayer.Name then
+       rconsoleprint("@@CYAN@@")
+   elseif plr:IsFriendsWith(game.Players.LocalPlayer.UserId) then
+       rconsoleprint("@@GREEN@@")
+       else
+           rconsoleprint("@@WHITE@@")
+   
+   end
+   rconsoleprint("\n"..plr.Name..": "..message)
+end);
+end
+if rconsoleprint and rconsolename then
+   everything()
+   else
+       
+end

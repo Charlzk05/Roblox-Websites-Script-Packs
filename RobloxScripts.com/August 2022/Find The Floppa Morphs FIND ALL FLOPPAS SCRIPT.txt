@@ -1,0 +1,7 @@
+local HPR = game.Players.LocalPlayer.Character.HumanoidRootPart
+for i,v in pairs(game:GetService("Workspace").Floppas:GetChildren()) do
+   if v:IsA("Part") then
+       wait(2)
+       HPR.CFrame = v.CFrame
+   end
+end

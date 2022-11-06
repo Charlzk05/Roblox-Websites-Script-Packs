@@ -1,0 +1,66 @@
+_G.DMGTap = false -- trains damage, set to false when you want to turn it off
+_G.HPTap = false -- trains health
+_G.SPTap = false -- trains jump
+_G.JPTap = false -- trains jump
+_G.ARebirth = false -- auto rebirths when you can
+
+spawn(function ()
+   while _G.DMGTap == true do
+       local args = {
+       [1] = {
+          [1] = "Add_DMG_Request"
+      }
+  }
+  game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+       wait()
+  end  
+end)
+
+spawn(function ()
+   while _G.HPTap == true do
+       local args = {
+       [1] = {
+          [1] = "Add_HP_Request"
+      }
+  }
+   game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+       wait()
+  end
+end)
+
+spawn(function ()
+   while _G.SPTap == true do
+       local args = {
+       [1] = {
+          [1] = "Add_MS_Request"
+      }
+  }
+ 
+  game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+  wait()
+  end
+end)
+
+spawn(function ()
+   while _G.JPTap == true do
+       local args = {
+       [1] = {
+          [1] = "Add_JP_Request"
+      }
+  }
+  game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+       wait()
+  end
+end)
+
+spawn(function ()
+   while _G.ARebirth == true do
+   local args = {
+       [1] = {
+           [1] = "Rebirth_Request"
+       }
+   }
+    game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+   wait()
+  end
+end)

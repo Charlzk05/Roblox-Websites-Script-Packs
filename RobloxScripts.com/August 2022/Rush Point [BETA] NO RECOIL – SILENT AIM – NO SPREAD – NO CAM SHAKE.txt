@@ -1,0 +1,13 @@
+ModuleLoader = require(game:GetService("ReplicatedStorage").Modules.Shared.ModuleLoader);
+LoadedModules = ModuleLoader.LoadedModules;
+WeaponInfo = LoadedModules.WeaponInfo;
+
+while task.wait(0.4) do
+   for Index, Value in next, WeaponInfo do
+       if (type(Value) == 'table') then
+           Value['Spread'] = 0;
+           Value['MovementSpreadTime'] = 0;
+           Value['MovementSpreadPenalty'] = 0;
+       end;
+   end;
+end;

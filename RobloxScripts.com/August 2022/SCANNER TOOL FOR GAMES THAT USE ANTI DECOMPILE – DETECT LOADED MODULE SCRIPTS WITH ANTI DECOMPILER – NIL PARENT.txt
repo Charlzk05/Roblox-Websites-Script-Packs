@@ -1,0 +1,19 @@
+local slowDetection = false
+
+for i,v in  next,getloadedmodules() do
+   if tostring(v.Parent) ~= "Core"  and tostring(v.Parent) ~= "CameraModule" and tostring(v.Parent) ~= "ChatMain" and tostring(v.Parent) ~= "PlayerModule" and tostring(v.Parent) ~= "CommandModules" and tostring(v.Parent) ~= "ClientChatModules" and tostring(v.Parent) ~= "MessageCreatorModules" and tostring(v.Parent) ~= "ControlModule" and tostring(v) ~= "Popper" and tostring(v) ~= "MatIcons" and tostring(v) ~= "AtomicBinding"  then
+          local script = decompile(getscriptclosure(v))
+          local table1 = script:split("\n")
+          print("Loading... ", i , " " , v)
+ if v.Parent == nil and tostring(v) ~= "Client" then
+     warn(v , " suspected, Reason: nil parent")
+  if table.concat(script:split(" ")) == "" then
+      local script = decompile(getscriptclosure(v))
+          local table1 = script:split("\n")
+      warn(v , " seriously suspected, Reason: Anti-Decompiler + Nil parent")
+      end
+ elseif slowDetection == true and  table.concat(script:split(" ")) == "" and tostring(v) ~= "Client" then
+     warn(v , " suspected, Reason: Anti-Decompiler")
+     end
+ end
+end

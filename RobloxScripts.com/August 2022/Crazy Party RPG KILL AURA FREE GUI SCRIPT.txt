@@ -1,0 +1,65 @@
+local Players = game.Players;
+local Player = Players.LocalPlayer;
+local Char = Player.Character;
+local Backpack = Player.Backpack;
+local Root = Char.PrimaryPart;
+shared.KILLAURA = false;
+
+function _GETMOB()
+   local MOB, DIST = nil, math.huge;
+    for _,v in pairs(workspace.Mobs:GetChildren()) do
+        if (v:IsA'Model') then
+            if (v:FindFirstChild'HumanoidRootPart') then
+            local Distance = (Root.Position - v.HumanoidRootPart.Position).Magnitude;
+                if Distance < DIST then
+                    MOB, DIST = v, Distance;
+                end;
+            end;
+        end;
+    end;
+    return MOB, DIST
+end;
+local MOB, DIST = _GETMOB();
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+local Window = OrionLib:MakeWindow(
+    {Name = "Crazy Party RPG",
+    HidePremium = false,
+    SaveConfig = false,
+    ConfigFolder = "OrionTest"
+})
+
+local Tab = Window:MakeTab({
+    Name = "Farming",
+    Icon = "rbxassetid://10281755589",
+    PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+    Name = "astral was here"
+})
+
+
+Tab:AddToggle({
+   Name = "Killaura",
+   Default = false,
+   Callback = function(Value)
+   shared.KILLAURA = Value;
+end
+})
+
+task.spawn(
+    function()
+        while task.wait() do
+            if shared.KILLAURA then
+            game:GetService("ReplicatedStorage").GameRemotes.DamageEvent:FireServer(
+                _GETMOB().HumanoidRootPart,
+                _GETMOB().Enemy,
+                Char:FindFirstChildWhichIsA('Tool')
+            )
+        end;
+    end;
+end);
+
+OrionLib:Init()

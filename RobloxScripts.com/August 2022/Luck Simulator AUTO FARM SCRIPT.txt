@@ -1,0 +1,24 @@
+while true do
+
+local args = {
+    [1] = "BetterLuck"
+}
+
+game:GetService("ReplicatedStorage").RemoteFunctions.BasicUpgrade:InvokeServer(unpack(args))
+
+local args = {
+    [1] = "FasterLuckClick"
+}
+
+game:GetService("ReplicatedStorage").RemoteFunctions.BasicUpgrade:InvokeServer(unpack(args))
+
+
+local args = {
+    [1] = "FasterMoney"
+}
+
+game:GetService("ReplicatedStorage").RemoteFunctions.BasicUpgrade:InvokeServer(unpack(args))
+
+
+wait(0.2)
+end

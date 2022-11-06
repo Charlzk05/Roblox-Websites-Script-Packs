@@ -1,0 +1,33 @@
+_G.Autofarm = true -- true = on | false = off
+_G.Offset = Vector3.new(5,5,5) -- Change to how far / close you want it to be from the enemy
+
+game.ReplicatedStorage.GameRemotes.BuyEvent:FireServer("Magma Fist")
+
+local Player = game.Players.LocalPlayer
+while _G.Autofarm do task.wait()
+    -------------------------------------------------------
+    local Character = Player.Character or Player.CharacterAdded:Wait()
+    local Root = Character:WaitForChild("HumanoidRootPart")
+    -------------------------------------------------------
+    if Character:FindFirstChild("Magma Fist") then
+        game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("ArmorGUI").EquipArmor:FireServer(workspace.Armors:FindFirstChild("The Berserker"))
+        if workspace.Mobs:FindFirstChild("elden lober") then
+            if workspace.Mobs:WaitForChild("elden lober"):FindFirstChild("Head") and workspace.Mobs:WaitForChild("elden lober"):FindFirstChild("Enemy") then
+                Root.CFrame = workspace.Mobs:WaitForChild("elden lober"):FindFirstChild("Head").CFrame - _G.Offset
+                game:GetService("ReplicatedStorage").GameRemotes.DamageEvent:FireServer(workspace.Mobs:WaitForChild("elden lober"):WaitForChild("MeshPart"),workspace.Mobs:WaitForChild("elden lober"):WaitForChild("Enemy"),game:GetService("Players").LocalPlayer.Character:FindFirstChild("Magma Fist"))
+            end
+        elseif workspace.Mobs:FindFirstChild("lava boi") then
+            if workspace.Mobs:WaitForChild("lava boi"):FindFirstChild("Head") and workspace.Mobs:WaitForChild("lava boi"):FindFirstChild("Enemy") then
+                Root.CFrame = workspace.Mobs:WaitForChild("lava boi"):FindFirstChild("Head").CFrame - _G.Offset
+                game:GetService("ReplicatedStorage").GameRemotes.DamageEvent:FireServer(workspace.Mobs:WaitForChild("lava boi"):WaitForChild("Head"),workspace.Mobs:WaitForChild("lava boi"):WaitForChild("Enemy"),game:GetService("Players").LocalPlayer.Character:FindFirstChild("Magma Fist"))
+            end
+        end
+    elseif Player.Backpack:FindFirstChild("Magma Fist") then
+        Character:WaitForChild("Humanoid"):EquipTool(Player.Backpack:FindFirstChild("Magma Fist"))
+    else
+        Character:WaitForChild("Head"):Destroy()
+        task.wait(1)
+        game.ReplicatedStorage.GameRemotes.BuyEvent:FireServer("Magma Fist")
+        Character:WaitForChild("Humanoid"):EquipTool(Player.Backpack:FindFirstChild("Magma Fist"))
+    end
+end

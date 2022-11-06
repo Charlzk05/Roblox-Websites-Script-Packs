@@ -1,0 +1,264 @@
+local yourUserId = "" -- PUT YOUR USERID IN HERE!!!!
+-- es discord bot controlled autofarm --
+
+getgenv().config = {
+   ['printer_type'] = "basic",
+   ['get_cooldown'] = 151,
+   ['alert_hook']   = "webhook"
+}
+
+local tokenVar = ""
+
+print("checking for folders..",5)
+wait(0.1)
+print("checking for goopy_es",5)
+
+if not isfolder("goopy_es") then
+   makefolder("goopy_es")
+   print("goopy_es created",5)
+end
+
+wait(0.1)
+
+print("checking for goopy_es/token.txt",5)
+
+if not isfile("goopy_es/token.txt") then
+   writefile("goopy_es/token.txt", "")
+   print("created goopy_es/token.txt", 5)
+end
+
+wait(0.1)
+
+function createUI()
+   local hi = Instance.new("ScreenGui")
+   local top = Instance.new("Frame")
+   local main = Instance.new("Frame")
+   local disc1 = Instance.new("TextLabel")
+   local disc2 = Instance.new("TextLabel")
+   local token = Instance.new("TextBox")
+   local TextButton = Instance.new("TextButton")
+   local title = Instance.new("TextLabel")
+   
+   --Properties:
+   
+   hi.Name = "hi"
+   hi.Parent = game.CoreGui
+   hi.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+   
+   top.Name = "top"
+   top.Parent = hi
+   top.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+   top.Position = UDim2.new(0.362689406, 0, 0.284722209, 0)
+   top.Size = UDim2.new(0, 290, 0, 20)
+   
+   main.Name = "main"
+   main.Parent = top
+   main.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+   main.Position = UDim2.new(0, 0, 1, 0)
+   main.Size = UDim2.new(0, 290, 0, 146)
+   
+   disc1.Name = "disc1"
+   disc1.Parent = main
+   disc1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+   disc1.BackgroundTransparency = 1.000
+   disc1.Position = UDim2.new(0.155172408, 0, 0.0753424615, 0)
+   disc1.Size = UDim2.new(0, 200, 0, 39)
+   disc1.Font = Enum.Font.SourceSans
+   disc1.Text = "insert your bot's token below..."
+   disc1.TextColor3 = Color3.fromRGB(0, 0, 0)
+   disc1.TextSize = 14.000
+   
+   disc2.Name = "disc2"
+   disc2.Parent = main
+   disc2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+   disc2.BackgroundTransparency = 1.000
+   disc2.Position = UDim2.new(0.155172408, 0, 0.267123282, 0)
+   disc2.Size = UDim2.new(0, 200, 0, 11)
+   disc2.Font = Enum.Font.SourceSans
+   disc2.Text = "(ill work on saving later)"
+   disc2.TextColor3 = Color3.fromRGB(0, 0, 0)
+   disc2.TextSize = 14.000
+   
+   token.Name = "token"
+   token.Parent = main
+   token.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+   token.Position = UDim2.new(0.155172408, 0, 0.424657553, 0)
+   token.Size = UDim2.new(0, 200, 0, 22)
+   token.Font = Enum.Font.SourceSans
+   token.Text = ""
+   token.TextColor3 = Color3.fromRGB(0, 0, 0)
+   token.TextSize = 14.000
+   
+   TextButton.Parent = main
+   TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+   TextButton.Position = UDim2.new(0.155172408, 0, 0.650684893, 0)
+   TextButton.Size = UDim2.new(0, 200, 0, 39)
+   TextButton.Font = Enum.Font.SourceSans
+   TextButton.Text = "apply"
+   TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+   TextButton.TextSize = 14.000
+   
+   title.Name = "title"
+   title.Parent = top
+   title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+   title.BackgroundTransparency = 1.000
+   title.Size = UDim2.new(0, 200, 0, 20)
+   title.Font = Enum.Font.SourceSans
+   title.Text = "  goopy's autofarm"
+   title.TextColor3 = Color3.fromRGB(0, 0, 0)
+   title.TextSize = 14.000
+   title.TextXAlignment = Enum.TextXAlignment.Left
+   
+   TextButton.MouseButton1Click:connect(function()
+    tokenVar = token.Text
+    if token.Text ~= "" or " " then
+       print('success! use ">init" to start!',5)
+       appendfile("goopy_es/token.txt", token.Text)
+       hi:Destroy()
+       else
+      print("invalid token...")
+    end
+   end)
+end
+
+if readfile("goopy_es/token.txt") == "" then
+   createUI()
+else
+   tokenVar = readfile("goopy_es/token.txt")
+   print('success! use ">init" to start!',5)
+end
+
+repeat wait() until tokenVar ~= ""
+
+
+-- script below --
+
+local positions = {
+   -- add more yaself you bum
+   Vector3.new(-2273.83569, 147.834534, 634.644287),
+   Vector3.new(-1667.35034, 210.935745, 1652.5238)
+}
+
+local plrs = game:GetService("Players")
+local lp   = plrs.LocalPlayer
+local chr  = lp.Character
+local hrp  = chr.HumanoidRootPart
+
+local rs        = game:GetService("ReplicatedStorage")
+local menuEvent = rs.Events.MenuEvent
+
+-- debugging shit --
+
+function tp(to)
+   hrp.CFrame = CFrame.new(to)
+end
+
+function createPrinter(type)
+   if type == "basic" then
+       menuEvent:FireServer(2, "Money Printer Basic", nil, 8)
+   else
+       menuEvent:FireServer(2, "Money Printer Advanced", nil, 8)
+   end
+end
+
+function getMoney(printerInstance)
+   rs.Events.InteractEvent:FireServer(printerInstance)
+end
+
+function init()
+   tp(positions[math.random(1, #positions)])
+   wait(0.5)
+   if getgenv().config['printer_type'] == "basic" then
+       wait(3)
+       createPrinter("basic")
+       wait(0.1)
+       createPrinter("basic")
+   else
+       wait(3)
+       createPrinter("advanced")
+       wait(0.1)
+       createPrinter("advanced")
+   end
+   spawn(function()
+       while wait(getgenv().config['get_cooldown']) do
+           wait(2)
+           for i,v in pairs(workspace.MoneyPrinters:GetChildren()) do
+               getMoney(v)
+           end
+       end
+   end)
+end
+
+local api = loadstring(game:HttpGet('https://raw.githubusercontent.com/ou1z/SynDiscord/main/Client/module.lua'))()
+local remoteAF = api.Client.new()
+
+remoteAF:on('ready', function()
+   print("bot ready", 20)
+   getgenv().whitelist = {
+       remoteAF.User.id,
+       yourUserId
+   }
+end)
+
+remoteAF:on('messageCreate', function(message)
+   if table.find(getgenv().whitelist, message.author.id) then
+       local args = message.content:split(' ')
+       
+       if args[1] == ">cmds" then
+           message.reply([[
+```
+>pos       | returns hrp position/cframe
+>init      | starts autofarm
+>config    | changes arg2 with arg3 (use >config view to see cfg)
+>ingame    | checks user status
+>whitelist | whitelists arg2's userid
+>blacklist | blacklists arg2's userid
+```
+]])
+       end
+       
+       if args[1] == ">init" then
+           print(">init has been used, starting bot now", 5)
+           init()
+           message.reply("bot has been started")
+       end
+       
+       if args[1] == ">whitelist" then
+           table.insert(getgenv().whitelist, args[2])
+           message.reply("successfully whitelisted <@"..args[2]..">")
+       end
+       
+       if args[1] == ">blacklist" then
+           if table.find(getgenv().whitelist, args[2]) then
+               for i,v in pairs(getgenv().whitelist) do
+                   if args[2] == v then
+                       table.remove(getgenv().whitelist, i)
+                       message.reply("succesfully blacklisted <@"..args[2]..">")
+                   end
+               end
+           end
+       end
+       
+       if args[1] == ">pos" then
+           message.reply("```\nv3: "..tostring(hrp.Position).."\n\ncf: "..tostring(hrp.CFrame).."\n```")
+       end
+       
+       if args[1] == '>ingame' then
+           message.reply(game.Players.LocalPlayer.Name..'\ncurrently in game '..game:GetService('MarketplaceService'):GetProductInfo(game.PlaceId).Name..'\n(id '..game.PlaceId..')\n(jobid '..game.JobId..')\nmoney: '..lp.PlayerData.Currency.Value, {})
+       end
+       
+       if args[1] == ">config" then
+           if args[2] == "view" then
+               for i,v in pairs(getgenv().config) do
+                   message.channel.send(i..": "..v)
+               end
+           else
+               getgenv().config[args[2]] = args[3]
+               message.react("✅")
+           end
+       end
+   end
+end)
+
+
+remoteAF:login(tokenVar)

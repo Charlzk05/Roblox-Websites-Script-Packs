@@ -1,0 +1,46 @@
+--[[ made by illunious
+
+thank you to brickmane for sending me this, make sure to check it out:
+https://github.com/Relkss/Releases/blob/main/Skyrim%20Guard%20Dialogue%20(Walk%20like%20an%20npc).lua ]]
+
+
+-- customize things here
+local cooldown = 7 -- how long you want to wait before the message cooldown is up
+
+
+local dialogue = {"I used to be an adventurer like you. Then I took an arrow in the knee...",
+    "Let me guess... someone stole your sweetroll.",
+    "Citizen.",
+    "Disrespect the law, and you disrespect me.",
+    "Trouble?",
+    "What is it?",
+    "My cousin's out fighting dragons, and what do I get? Guard duty.",
+    "Gotta keep my eyes open. Damn dragons could swoop down at any time.",
+    "Fear not. Come dragon or giant, we'll be ready.",
+    "They say Helgen got hit by a dragon. One of those horrors comes here, we'll be ready.",
+    "Brigands I can handle, but this talk of dragons? World's gone mad, I say.",
+    "Everything's in order.",
+    "Staying safe I hope.",
+    "Everything all right?",
+    "Helgen... destroyed by a dragon. Hard to believe, isn't it?",
+    "Could sure use a warm bed right about now...",
+    "What is it? Dragons?",
+    "Watch the skies, traveler.",
+    "They say Ulfric Stormcloak murdered the High King... with his voice! Shouted him apart!"}
+
+
+local timer = true
+for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+    if v:IsA("BasePart") then
+        v.Touched:Connect(function(part)
+            if part.Parent:FindFirstChild("Humanoid") ~= nil then
+                if timer == true then
+                    timer = false
+                    game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(dialogue[math.random(1, #dialogue)], "All")
+                    task.wait(cooldown)
+                    timer = true
+                end
+            end    
+        end)
+    end
+end

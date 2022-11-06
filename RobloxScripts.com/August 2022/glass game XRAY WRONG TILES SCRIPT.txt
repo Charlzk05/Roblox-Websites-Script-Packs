@@ -1,0 +1,7 @@
+for _,glass in next, workspace.Map:GetChildren() do
+    if glass.Name == "Glass" then
+        if glass:FindFirstChild("TouchInterest") then
+            glass.Color = Color3.fromRGB(255,0,0)
+        end
+    end
+end

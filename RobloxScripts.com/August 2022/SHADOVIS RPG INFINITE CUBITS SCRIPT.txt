@@ -1,0 +1,5 @@
+getgenv().infcubits = true
+while infcubits do
+wait() -- if your ping is dying put some delay here
+game:GetService("ReplicatedStorage").RemoteEvent:FireServer("CollectCubit", math.random())
+end

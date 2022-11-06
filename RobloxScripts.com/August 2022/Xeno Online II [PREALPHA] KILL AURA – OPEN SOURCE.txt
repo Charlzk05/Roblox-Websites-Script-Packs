@@ -1,0 +1,12 @@
+attack = true 
+while attack do wait(.3)
+pcall(function()
+
+local args = {
+   [1] = "ForTheKiddies"
+}
+
+game:GetService("Players").LocalPlayer.Character.Client.Events.LightAttack:FireServer(unpack(args))
+
+end)
+end

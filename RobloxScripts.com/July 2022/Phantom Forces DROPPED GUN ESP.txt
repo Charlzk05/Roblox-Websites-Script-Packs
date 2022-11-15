@@ -1,0 +1,64 @@
+-- Wait until the game is loaded
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+
+
+local d_guns = game:GetService("Workspace"):WaitForChild("Ignore").GunDrop -- Path to guns that are dropped
+local players = game:GetService("Players") -- Players
+local cleint = players.LocalPlayer -- Local player
+local cam = game:GetService("Workspace").CurrentCamera -- camera
+if not getgenv() then
+    cleint:Kick("Your exploit wont support this!")
+end
+
+
+-- ESP
+local function doESP(gun)
+    -- draw text
+    local Text = Drawing.new("Text")
+    Text.Visible = false
+    Text.Size = 18
+    Text.Font = 3
+    Text.Outline = true
+
+    -- update esp/text
+    local function Update()
+        local c
+        c = game:GetService("RunService").RenderStepped:Connect(function()
+            if cleint.Character ~= nil and gun:FindFirstChild("Gun") and gun:FindFirstChild("UnderbarrelNode") then
+
+                local Distance = (cam.CFrame.Position-gun.UnderbarrelNode.Position).Magnitude
+                local Pos,OnScreen = cam:WorldToScreenPoint(gun.UnderbarrelNode.Position)
+               
+                if OnScreen then
+                    Text.Position = Vector2.new(Pos.x,Pos.y)
+                    Text.Visible = true
+                    Text.Size = math.clamp(30 - Distance / 10, 15, 30)
+                    Text.Color = Color3.fromHSV(math.clamp(Distance / 5, 0, 125) / 255, 0.75, 1)
+                else
+                    Text.Visible = false
+                end
+               
+                Text.Text = tostring(gun.Gun.Value)
+            else
+                Text.Visible = false
+                if not game then
+                    c:Disconnect()
+                end
+            end
+        end)
+    end
+
+    coroutine.wrap(Update)()
+end
+
+
+for _, gun in pairs(d_guns:GetChildren()) do
+    doESP(gun)
+end
+
+
+d_guns.ChildAdded:Connect(function(gun)
+    doESP(gun)
+end)

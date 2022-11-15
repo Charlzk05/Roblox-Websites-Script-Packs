@@ -1,0 +1,68 @@
+pcall(function()
+  local player = game:GetService("Players").LocalPlayer
+  local character = player.Character
+ 
+  local folder = workspace
+  local npcname = "Muzan"
+  local target = folder:WaitForChild(npcname)
+
+  local function ESP()
+      local BillboardGui = Instance.new("BillboardGui")
+      local Frame = Instance.new("ImageLabel")
+      local TextLabel = Instance.new("TextLabel")
+     
+      BillboardGui.Parent = target.HumanoidRootPart
+      BillboardGui.Active = true
+      BillboardGui.Adornee = BillboardGui.Parent
+      BillboardGui.AlwaysOnTop = true
+      BillboardGui.LightInfluence = 1.000
+      BillboardGui.Size = UDim2.new(0, 100, 0, 100)
+     
+      Frame.Name = "Frame"
+      Frame.Parent = BillboardGui
+      Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+      Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+      Frame.BackgroundTransparency = 1.000
+      Frame.BorderSizePixel = 0
+      Frame.Position = UDim2.new(0.5, 0, 0.349999994, 0)
+      Frame.Size = UDim2.new(0, 35, 0, 35)
+      Frame.Image = "rbxassetid://4900210318"
+      Frame.ImageColor3 = Color3.fromRGB(196, 40, 28) --- color
+      Frame.ImageTransparency = 0.250
+      Frame.SliceCenter = Rect.new(100, 100, 100, 100)
+     
+      TextLabel.Parent = BillboardGui
+      TextLabel.AnchorPoint = Vector2.new(0.5, 1)
+      TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+      TextLabel.BackgroundTransparency = 1.000
+      TextLabel.Position = UDim2.new(0.5, 0, 1, 0)
+      TextLabel.Size = UDim2.new(0, 50, 0, 85)
+      TextLabel.Font = Enum.Font.Fantasy
+      TextLabel.Text = ""
+      TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255) --- color
+      TextLabel.TextSize = 14.000
+  end
+ 
+  local function Update()
+      pcall(function()
+          local root = character.HumanoidRootPart
+          local targetroot = target.HumanoidRootPart
+          targetroot.BillboardGui.TextLabel.Text = math.floor((root.Position - targetroot.Position).magnitude) .. "m"
+      end)
+  end
+
+  ESP()
+
+  folder.ChildAdded:Connect(function(child)
+      pcall(function()
+          if string.match(v.Name, npcname) then
+              child:WaitForChild(npcname)
+              ESP()
+          end
+      end)
+  end)
+
+  game:GetService("RunService").RenderStepped:Connect(function()
+      Update()
+  end)
+end)

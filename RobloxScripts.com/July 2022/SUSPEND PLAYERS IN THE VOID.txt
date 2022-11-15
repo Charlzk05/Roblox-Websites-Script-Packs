@@ -1,0 +1,32 @@
+function getRoot(char)
+   local rootPart = char:FindFirstChild('HumanoidRootPart') or char:FindFirstChild('Torso') or char:FindFirstChild('UpperTorso')
+   return rootPart
+end
+local player = game.Players.LocalPlayer
+local char = game.Players.LocalPlayer.Character
+local target = game.Players["ENTER NAME HERE"]
+local tchar = target.Character
+local hum = char:FindFirstChildOfClass("Humanoid")
+local hrp = getRoot(char)
+local hrp2 = getRoot(tchar)
+hum.Name = "1"
+local newHum = hum:Clone()
+newHum.Parent = char
+newHum.Name = "Humanoid"
+wait()
+hum:Destroy()
+workspace.CurrentCamera.CameraSubject = char
+newHum.DisplayDistanceType = "None"
+local tool = player:FindFirstChildOfClass("Backpack"):FindFirstChildOfClass("Tool") or char:FindFirstChildOfClass("Tool")
+tool.Parent = char
+hrp.CFrame = hrp2.CFrame * CFrame.new(0, 0, 0) * CFrame.new(math.random(-100, 100)/200,math.random(-100, 100)/200,math.random(-100, 100)/200)
+local n = 0
+repeat
+   wait(.1)
+   n = n + 1
+   hrp.CFrame = hrp2.CFrame
+until (tool.Parent ~= char or not hrp or not hrp2 or not hrp.Parent or not hrp2.Parent or n > 250) and n > 2
+repeat
+       wait()
+       hrp.CFrame = CFrame.new(9e9,9e9,9e9)
+until not getRoot(tchar) or not getRoot(char)

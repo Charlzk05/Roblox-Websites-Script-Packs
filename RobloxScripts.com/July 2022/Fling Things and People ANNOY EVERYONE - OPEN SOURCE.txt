@@ -1,0 +1,32 @@
+local Players = game:GetService"Players"
+local Lp = Players.LocalPlayer
+Players.LocalPlayer.CameraMode = Enum.CameraMode.Classic
+game:GetService"RunService".Stepped:connect(function()
+pcall(function()
+for i, v in next, Lp.Character:GetDescendants() do
+if v:IsA"BasePart" and v.CanCollide then v.CanCollide = false end
+end
+end)
+end)
+while true do
+for i, v in next, Players:GetChildren() do
+pcall(function()
+local BodyVel = Lp.Character.HumanoidRootPart:FindFirstChild"BodyVelocity" or Instance.new("BodyVelocity", Lp.Character.HumanoidRootPart)
+BodyVel.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+BodyVel.Velocity = Vector3.new(0, 0, 0)
+if v ~= Lp and v.Character and v.Character.HumanoidRootPart.CFrame.X > 200 then
+Lp.Character.HumanoidRootPart.CFrame = CFrame.new(v.Character.HumanoidRootPart.Position) * CFrame.new(0, -7, 0)
+task.wait(0.5)
+game:GetService"ReplicatedStorage".GrabEvents.SetNetworkOwner:FireServer(v.Character.HumanoidRootPart, "player")
+task.wait(0.5)
+v.Character.HumanoidRootPart.CFrame = CFrame.new(0, 5e3, 5e4)
+else
+Lp.Character.HumanoidRootPart.CFrame = workspace.SpawnLocation.CFrame
+end
+end)
+end
+pcall(function()
+Lp.Character.HumanoidRootPart.CFrame = workspace.SpawnLocation.CFrame
+end)
+task.wait(1)
+end

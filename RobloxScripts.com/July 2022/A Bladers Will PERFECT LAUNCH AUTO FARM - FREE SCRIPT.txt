@@ -1,0 +1,17 @@
+getgenv().autoperfect = true
+local v = game:GetService("VirtualUser")
+while autoperfect and task.wait() do
+       if game.Players.LocalPlayer.Backpack:FindFirstChild("Bey Launcher") then
+           game.Players.LocalPlayer.Backpack:FindFirstChild("Bey Launcher").Parent = game.Players.LocalPlayer.Character
+       end
+       if not game.Players.LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Name) then
+           game:GetService("Players").LocalPlayer.Character.Handler.EquipBey:FireServer()
+           task.wait(2)
+       end
+       v:Button1Down(Vector2.new(500, 500))
+       task.wait(3.25)
+       v:Button1Up(Vector2.new(500, 500))
+       task.wait(1.5)
+       v:ClickButton1(Vector2.new(500, 500))
+       task.wait(5)
+end

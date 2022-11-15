@@ -1,0 +1,33 @@
+local custom_speed = 150 -- Enter the speed you want
+
+
+
+
+local Players = game:GetService("Players")
+if not getgc then
+    Players.LocalPlayer:Kick("Your exploit is not supported!")
+end
+
+
+
+
+for _, value in pairs(getgc(true)) do
+    if type(value) == "table" and rawget(value,"getEffectiveSpeed") then
+        hookfunction(value.getEffectiveSpeed, function()
+            return custom_speed
+        end)
+    end
+end
+
+
+
+-- No collusion
+local OldNamecall
+OldNamecall = hookmetamethod(game, "__namecall", function(Self, ...)
+    local args = {...}
+    local method = getnamecallmethod()
+    if tostring(Self) == "CollisionReq" and method == "FireServer" then
+        return
+    end
+    return OldNamecall(Self, ...)
+end)

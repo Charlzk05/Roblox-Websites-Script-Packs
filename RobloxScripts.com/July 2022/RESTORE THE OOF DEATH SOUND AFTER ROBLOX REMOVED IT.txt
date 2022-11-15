@@ -1,0 +1,27 @@
+local g = game:GetDescendants()
+
+if not(readfile("ouch.ogg")) then
+  writefile("ouch.ogg",game:HttpGet("https://cdn.discordapp.com/attachments/688049115627520089/1001631111262253086/ouch.ogg"))
+end
+
+local getasset = getsynasset or getcustomasset
+
+local asset = getasset("ouch.ogg")
+
+local replace = "rbxasset://sounds/uuhhh.mp3"
+
+for i,v in pairs(g) do
+  if v:IsA("Sound") then
+      if v.SoundId == replace then
+          v.SoundId = asset
+       end
+   end
+end
+
+game.DescendantAdded:Connect(function(v)
+     if v:IsA("Sound") then
+      if v.SoundId == replace then
+          v.SoundId = asset
+       end
+   end
+end)

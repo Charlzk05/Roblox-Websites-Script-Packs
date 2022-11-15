@@ -1,0 +1,36 @@
+local function claim(category, name, amount)
+   coroutine.wrap(function()
+       game:GetService("ReplicatedStorage").Functions.ClaimQuest:InvokeServer({
+           [1] = 69.69,
+           [2] = "Cards",
+           [3] = 0,
+           [4] = category,
+           [5] = name,
+           [6] = amount,
+           [7] = "Why does this dev have useless arguments :confused:",
+           [8] = "Imagine fucking up this badly lolololol",
+           [9] = "don't even need arg-9",
+           [10] = "imagine needing arg-10 (Script made by IDoN0t (v3rmillion.net)"
+       })
+   end)()
+end
+
+
+for i, inst in ipairs(game:GetService("ReplicatedStorage").Ships:GetChildren()) do
+   claim("Ship", inst.Name, 10000)
+end
+
+for i, inst in ipairs(game:GetService("ReplicatedStorage").Carts:GetChildren()) do
+   claim("Cart", inst.Name, 10000)
+end
+
+for i, inst in ipairs(game:GetService("ReplicatedStorage").Miners:GetChildren()) do
+   claim("Miner", inst.Name, 10000)
+end
+
+-- IceCoins, FireCoins, MagicCoins Don't seem to work but eh
+claim("Currency", "Voucher", math.huge)
+claim("Currency", "Coins", math.huge)
+claim("Currency", "IceCoins", math.huge)
+claim("Currency", "FireCoins", math.huge)
+claim("Currency", "MagicCoins", math.huge

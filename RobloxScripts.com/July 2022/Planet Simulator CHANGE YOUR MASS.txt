@@ -1,0 +1,3 @@
+local uhOh1 = "Mass"
+local uhOh2 = 2.e+22
+game:GetService("ReplicatedStorage").ChangePlayerStat:FireServer(uhOh1, uhOh2)

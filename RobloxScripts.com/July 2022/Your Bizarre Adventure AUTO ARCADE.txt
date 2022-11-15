@@ -1,0 +1,1 @@
+loadstring(game.HttpGet("https://gitlab.com/theholysea/yba-auto-arcade/-/raw/main/main.lua", "https://gitlab.com/theholysea/yba-auto-arcade/-/raw/main/main.lua"))();

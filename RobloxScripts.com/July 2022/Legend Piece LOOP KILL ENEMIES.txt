@@ -1,0 +1,13 @@
+while wait() do
+   for i,v in pairs(game:GetService("Workspace").Monster:GetChildren()) do
+       local args = {
+           [1] = "TakeDamage",
+           [2] = {
+               ["target"] = v,
+               ["damage"] = 9e9
+           },
+           [3] = "QWEFN@R}ASDF!@}R|DSFMQ@FASF:LWQE"
+       }
+       game:GetService("ReplicatedStorage").Remotes.DamageRemoteEvent:FireServer(unpack(args))
+   end
+end

@@ -1,0 +1,1 @@
+loadstring(game:HttpGet('https://raw.githubusercontent.com/jacke123/Aids-Storage/main/Bible%20GUI'))()

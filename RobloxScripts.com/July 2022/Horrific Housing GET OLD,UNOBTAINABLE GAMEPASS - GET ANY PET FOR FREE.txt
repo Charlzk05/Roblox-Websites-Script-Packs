@@ -1,0 +1,27 @@
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local window = library.CreateLib("Sugarlipsgirl234's Pet Changer", _G.currentOption)
+local change = window:NewTab("Pets")
+local petsCategory = change:NewSection("Change Pets")
+local equippablePets = {}
+local diamondPets = {}
+local gamepassPet = "RainbowPhoenix"
+
+petsCategory:NewButton("Give Free Gamepass", "", function()
+    game:GetService("ReplicatedStorage").PetChange:FireServer(gamepassPet)    
+end)
+
+for _,v in pairs(game.ReplicatedStorage.Pets:GetChildren()) do 
+    table.insert(equippablePets, v.Name)
+end 
+
+for _,v in pairs(game.ReplicatedStorage.DiamondPets:GetChildren()) do 
+    table.insert(diamondPets, v.Name)
+end 
+
+petsCategory:NewDropdown("Choose Normal Egg Pet", "", equippablePets, function(currentOption)
+    game:GetService("ReplicatedStorage").PetChange:FireServer(currentOption)
+end)
+
+petsCategory:NewDropdown("Choose Diamond Egg Pet", "", diamondPets, function(currentOption)
+    game:GetService("ReplicatedStorage").PetChange:FireServer(currentOption)    
+end) 

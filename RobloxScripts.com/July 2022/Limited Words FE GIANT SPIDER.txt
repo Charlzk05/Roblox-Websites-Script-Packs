@@ -1,0 +1,4 @@
+_G.Key = -- Key 
+
+
+loadstring(game:HttpGet("https://www.klgrth.io/paste/vaym2/raw"))()

@@ -1,0 +1,8 @@
+_G.Settings = {
+ CheckRole = true, -- Toggle to Check their roles in group
+ Rank = 55, -- If their rank is above a certain number 0,255
+ CheckRoles = {"Developer", "Programmer", "Owner"}
+}
+
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Eazvy/public-scripts/main/Anti_Ban.lua'))()

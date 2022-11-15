@@ -1,0 +1,4 @@
+local event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents
+event.OnMessageDoneFiltering.OnClientEvent:Connect(function(object)
+   print(string.format("%s : %s", object.FromSpeaker, object.Message or ""))
+end)

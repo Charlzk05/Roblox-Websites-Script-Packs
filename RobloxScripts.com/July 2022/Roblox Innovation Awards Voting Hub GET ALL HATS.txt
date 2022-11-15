@@ -1,0 +1,37 @@
+local rootPart = game:GetService('Players').LocalPlayer.Character.HumanoidRootPart
+local args = {
+    [1] = {
+        ["Best Content Update"] = "Loomian Legacy - Beach Update",
+        ["People's Choice"] = "Adopt Me",
+        ["Best Use of Avatar Fashion"] = "Royale High",
+        ["Video Star of the Year"] = "ItsFunneh"
+    },
+    [2] = workspace.VotingScreen
+}
+
+game:GetService("ReplicatedStorage").Events.RemoteEvents.Vote:FireServer(unpack(args))
+
+wait(0.5)
+
+local pieces = {
+    p1 = game:GetService("Workspace").CubePieces.Block1.CFrame,
+    p2 = game:GetService("Workspace").CubePieces.Block2.CFrame,
+    p3 = game:GetService("Workspace").CubePieces.Block3.CFrame,
+    p4 = game:GetService("Workspace").CubePieces.Block4.CFrame
+}
+for i,v in pairs(pieces) do
+    rootPart.CFrame = pieces[i]
+    wait(0.5)
+end
+rootPart.CFrame = CFrame.new(0.438457906, 23.1126289, -131.188828)
+
+wait(3)
+
+local newCF = game:GetService("Workspace").Scavenger.Circlet.CFrame
+rootPart.CFrame = newCF
+
+wait(0.5)
+
+rootPart.CFrame = CFrame.new(0.438457906, 23.1126289, -131.188828)
+
+-- _matt#0605

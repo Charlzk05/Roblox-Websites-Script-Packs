@@ -1,0 +1,22 @@
+game.StarterGui:SetCore("SendNotification",  {
+Title = "ts#0001";
+Text = "Rejoin after you have collected everything to recieve the horns";
+Duration = 60;
+})
+wait(2)
+function teleportTO(placeCFrame)
+   local plyr = game.Players.LocalPlayer;
+   if plyr.Character then
+       plyr.Character.HumanoidRootPart.CFrame = placeCFrame;
+   end
+end
+teleportTO(game:GetService("Workspace").CubePieces.Block1.CFrame)
+wait(1)
+teleportTO(game:GetService("Workspace").CubePieces.Block2.CFrame)
+wait(1)
+teleportTO(game:GetService("Workspace").CubePieces.Block3.CFrame)
+wait(1)
+teleportTO(game:GetService("Workspace").CubePieces.Block4.CFrame)
+wait(1)
+teleportTO(game:GetService("Workspace").Scavenger.Circlet.CFrame)
+wait(3)

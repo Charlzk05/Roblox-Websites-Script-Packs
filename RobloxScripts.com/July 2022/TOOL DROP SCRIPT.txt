@@ -1,0 +1,23 @@
+local ToolNames = { 'tool_name_like_some_devil_fruit_or_somethin_idk' }
+
+-- DO NOT MODIFY BELOW --
+
+local LocalPlayer = game:GetService'Players'.LocalPlayer
+
+if not LocalPlayer.Character then return end
+local Humanoid = LocalPlayer.Character:FindFirstChildOfClass'Humanoid' if not Humanoid then return end
+
+local NewParent = LocalPlayer.Character:FindFirstChildOfClass'Tool'
+
+Humanoid:UnequipTools()
+
+for _, Tool in pairs(LocalPlayer.Backpack:GetChildren()) do
+    for _, Name in pairs(ToolNames) do
+        if Tool.Name:lower():sub(1, #Name) == Name:lower() then
+            Tool.Parent = LocalPlayer.Character
+            Tool.Parent = NewParent
+            Tool.Parent = LocalPlayer.Backpack
+            Tool.Parent = NewParent
+        end
+    end
+end

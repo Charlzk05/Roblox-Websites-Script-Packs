@@ -1,0 +1,8 @@
+while task.wait() do
+
+local args = {
+    [1] = -9e9
+}
+
+game:GetService("ReplicatedStorage").DepositHeads:FireServer(unpack(args))
+end

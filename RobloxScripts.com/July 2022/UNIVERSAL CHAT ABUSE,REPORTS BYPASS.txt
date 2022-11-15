@@ -1,0 +1,21 @@
+Y = hookmetamethod(game,"__namecall",function(self,...)
+ local args = {...};
+ local checkargs = {};
+ local method = getnamecallmethod()
+ local last
+ if method == "Fire" or method == "FireServer" then
+     if self.Name == "MessagePosted" or self.Name == "SayMessageRequest"   then
+           last = args[1]
+           --print(args[1].. last)
+            if last == args[1] then
+            return  Y(self,...)
+              else
+                 return
+                 end
+             if method == "ReportAbuse" and self == game.Players.LocalPlayer then
+                 return
+        end
+     end
+ end  
+ return Y(self,...)
+end)

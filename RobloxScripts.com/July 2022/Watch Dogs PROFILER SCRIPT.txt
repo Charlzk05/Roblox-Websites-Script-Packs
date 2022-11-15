@@ -1,0 +1,204 @@
+--Made by MojaveMF
+
+-- Random Phrase Generator
+
+getgenv().bind = Enum.KeyCode.KeypadEight
+
+local actions = {"Wanks","Beats","Pisses on","Cums","Fingers there asshole"}
+local nouns = {"kids","boys","cats","dogs","milfs","dilfs","the same gender"}
+
+function genphrase()
+   return "" .. actions[math.random(1,#actions)] .. " to " .. nouns[math.random(1,#nouns)]
+   
+end
+
+local req = request or syn.request
+
+function getrap(plr)
+    local g = req({
+    Url = "https://inventory.roblox.com/v1/users/" .. plr.UserId .. "/assets/collectibles?sortOrder=Asc&limit=100",
+    Method = "GET"
+})
+g = game:GetService("HttpService"):JSONDecode(g.Body)
+if g.data then
+local rap = 0
+for i,v in pairs(g.data) do
+    rap = rap + v.recentAveragePrice
+end
+return(rap)
+end
+end
+
+
+local pl = game:GetService("Players")
+local lp = pl.LocalPlayer
+local m = lp:GetMouse()
+local cam = game:GetService("Workspace").CurrentCamera
+local t = Drawing.new("Square")
+t.Size = Vector2.new(300,25)
+t.Color = Color3.fromRGB(255, 255, 255)
+t.Filled = true
+t.ZIndex = 1
+t.Transparency = 1
+t.Visible = false
+local nbg = Drawing.new("Square")
+nbg.Color = Color3.fromRGB(255,255,255)
+nbg.Filled = true
+nbg.Size = Vector2.new(175,12.5)
+local img = Drawing.new("Image")
+img.Size = Vector2.new(50,50)
+img.Visible = false
+local targ 
+img.ZIndex = 2
+local tracer =  Drawing.new("Line")
+tracer.Visible = false
+tracer.Color = Color3.fromHex("#007AFE")
+local rap = Drawing.new("Image")
+rap.Size = Vector2.new(75,75)
+rap.Visible = false
+rap.ZIndex = 5
+rap.Data = game:HttpGet("https://i.imgur.com/k6txNPQ.png")
+local age = Drawing.new("Text")
+age.Text = ""
+age.Size = 15
+age.Color = Color3.fromRGB(255,255,255)
+age.ZIndex = 8
+local abg = Drawing.new("Square")
+abg.Size = Vector2.new(35,15)
+abg.Filled = true
+abg.Color = Color3.new(0,0,0)
+abg.ZIndex = 1
+local raded = Drawing.new("Text")
+raded.Text = ""
+raded.Size = 15
+raded.Color = Color3.new(1,1,1)
+raded.ZIndex = 8
+local radg = Drawing.new("Square")
+radg.Size = Vector2.new(35,15)
+radg.Color = Color3.new(0,0,0)
+radg.Filled = true
+radg.ZIndex = 1
+local cached = {}
+local phrase = Drawing.new("Text")
+phrase.Text = ""
+phrase.Size = 25
+phrase.Font = 3
+phrase.Color = Color3.fromRGB(0, 0, 0)
+phrase.ZIndex = 3
+local name = Drawing.new("Text") 
+name.Text = ""
+name.Size = 15
+name.Font = 3
+name.Color = Color3.fromRGB(0, 0, 0)
+name.ZIndex = 3
+
+function gentab(v)
+local temptable = {}
+    temptable[1] = v
+    temptable[2] = game:HttpGet("https://www.roblox.com/headshot-thumbnail/image?userId=" ..v.UserId .. "&width=50&height=50&format=png")
+    temptable[3] = genphrase()
+    local g = getrap(v)
+    if g then
+    temptable[4] = g
+    end
+    table.insert(cached,temptable)
+    return temptable
+end
+
+for i,v in pairs(pl:GetPlayers()) do
+    spawn(function()
+    gentab(v)
+    end)
+end
+
+
+
+pl.PlayerAdded:Connect(function(player)
+        spawn(function()
+    gentab(player)
+    end)
+end)
+
+function gettable(plr)
+    for i,v in pairs(cached) do
+        if v[1] == plr then
+            return v
+        end
+    end
+end
+
+local pastarg 
+
+game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessedEvent)
+    if input.KeyCode == bind then
+        if m.Target then
+            if pl:GetPlayerFromCharacter(m.Target.Parent) then
+                 targ = pl:GetPlayerFromCharacter(m.Target.Parent)
+            end
+        else
+            targ = nil
+       end
+    end
+end)
+
+game:GetService("RunService").RenderStepped:Connect(function()
+    pastarg = targ
+    phrase.Visible = false
+    abg.Visible = false
+    rap.Visible = false
+    name.Visible = false
+    t.Visible = false
+    tracer.Visible = false
+    radg.Visible = false
+    raded.Visible = false
+    age.Visible = false
+    nbg.Visible = false
+    img.Visible = false
+    if targ and targ ~= nil and cam:WorldToScreenPoint(targ.Character.HumanoidRootPart.Position).Z > 0 then
+        local tab = gettable(targ)
+        if not tab then
+            gentab(targ)
+        end
+        img.Visible = true
+        name.Visible = true
+        t.Visible = true
+        nbg.Visible = true
+        abg.Visible = true
+        tracer.Visible = true
+        age.Visible = true
+        phrase.Visible = true
+        nbg.Size = Vector2.new(#tostring(targ) * 10 , 12.5)
+        name.Text = tostring(targ)
+        local p = cam:WorldToScreenPoint(targ.Character.HumanoidRootPart.Position) + Vector3.new(80,60,0)
+        nbg.Position = Vector2.new(p.X,p.Y)
+        tracer.From = Vector2.new(p.X,p.Y)
+        local hp = cam:WorldToScreenPoint(targ.Character.Head.Position - Vector3.new(0,1.5,0)) 
+        tracer.To = Vector2.new(hp.X,hp.Y)
+        t.Position = Vector2.new(p.X,p.Y+ 12.5 )
+        phrase.Position = t.Position
+        img.Position = Vector2.new(p.X-65,p.Y)
+        name.Position = Vector2.new(p.X, p.Y) 
+        local tab = gettable(targ)
+        img.Data = tab[2]
+        t.Size = Vector2.new(#tab[3] * 13,25)
+        phrase.Text = tab[3]
+        abg.Visible = true
+        abg.Position = Vector2.new(p.X,p.Y + 40)
+        age.Position = abg.Position
+        age.Text = "Age: " .. targ.AccountAge
+        abg.Size = Vector2.new(#age.Text * 5,15)
+
+        if tab[4] then
+            if tab[4] ~= 0 then
+            rap.Visible = true
+            rap.Position = img.Position - Vector2.new(12.5,12.5)
+            raded.Visible = true
+            radg.Visible = true
+            radg.Position = Vector2.new(p.X,p.Y + 60)
+            raded.Text = "RAP: " .. tab[4]
+            raded.Position = Vector2.new(p.X,p.Y + 60)
+            radg.Size = Vector2.new(#raded.Text * 5,15)
+            end
+        end
+    end
+end)

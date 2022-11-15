@@ -1,0 +1,75 @@
+-- // services
+local run_service = game:GetService("RunService")
+local camera = workspace.CurrentCamera
+local localplayer = game:GetService("Players").LocalPlayer
+-- // tables
+local settings = {
+    location = {enabled = true, color = Color3.new(1,1,1), distance = 1000},
+    zombie = {enabled = true, color = Color3.new(1,0,0), distance = 1000}
+}
+--
+local location_drawings = {}
+local zombie_drawings = {}
+-- // functions
+function draw(instance, properties)
+    local drawing = Drawing.new(instance)
+    for i,v in pairs(properties) do
+        drawing[i] = v
+    end
+    return drawing
+end
+--
+function createtext(type, table)
+    if not table[type] then
+        table[type] = draw('Text', {Size = 13, Font = 2, Center = true, Outline = true, Color = Color3.new(1,1,1)})
+    end
+end
+--
+function removetext(type, table)
+    if table[type] then
+        table[type]:Remove()
+        table[type] = nil
+    end
+end
+-- // location script
+for _,v in next, workspace.Locations:GetChildren() do
+    createtext(v, location_drawings)
+end
+-- // zombie script
+for _,v in next, workspace.Zombies.Mobs:GetChildren() do
+    createtext(v, zombie_drawings)
+end
+--
+workspace.Zombies.Mobs.ChildAdded:Connect(function(v)
+    createtext(v, zombie_drawings)
+end)
+--
+workspace.Zombies.Mobs.ChildRemoved:Connect(function(v)
+    removetext(v, zombie_drawings)
+end)
+-- // runservice shit (bad methods :sob:)
+run_service.RenderStepped:Connect(function()
+    for _,v in next, location_drawings do
+        local pos, visible = camera:WorldToViewportPoint(_.CFrame.p)
+        local mag = math.floor((_.CFrame.p - camera.CFrame.p).magnitude)
+        v.Visible = visible and settings.location.enabled and (mag <= settings.location.distance) and localplayer.Character ~= nil or false
+        if v.Visible then
+            v.Position = Vector2.new(pos.X,pos.Y)
+            v.Text = tostring(_.Name ..' ['..mag..' studs]')
+            v.Color = settings.location.color or Color3.new(1,1,1)
+        end
+    end
+    --
+    for _,v in next, zombie_drawings do
+        if _:FindFirstChild("HumanoidRootPart") then
+            local pos, visible = camera:WorldToViewportPoint(_.HumanoidRootPart.Position)
+            local mag = math.floor((_.HumanoidRootPart.CFrame.p - camera.CFrame.p).magnitude)
+            v.Visible = visible and settings.zombie.enabled and (mag <= settings.zombie.distance) and localplayer.Character ~= nil or false
+            if v.Visible then
+                v.Position = Vector2.new(pos.X,pos.Y)
+                v.Text = tostring('Zombie' ..' ['..mag..' studs]')
+                v.Color = settings.zombie.color or Color3.new(1,0,0)
+            end
+        end
+    end
+end)
